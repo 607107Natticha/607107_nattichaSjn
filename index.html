@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATTICHA - Portfolio & Resume</title>
+    
+    <!-- Tailwind CSS (ใช้ผ่าน CDN เพื่อความสะดวกในการใช้งานไฟล์เดียว) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <!-- ================= CSS SECTION ================= -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+            background-color: #09090b; /* zinc-950 */
+            color: #fafafa;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, .font-syne {
+            font-family: 'Syne', 'Noto Sans Thai', sans-serif;
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-image-container { overflow: hidden; }
+        .project-image-container img, .project-image-container video {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover .project-image-container img,
+        .project-card:hover .project-image-container video {
+            transform: scale(1.05);
+        }
+
+        /* iframe container scaling trick */
+        .iframe-preview-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .iframe-preview-container iframe {
+            width: 150%;
+            height: 150%;
+            transform: scale(0.6666);
+            transform-origin: top left;
+            pointer-events: none; /* Prevent scroll trapping */
+            border: none;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+
+        .hidden-view { display: none !important; }
+        .nav-active { text-decoration: line-through; text-decoration-thickness: 2px; color: white; }
+
+        /* PRINT CSS */
+        @media print {
+            html, body { height: auto !important; min-height: 0 !important; }
+            body { background-color: #ffffff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            nav, .print-hidden { display: none !important; }
+            main#view-resume { background-color: #ffffff !important; padding: 0 !important; margin: 0 !important; min-height: 0 !important; }
+            main#view-resume .max-w-4xl { background-color: #ffffff !important; box-shadow: none !important; border: none !important; padding: 12mm 14mm !important; max-width: 100% !important; }
+            /* หลีกเลี่ยงหน้าแรกมีแค่ About Me แล้วเว้นว่าง — ไม่ใช้ multi-column ตอนพิมพ์ */
+            main#view-resume .resume-body-grid {
+                display: block !important;
+            }
+            main#view-resume .resume-body-grid > div {
+                width: 100% !important;
+                max-width: 100% !important;
+                break-inside: auto;
+                page-break-inside: auto;
+            }
+            main#view-resume header { page-break-after: avoid; break-after: avoid-page; }
+            main#view-resume * { color: #111111 !important; }
+            main#view-resume .text-zinc-400, main#view-resume .text-zinc-500 { color: #444444 !important; }
+            main#view-resume .bg-zinc-500 { background-color: #111111 !important; }
+            main#view-resume .border-zinc-700 { border-color: #cccccc !important; }
+            main#view-resume .text-\[\#00C389\] { color: #059669 !important; }
+            .page-break-inside-avoid { page-break-inside: avoid; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black">
+
+    <!-- ================= NAVBAR SECTION ================= -->
+    <nav class="fixed top-0 w-full z-50 bg-[#09090b]/80 backdrop-blur-md border-b border-zinc-800/80 px-6 md:px-12 py-5 flex justify-between items-center text-white transition-all">
+        <div class="font-syne font-bold text-2xl tracking-tighter cursor-pointer" onclick="switchView('portfolio')">
+            NATTICHA.
+        </div>
+        <div class="flex gap-6 text-sm font-medium">
+            <button id="btn-portfolio" onclick="switchView('portfolio')" class="nav-active hover:text-gray-300 transition-colors">
+                WORK
+            </button>
+            <button id="btn-resume" onclick="switchView('resume')" class="hover:text-gray-300 transition-colors">
+                RESUME
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================= PORTFOLIO SECTION ================= -->
+    <main id="view-portfolio">
+        <!-- Hero Section -->
+        <section class="h-screen flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto pt-20">
+            <p class="text-zinc-400 uppercase tracking-[0.2em] mb-4 text-sm font-medium animate-fade-up">Web Developer & System Automator</p>
+            <h1 class="font-syne text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tighter animate-fade-up delay-100">
+                BUILDING <br />
+                <span class="text-zinc-500 italic font-medium">SMART</span> SYSTEMS & <br />
+                DIGITAL <span class="text-zinc-500 italic font-medium">EXPERIENCES</span>
+            </h1>
+            <p class="max-w-2xl mt-8 text-zinc-400 text-lg md:text-xl leading-relaxed animate-fade-up delay-200">
+                Transitioned from Graphic Design to IT & Web Development. Passionate about LLMs, Automation, and creating user-centric solutions that eliminate manual workflows.
+            </p>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="px-6 md:px-12 max-w-7xl mx-auto space-y-40 pb-32">
+            
+            <!-- Project 1: MINI ERP -->
+            <div class="project-card flex flex-col xl:flex-row gap-12 items-start">
+                <div class="w-full xl:w-1/2 aspect-video bg-black project-image-container rounded-xl relative border border-zinc-800 shadow-2xl xl:sticky xl:top-32 z-10 overflow-hidden">
+                    <video class="absolute inset-0 w-full h-full object-contain bg-black" autoplay loop muted playsinline preload="auto" title="MINI-ERP System — สาธิตหน้าจอระบบ">
+                        <source src="miniocr.mp4" type="video/mp4" />
+                    </video>
+                    <!-- Floating overlay for Tech Stack -->
+                    <div class="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 z-10">
+                        <span class="px-3 py-1.5 bg-black/60 backdrop-blur-md text-[#41B883] border border-[#41B883]/30 rounded-lg text-xs font-medium">Vue 3</span>
+                        <span class="px-3 py-1.5 bg-black/60 backdrop-blur-md text-[#FFD43B] border border-[#FFD43B]/30 rounded-lg text-xs font-medium">Python / Django</span>
+                        <span class="px-3 py-1.5 bg-black/60 backdrop-blur-md text-[#38BDF8] border border-[#38BDF8]/30 rounded-lg text-xs font-medium">Tailwind CSS</span>
+                    </div>
+                </div>
+
+                <div class="w-full xl:w-1/2 space-y-8">
+                    <div>
+                        <h2 class="font-syne text-4xl md:text-5xl font-bold text-white mb-2">MINI-ERP System</h2>
+                        <h3 class="text-xl text-[#00C389] font-medium">Smart ERP — Web-based Business System</h3>
+                        <p class="text-zinc-400 text-lg leading-relaxed mt-4">
+                            ระบบ ERP แบบเว็บสำหรับธุรกิจขนาดเล็ก–กลาง รวบรวมงานจัดซื้อ รับของ คลังสินค้า การขาย การจัดส่ง การเงินเบื้องต้น และระบบอนุมัติเอกสารไว้ในที่เดียว โครงสร้างแบบแยก API มั่นคง และหน้าจอใช้งานที่ทันสมัย ล็อกอินปลอดภัยด้วย JWT ใช้งานได้ลื่นไหลทั้งบนเดสก์ท็อปและมือถือ
+                        </p>
+                    </div>
+
+                    <!-- Highlight Features -->
+                    <div class="space-y-4 bg-zinc-900/40 p-6 rounded-xl border border-zinc-800">
+                        <h4 class="font-syne font-bold text-lg text-zinc-100 border-b border-zinc-800 pb-2">Core Modules</h4>
+                        <ul class="space-y-3 text-zinc-300 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#00C389] mt-0.5">📦</span>
+                                <div><strong class="text-white">จัดซื้อ & คลังสินค้า:</strong> Workflow ตั้งแต่ PR → PO → GRN พร้อมอัปเดตสต็อกสินค้าทันที (Real-time)</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#00C389] mt-0.5">🛒</span>
+                                <div><strong class="text-white">การขาย:</strong> ใบเสนอราคา → SO → DO พร้อมสร้างลิงก์สำหรับยืนยันรับของให้ลูกค้า</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#00C389] mt-0.5">🗂️</span>
+                                <div><strong class="text-white">Master Data:</strong> จัดการฐานข้อมูลสินค้า, คู่ค้า, คลังสินค้า และหน่วยนับ (UOM)</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#00C389] mt-0.5">🔐</span>
+                                <div><strong class="text-white">การจัดการสิทธิ์:</strong> แบ่ง Role ผู้ใช้อย่างชัดเจน พร้อมศูนย์รวมอนุมัติเอกสาร (Approval Center)</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Tech Details -->
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800/50">
+                            <span class="text-zinc-500 block mb-1 font-mono text-xs uppercase tracking-wider">Backend Architecture</span>
+                            <span class="text-zinc-200 leading-relaxed">Python, Django 6, DRF, JWT, PostgreSQL, Gunicorn</span>
+                        </div>
+                        <div class="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800/50">
+                            <span class="text-zinc-500 block mb-1 font-mono text-xs uppercase tracking-wider">Frontend Architecture</span>
+                            <span class="text-zinc-200 leading-relaxed">Vue 3, Vite, JavaScript (ES Modules), Tailwind CSS, HTML/CSS</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons & Login Credentials -->
+                    <div class="space-y-4 pt-4">
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://minierpbybez.vercel.app/" target="_blank" class="flex items-center gap-2 bg-[#00C389] text-black px-6 py-3 rounded-full font-bold hover:bg-[#00e09d] transition-all shadow-[0_0_20px_rgba(0,195,137,0.2)] hover:shadow-[0_0_30px_rgba(0,195,137,0.4)]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/beetwowin2-coder/minierpbybez.git" target="_blank" class="flex items-center gap-2 bg-zinc-800 text-white px-6 py-3 rounded-full font-medium border border-zinc-700 hover:bg-zinc-700 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.17A5.02 5.02 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.02 5.02 0 0 0-1.5 3.78c0 5.72 3.35 6.79 6.5 7.17A4.8 4.8 0 0 0 9 18v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                                GitHub Repo
+                            </a>
+                        </div>
+                        
+                        <!-- Login Info Box -->
+                        <div class="inline-flex flex-col gap-1 p-4 bg-black border border-zinc-800 rounded-xl mt-2 relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-[#00C389]"></div>
+                            <span class="text-xs text-zinc-500 font-mono tracking-wider mb-1">DEMO CREDENTIALS</span>
+                            <div class="flex items-center gap-4 text-sm font-mono">
+                                <div><span class="text-zinc-400">User:</span> <span class="text-white bg-zinc-900 px-2 py-0.5 rounded select-all">admin</span></div>
+                                <div><span class="text-zinc-400">Pass:</span> <span class="text-white bg-zinc-900 px-2 py-0.5 rounded select-all">12101995Bp</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: SabaiBill -->
+            <div class="project-card flex flex-col xl:flex-row-reverse gap-12 items-center pt-10">
+                <div class="w-full xl:w-1/2 aspect-[4/3] bg-gradient-to-br from-zinc-900 to-black project-image-container rounded-xl flex items-center justify-center p-8 border border-zinc-800 relative">
+                    <!-- Abstract UI Mockup -->
+                    <div class="w-full h-full bg-zinc-950 rounded-xl shadow-2xl flex flex-col p-6 border border-zinc-800 relative overflow-hidden z-10">
+                        <div class="w-1/3 h-5 bg-zinc-800 rounded mb-8"></div>
+                        <div class="flex justify-between border-b border-zinc-800 pb-4 mb-6">
+                            <div class="w-1/4 h-3 bg-zinc-700 rounded"></div>
+                            <div class="w-1/4 h-3 bg-zinc-700 rounded"></div>
+                        </div>
+                        <div class="space-y-4 flex-1">
+                            <div class="w-full h-12 bg-zinc-900/80 rounded-lg flex items-center px-4"><div class="w-1/2 h-2 bg-zinc-700 rounded"></div></div>
+                            <div class="w-full h-12 bg-zinc-900/80 rounded-lg flex items-center px-4"><div class="w-2/3 h-2 bg-zinc-700 rounded"></div></div>
+                            <div class="w-full h-12 bg-zinc-900/80 rounded-lg flex items-center px-4"><div class="w-1/3 h-2 bg-[#00C389]/60 rounded"></div></div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-[#00C389] rounded-full blur-[100px] opacity-10 pointer-events-none"></div>
+                    <!-- Floating overlay for Tech Stack -->
+                    <div class="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 z-20">
+                        <span class="px-3 py-1.5 bg-black/60 backdrop-blur-md text-[#61DAFB] border border-[#61DAFB]/30 rounded-lg text-xs font-medium">React</span>
+                        <span class="px-3 py-1.5 bg-black/60 backdrop-blur-md text-[#339933] border border-[#339933]/30 rounded-lg text-xs font-medium">Node.js</span>
+                        <span class="px-3 py-1.5 bg-black/60 backdrop-blur-md text-white border border-white/30 rounded-lg text-xs font-medium">Prisma</span>
+                    </div>
+                </div>
+                
+                <div class="w-full xl:w-1/2 space-y-6">
+                    <div>
+                        <h2 class="font-syne text-4xl md:text-5xl font-bold text-white">SabaiBill</h2>
+                        <h3 class="text-xl text-[#00C389] mt-2 font-medium">SME Document Management System</h3>
+                    </div>
+                    
+                    <p class="text-zinc-400 text-lg leading-relaxed">
+                        แอปพลิเคชันช่วย SME จัดการเอกสารซื้อขายครบวงจร ออกใบเสนอราคา ใบสั่งขาย ใบส่งของ และใบแจ้งหนี้ ในที่เดียว พร้อมฟังก์ชันพิมพ์และบันทึกเอกสารเป็น PDF ได้อย่างราบรื่น
+                    </p>
+                    
+                    <ul class="text-zinc-300 space-y-3 bg-zinc-900/30 p-6 rounded-xl border border-zinc-800/50">
+                        <li class="flex items-start gap-3"><span class="text-[#00C389] mt-1 text-sm">✦</span> <div><strong>All-in-One Workflow:</strong> ตั้งค่าบริษัท เลือกเทมเพลต คำนวณ VAT / ส่วนลด / หัก ณ ที่จ่าย แล้วส่งต่อจากใบเสนอราคาไปจนถึงใบแจ้งหนี้ได้ในคลิกเดียว</div></li>
+                        <li class="flex items-start gap-3"><span class="text-[#00C389] mt-1 text-sm">✦</span> <div><strong>Bilingual System:</strong> ใช้งานเป็นภาษาไทยและอังกฤษ (สลับได้ทันทีในแอป) รองรับข้อมูลในเอกสารคู่ขนานไทย–อังกฤษ</div></li>
+                    </ul>
+
+                    <div class="pt-4 space-y-4">
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://baibillbybez.onrender.com/login" target="_blank" class="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-zinc-200 transition-colors shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/beetwowin2-coder/billbybz.git" target="_blank" class="flex items-center gap-2 bg-zinc-800 text-white px-6 py-3 rounded-full font-medium border border-zinc-700 hover:bg-zinc-700 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.17A5.02 5.02 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.02 5.02 0 0 0-1.5 3.78c0 5.72 3.35 6.79 6.5 7.17A4.8 4.8 0 0 0 9 18v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                                GitHub Repo
+                            </a>
+                        </div>
+                        <p class="text-sm text-zinc-500 pl-4 border-l-2 border-[#00C389] ml-2">กด <strong>เข้าใช้งาน</strong> แล้วเริ่มกรอกข้อมูลบริษัทหรือเข้าแดชบอร์ดได้ทันที — เหมาะสำหรับทดลองและนำเสนอ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Web Design (Showcasing iframes) -->
+            <div class="pt-20 border-t border-zinc-800/50">
+                <div class="text-center mb-16 max-w-3xl mx-auto space-y-4">
+                    <h2 class="font-syne text-4xl md:text-5xl font-bold text-white">Web Design & Commerce</h2>
+                    <p class="text-zinc-400 text-lg">
+                        Developing functional and aesthetically pleasing digital storefronts with integrated backend communication (LINE Notify API).
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- CJP Frozen Food Mockup -->
+                    <div class="space-y-6">
+                        <!-- Browser Window Mockup -->
+                        <div class="rounded-xl border border-zinc-700 overflow-hidden bg-black shadow-2xl group relative">
+                            <!-- Browser Header -->
+                            <div class="h-10 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 gap-2">
+                                <div class="flex gap-1.5">
+                                    <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                                </div>
+                                <div class="ml-4 flex-1 flex justify-center">
+                                    <div class="bg-black text-zinc-500 text-xs px-3 py-1 rounded-md flex items-center gap-2 border border-zinc-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                        cjpfrozenfood.co.th
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Iframe Container -->
+                            <div class="aspect-[4/3] relative bg-zinc-950 iframe-preview-container">
+                                <!-- Lazy load the iframe -->
+                                <iframe src="https://www.cjpfrozenfood.co.th/" loading="lazy" title="CJP Frozen Food Preview"></iframe>
+                                <!-- Transparent overlay to prevent accidental scrolling inside iframe -->
+                                <a href="https://www.cjpfrozenfood.co.th/" target="_blank" class="absolute inset-0 z-10 flex items-center justify-center bg-black/0 group-hover:bg-black/50 transition-all duration-300">
+                                    <span class="opacity-0 group-hover:opacity-100 bg-white text-black font-bold px-6 py-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                        Visit Full Site
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-syne text-2xl font-bold text-white">CJP Frozen Food</h3>
+                                <a href="https://www.cjpfrozenfood.co.th/" target="_blank" class="text-zinc-500 hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                            </div>
+                            <p class="text-zinc-400 text-sm leading-relaxed">ระบบ B2B Product Catalog และขอใบเสนอราคา (PO Request System) มีการเชื่อมต่อ <strong>LINE Notify API</strong> เพื่อแจ้งเตือนออเดอร์ใหม่ไปยังทีมแอดมินแบบ Real-time</p>
+                        </div>
+                    </div>
+
+                    <!-- Yuki Pepper Mockup -->
+                    <div class="space-y-6">
+                        <!-- Browser Window Mockup -->
+                        <div class="rounded-xl border border-zinc-700 overflow-hidden bg-black shadow-2xl group relative">
+                            <!-- Browser Header -->
+                            <div class="h-10 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 gap-2">
+                                <div class="flex gap-1.5">
+                                    <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                                </div>
+                                <div class="ml-4 flex-1 flex justify-center">
+                                    <div class="bg-black text-zinc-500 text-xs px-3 py-1 rounded-md flex items-center gap-2 border border-zinc-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                        yukipepper.com
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Iframe Container -->
+                            <div class="aspect-[4/3] relative bg-zinc-950 iframe-preview-container">
+                                <!-- Lazy load the iframe -->
+                                <iframe src="https://yukipepper.com/" loading="lazy" title="Yuki Pepper Preview"></iframe>
+                                <a href="https://yukipepper.com/" target="_blank" class="absolute inset-0 z-10 flex items-center justify-center bg-black/0 group-hover:bg-black/50 transition-all duration-300">
+                                    <span class="opacity-0 group-hover:opacity-100 bg-white text-black font-bold px-6 py-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                        Visit Full Site
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-syne text-2xl font-bold text-white">Yuki Pepper Art Store</h3>
+                                <a href="https://yukipepper.com/" target="_blank" class="text-zinc-500 hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                            </div>
+                            <p class="text-zinc-400 text-sm leading-relaxed">แพลตฟอร์ม E-commerce สำหรับแสดงและขายผลงานศิลปะ ออกแบบสไตล์มินิมอล พร้อมระบบแจ้งเตือนออเดอร์อัตโนมัติผ่าน LINE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Automation -->
+            <div class="project-card flex flex-col lg:flex-row-reverse gap-12 items-start pt-20 border-t border-zinc-800/50">
+                <div class="w-full lg:w-3/5">
+                    <figure class="rounded-xl border border-zinc-800 overflow-hidden bg-zinc-950 shadow-2xl">
+                        <div class="aspect-video bg-black project-image-container relative">
+                            <video class="absolute inset-0 w-full h-full object-contain bg-black" autoplay loop muted playsinline controls preload="auto" title="สาธิตเวิร์กโฟลว์ Make.com — ติดตามพัสดุผ่าน LINE">
+                                <source src="ocr.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                        <figcaption class="text-zinc-500 text-xs sm:text-sm leading-relaxed px-4 py-3 border-t border-zinc-800 bg-zinc-900/50">
+                            <strong class="text-zinc-400">คำอธิบายเวิร์กโฟลว์ (สอดคล้องกับคลิป)</strong> — สถานการณ์ <span class="text-zinc-300">Integration LINE</span> บน Make.com: สายหลักซ้ายไปขวา <span class="text-zinc-300">LINE — Watch Events</span> (ทริกเกอร์) → <span class="text-zinc-300">Download a Message Attachment</span> → <span class="text-zinc-300">HTTP — Make a request</span> (ส่งรูปไป OCR) → <span class="text-zinc-300">Text parser — Match pattern</span> (ดึงเลขพัสดุ) → <span class="text-zinc-300">Google Sheets — Add a Row</span> → <span class="text-zinc-300">LINE — Send a Push Message</span> แถบควบคุมด้านล่างเปิด <span class="text-zinc-300">Immediately as data arrives</span> สำหรับรันแบบเรียลไทม์; บนแคนวาสยังมีโมดูล <span class="text-zinc-300">LINE — Send a Reply Message</span> แยกจากสายหลัก (มักมี badge แจ้งเตือน)
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="w-full lg:w-2/5 space-y-6">
+                    <h2 class="font-syne text-4xl md:text-5xl font-bold">Workflow Automation</h2>
+                    <h3 class="text-xl text-[#00C389] font-medium leading-snug">ระบบทำงานอัตโนมัติ — ติดตามพัสดุ (Make.com)</h3>
+                    <p class="text-zinc-400 text-lg leading-relaxed">
+                        ออกแบบเวิร์กโฟลว์บน <span class="text-white font-medium">Make.com</span> (ชุด <span class="text-white font-medium">Integration LINE</span>): รับเหตุการณ์จาก LINE → ดาวน์โหลดไฟล์แนบรูป → ส่งรูปไป OCR ผ่านโมดูล HTTP → ใช้ Text parser ดึงเลขพัสดุตามรูปแบบที่กำหนด → บันทึกแถวใน Google Sheets → ส่งข้อความแจ้งสถานะที่เตรียมไว้กลับลูกค้าด้วย LINE Push Message โดยตั้งรันแบบ <span class="text-white font-medium">ทันทีเมื่อมีข้อมูลเข้า</span>
+                    </p>
+                    <p class="text-zinc-500 text-sm border-l-2 border-[#00C389]/40 pl-4 py-1 leading-relaxed">
+                        ลดงานพิมพ์ซ้ำของแอดมิน เหลือเพียงลำดับสั้นๆ คือ <span class="text-zinc-300 font-medium">ถ่ายรูป → รอ → ก๊อปปี้ → ส่ง</span> ขณะที่ส่วนอ่านตัวอักษร บันทึกชีต และแจ้งเตือนทำโดยอัตโนมัติ
+                    </p>
+                    <div>
+                        <p class="text-zinc-500 text-xs tracking-wider mb-2">เครื่องมือที่ใช้</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-800/90 text-zinc-300 border border-zinc-700">Make.com</span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-800/90 text-zinc-300 border border-zinc-700">LINE — Watch events / Download attachment / Push message</span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-800/90 text-zinc-300 border border-zinc-700">Google Sheets</span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-800/90 text-zinc-300 border border-zinc-700">HTTP + บริการ OCR</span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-800/90 text-zinc-300 border border-zinc-700">Text parser (Make)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer for Portfolio -->
+        <footer class="py-12 px-6 md:px-12 border-t border-zinc-800 mt-12">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="font-syne font-bold text-2xl tracking-tighter">NATTICHA.</div>
+                <div class="flex gap-6">
+                    <a href="mailto:natticha_beben@gmail.com" class="hover:text-gray-400 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                    </a>
+                    <a href="tel:0813186310" class="hover:text-gray-400 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </a>
+                </div>
+                <div class="text-zinc-500 text-sm">© 2025 All rights reserved.</div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- ================= RESUME SECTION ================= -->
+    <main id="view-resume" class="hidden-view bg-[#09090b] pt-24 pb-32 px-4 md:px-12 text-zinc-300">
+        
+        <!-- Controls for Resume (Print & Lang Toggle) -->
+        <div class="max-w-4xl mx-auto flex justify-between items-center mb-6 print-hidden">
+            <div class="flex items-center gap-2 bg-zinc-900 border border-zinc-800 p-1 rounded-lg">
+                <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-bold bg-white text-black rounded-md transition-all shadow-sm">EN</button>
+                <button id="lang-th" onclick="setLang('th')" class="px-4 py-1.5 text-sm font-bold text-zinc-400 hover:text-white rounded-md transition-all">TH</button>
+            </div>
+            
+            <button onclick="window.print()" class="flex items-center gap-2 px-5 py-2.5 bg-white text-black text-sm font-bold rounded-lg hover:bg-zinc-200 transition-colors shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Save as PDF
+            </button>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-[#18181b] border border-zinc-800 shadow-2xl p-8 md:p-16 lg:p-24 rounded-xl animate-fade-up">
+            
+            <!-- ====== ENGLISH VERSION ====== -->
+            <div id="resume-en">
+                <!-- Header -->
+                <header class="border-b border-zinc-700 pb-8 mb-8 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-6">
+                    <div>
+                        <h1 class="font-syne text-4xl md:text-5xl font-bold tracking-tight mb-2 text-white">NATTICHA SATJAWATTHANA (BENZ)</h1>
+                    </div>
+                    <div class="text-sm text-zinc-400 space-y-1 text-center md:text-right shrink-0">
+                        <p class="flex items-center justify-center md:justify-end gap-2">081-318-6310</p>
+                        <p class="flex items-center justify-center md:justify-end gap-2">natticha_beben@gmail.com</p>
+                        <p class="flex items-center justify-center md:justify-end gap-2 font-medium text-white">LINE ID: BEETWOWIN</p>
+                    </div>
+                </header>
+
+                <!-- About Me -->
+                <section class="mb-10 page-break-inside-avoid">
+                    <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-4 text-white flex items-center gap-2">
+                        <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> About Me
+                    </h2>
+                    <p class="text-zinc-400 leading-relaxed text-justify">
+                        My professional journey began in Graphic Design, but a natural curiosity and the need to adapt led me hands-on into IT Support, where I learned to manage computer equipment and servers. While I do not consider myself an expert in everything, this path has shaped me into a highly adaptable individual with a deep passion for continuous learning. Currently, I am deeply fascinated by Web Development, System Automation, and the world of Artificial Intelligence (particularly LLMs and CNNs). My ultimate goal is to deeply understand, communicate with, and eventually build AI models myself, allowing me to create meaningful projects and stay adaptable for the future. I am highly motivated, always ready to learn, and eager to bring my diverse background into a supportive environment where I can grow and contribute steadily.
+                    </p>
+                </section>
+
+                <div class="resume-body-grid grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <!-- Left Column (Main Content) -->
+                    <div class="lg:col-span-2 space-y-10">
+                        
+                        <!-- Projects -->
+                        <section>
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> Personal Projects
+                            </h2>
+                            <p class="text-zinc-500 text-sm mb-6 -mt-4 italic">(Web Development & Automation)</p>
+                            
+                            <div class="space-y-6 text-sm text-zinc-400">
+                                <div>
+                                    <h3 class="font-bold text-white text-base flex items-center gap-2">
+                                        MINI-ERP System (Smart ERP)
+                                    </h3>
+                                    <ul class="list-disc list-outside ml-5 mt-2 space-y-1">
+                                        <li>Web-based comprehensive ERP system for SMEs, integrating Purchasing, Inventory, Sales, Finance, and Document Approvals into a single platform.</li>
+                                        <li><strong>Core Features:</strong> PR → PO → GRN with real-time stock updates, Quotation → SO → DO with delivery links, and Master data management.</li>
+                                        <li><strong>Tech Stack:</strong> Python, Django 6, DRF, JWT, PostgreSQL, Vue 3, Vite, JavaScript, Tailwind CSS.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">SabaiBill (SME Document Management System)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-1 space-y-1">
+                                        <li>Developed an all-in-one document management web application for SMEs to seamlessly generate Quotations, Sales Orders, Delivery Orders, and Invoices.</li>
+                                        <li>Features customizable company settings, templates, automated VAT/Discount/WHT calculation, and 1-click document progression with PDF export capabilities.</li>
+                                        <li>Built with robust bilingual support (Thai/English) switchable within the app, supporting dual-language document data entry.</li>
+                                        <li><strong>Tech Stack:</strong> JavaScript (React, Node.js) and database definition with Prisma Schema.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">CJP Frozen Food (cjpfrozenfood.co.th)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-1 space-y-1">
+                                        <li>Developed a product catalog and request system allowing customers to browse and request quotations or open Purchase Orders (PO).</li>
+                                        <li>Integrated LINE Notify API to set up real-time automated alerts for the admin team whenever a customer submits a new request via the website.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">Yuki Pepper Art Store (yukipepper.com)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-1 space-y-1">
+                                        <li>Built an e-commerce platform for selling artwork with an automated order notification system via LINE.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">Workflow Automation — Parcel tracking (Make.com)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-1 space-y-1">
+                                        <li>Designed a Make.com scenario for logistics: LINE watches incoming messages, downloads photo attachments, sends images to an OCR service via HTTP, extracts tracking numbers with the Text parser (pattern matching), logs rows in Google Sheets, and pushes predefined shipping-status messages back to customers on LINE (real-time, “immediately as data arrives”).</li>
+                                        <li>Reduced admin workload from manual keying to a short <strong>Snap → Wait → Copy → Send</strong> routine while the automation handles recognition, logging, and notifications.</li>
+                                        <li><strong>Stack:</strong> Make.com, LINE Messaging API (watch / download / push), Google Sheets, HTTP + OCR API, Make Text parser.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Experience -->
+                        <section>
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> Work Experience
+                            </h2>
+                            
+                            <div class="space-y-8">
+                                <div class="page-break-inside-avoid">
+                                    <div class="flex justify-between items-start mb-1 flex-col md:flex-row">
+                                        <h3 class="font-bold text-lg text-white">Freelance Web Developer, Digital Marketer & Designer</h3>
+                                        <span class="text-zinc-500 text-sm font-medium whitespace-nowrap">Mar 2025 - Present</span>
+                                    </div>
+                                    <h4 class="text-[#00C389] font-medium mb-3 italic text-sm">FREELANCE</h4>
+                                    <ul class="list-disc list-outside ml-5 text-zinc-400 space-y-1 text-sm">
+                                        <li>Design and develop websites with a strong focus on workflow automation to streamline business operations and reduce manual tasks for clients.</li>
+                                        <li>Provide professional graphic design services, specializing in packaging design and creating engaging digital marketing assets.</li>
+                                        <li>Manage and optimize digital advertising campaigns across various platforms to drive targeted traffic, increase conversions, and maximize client ROI.</li>
+                                        <li>Actively studying and integrating Artificial Intelligence (AI) technologies into daily workflows to continuously improve processes.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="page-break-inside-avoid">
+                                    <div class="flex justify-between items-start mb-1 flex-col md:flex-row">
+                                        <h3 class="font-bold text-lg text-white">Content Moderator</h3>
+                                        <span class="text-zinc-500 text-sm font-medium whitespace-nowrap">Oct 2024 - Mar 2025</span>
+                                    </div>
+                                    <h4 class="text-zinc-500 font-medium mb-3 italic text-sm">TRANSCOSMOS (THAILAND) CO., LTD.</h4>
+                                    <ul class="list-disc list-outside ml-5 text-zinc-400 space-y-1 text-sm">
+                                        <li>Reviewed online videos, content, complaints, and legal notices received from end customers regarding copyright issues.</li>
+                                        <li>Evaluated and updated content on a popular social media platform ensuring compliance with community guidelines.</li>
+                                        <li>Conducted audits of received content and managed sharing for social media uploads.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="page-break-inside-avoid">
+                                    <div class="flex justify-between items-start mb-1 flex-col md:flex-row">
+                                        <h3 class="font-bold text-lg text-white">Graphic Designer</h3>
+                                        <span class="text-zinc-500 text-sm font-medium whitespace-nowrap">2021 - 2023</span>
+                                    </div>
+                                    <h4 class="text-zinc-500 font-medium mb-3 italic text-sm">ZEA MANAGEMENT CORPORATION CO., LTD.</h4>
+                                    <ul class="list-disc list-outside ml-5 text-zinc-400 space-y-1 text-sm">
+                                        <li>Planned and strategized content based on marketing goals in collaboration with the marketing team to boost sales and engagement.</li>
+                                        <li>Created and posted engaging visual content tailored to target audiences across various social media platforms.</li>
+                                        <li>Analyzed post-campaign results and feedback to continuously improve content quality.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="page-break-inside-avoid">
+                                    <div class="flex justify-between items-start mb-1 flex-col md:flex-row">
+                                        <h3 class="font-bold text-lg text-white">IT Support</h3>
+                                        <span class="text-zinc-500 text-sm font-medium whitespace-nowrap">2019 - Dec 2021</span>
+                                    </div>
+                                    <h4 class="text-zinc-500 font-medium mb-3 italic text-sm">SIAM HERB PRODUCT CO., LTD.</h4>
+                                    <ul class="list-disc list-outside ml-5 text-zinc-400 space-y-1 text-sm">
+                                        <li>Installed, configured, and maintained computer software, hardware, and network systems.</li>
+                                        <li>Troubleshot and resolved technical issues related to IT infrastructure and company equipment.</li>
+                                        <li>Collaborated internally with teams and externally with clients, preparing detailed coordination reports.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Right Column (Sidebar Content) -->
+                    <div class="space-y-10">
+                        
+                        <!-- Skills -->
+                        <section>
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> Skills
+                            </h2>
+                            <div class="space-y-5 text-sm text-zinc-400">
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Web & Development</h3>
+                                    <p>Python, Django, Vue.js, WordPress, E-commerce, API Integration, Basic Automation & Bots</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Digital Marketing</h3>
+                                    <p>Ads Optimization, Social Media Marketing, Campaign Management</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Design & Media</h3>
+                                    <p>Packaging Design, Adobe Creative Suite (Illustrator, Photoshop, Premiere Pro, After Effects), Figma (UX/UI Design), Canva</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">AI Tools & Workflows</h3>
+                                    <p class="mb-2"><strong class="text-zinc-300">LLMs & AI Coding:</strong> Cursor, Windsurf, VS Code (Claude Code), ChatGPT, Gemini, Grok. Experienced in AI-assisted development (Vibecoding) and multi-LLM cross-referencing.</p>
+                                    <p><strong class="text-zinc-300">Computer Vision & Video AI:</strong> Flow, Higgsfield.ai. Applying computer vision concepts (including CNNs) and generative models.</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Hardware & IT</h3>
+                                    <p>PC Assembling & Custom Specs, Hardware/Software Installation, Windows Troubleshooting</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Photography</h3>
+                                    <p>DSLR, Digital Camera, Mirrorless Camera, Video Editing</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Soft Skills</h3>
+                                    <p>Working under pressure, Meeting deadlines, Cross-functional communication</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Education -->
+                        <section class="page-break-inside-avoid">
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> Education
+                            </h2>
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="font-bold text-white text-sm">Mae Fah Luang University</h3>
+                                    <p class="text-zinc-400 text-sm">Bachelor of Science (Multimedia Technology and Animation)<br/>School of Information Technology and Communication</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-sm">Valuepoint Academy, Pune, India</h3>
+                                    <p class="text-zinc-400 text-sm">Language Program | Completed: 2018</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Certifications -->
+                        <section class="page-break-inside-avoid">
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> Certifications
+                            </h2>
+                            <div>
+                                <p class="font-bold text-white text-sm">TOEIC Listening and Reading Test</p>
+                                <p class="text-zinc-400 text-sm">Score: 590 (Year: 2024)</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== THAI VERSION ====== -->
+            <div id="resume-th" class="hidden-view">
+                <!-- Header -->
+                <header class="border-b border-zinc-700 pb-8 mb-8 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-6">
+                    <div>
+                        <h1 class="font-syne text-4xl md:text-5xl font-bold tracking-tight mb-2 text-white">ณัฐฑิชา สัจจะวัฒนะ (เบ็นซ์)</h1>
+                    </div>
+                    <div class="text-sm text-zinc-400 space-y-1 text-center md:text-right shrink-0">
+                        <p class="flex items-center justify-center md:justify-end gap-2">เบอร์โทรศัพท์: 081-318-6310</p>
+                        <p class="flex items-center justify-center md:justify-end gap-2">อีเมล: natticha_beben@gmail.com</p>
+                        <p class="flex items-center justify-center md:justify-end gap-2 font-medium text-white">LINE ID: BEETWOWIN</p>
+                    </div>
+                </header>
+
+                <!-- About Me -->
+                <section class="mb-10 page-break-inside-avoid">
+                    <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-4 text-white flex items-center gap-2">
+                        <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> แนะนำตัว (About Me)
+                    </h2>
+                    <p class="text-zinc-400 leading-relaxed text-justify">
+                        เบ็นซ์มีความหลงใหลในเทคโนโลยีอย่างตั้งใจ เริ่มต้นเส้นทางการทำงานจากสาย Graphic Design แต่ด้วยความจำเป็นและโอกาสที่เข้ามา ทำให้ได้เรียนรู้และลงมือทำในสาย IT Support ดูแลทั้งอุปกรณ์คอมพิวเตอร์และเซิร์ฟเวอร์ด้วยตัวเอง ประสบการณ์นี้ได้ทำให้เบ็นซ์เป็นคนที่รักการเรียนรู้และพร้อมเปิดรับสิ่งใหม่ๆ เสมอ ปัจจุบันมีความหลงใหลในการศึกษาด้าน Web Development, System Automation และเทคโนโลยี AI (ทั้ง LLM และ CNN) ความตั้งใจสูงสุดในตอนนี้คือการทำความเข้าใจ อยากจะสื่อสาร และสามารถสร้าง (Build) Model AI ได้ด้วยตนเอง เพื่อนำไปสร้างสรรค์สิ่งที่อยากทำและก้าวให้ทันเทคโนโลยีในโลกอนาคต เบ็นซ์พร้อมและยินดีที่จะเรียนรู้ พัฒนาตนเอง และนำประสบการณ์ที่มีมาประยุกต์ใช้เพื่อสร้างผลงานที่เป็นประโยชน์ และเติบโตไปพร้อมกับองค์กรที่มั่นคงและให้ความสนใจในเรื่องอนาคต
+                    </p>
+                </section>
+
+                <div class="resume-body-grid grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <!-- Left Column (Main Content) -->
+                    <div class="lg:col-span-2 space-y-10">
+                        
+                        <!-- Projects -->
+                        <section>
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> โปรเจกต์ส่วนตัว
+                            </h2>
+                            <p class="text-zinc-500 text-sm mb-6 -mt-4 italic">(Web Development & Automation)</p>
+                            
+                            <div class="space-y-6 text-sm text-zinc-400">
+                                <div>
+                                    <h3 class="font-bold text-white text-base">ระบบ MINI-ERP / Smart ERP (ระบบธุรกิจบนเว็บ ครบวงจร)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-2 space-y-1">
+                                        <li>ระบบ ERP แบบเว็บสำหรับธุรกิจขนาดเล็ก–กลาง รวบรวมงานจัดซื้อ รับของ คลังสินค้า การขาย การจัดส่ง การเงินเบื้องต้น และระบบอนุมัติเอกสารไว้ในที่เดียว โครงสร้างแบบแยก API มั่นคง ล็อกอินปลอดภัยด้วย JWT</li>
+                                        <li><strong>ฟีเจอร์เด่น:</strong> ระบบจัดซื้อ (PR → PO → GRN พร้อมอัปเดตสต็อก), ระบบขาย (Quotation → SO → DO และลิงก์ยืนยันรับของ), ระบบ Master Data (สินค้า, คู่ค้า, คลัง, หน่วยนับ) และการจัดการสิทธิ์</li>
+                                        <li><strong>เทคโนโลยี (Tech Stack):</strong> Backend: Python, Django 6, DRF, JWT, PostgreSQL, Gunicorn | Frontend: Vue 3, Vite, JavaScript, Tailwind CSS</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">แอปพลิเคชัน SabaiBill (ระบบจัดการเอกสารซื้อขายครบวงจร)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-1 space-y-1">
+                                        <li>พัฒนาเว็บแอปพลิเคชันสำหรับ SME เพื่อออกใบเสนอราคา ใบสั่งขาย ใบส่งของ และใบแจ้งหนี้ในที่เดียว พร้อมรองรับการพิมพ์และบันทึกเป็น PDF</li>
+                                        <li>ระบบรองรับการตั้งค่าบริษัท เลือกเทมเพลต คำนวณ VAT / ส่วนลด / หัก ณ ที่จ่าย และส่งต่อเอกสาร (1-click conversion) ได้อย่างราบรื่น</li>
+                                        <li>รองรับการใช้งาน 2 ภาษา (ไทย/อังกฤษ) สลับได้ทันทีในแอป พร้อมรองรับการกรอกข้อมูลคู่ขนานลงในเอกสาร</li>
+                                        <li><strong>เทคโนโลยี (Tech Stack):</strong> JavaScript (React, Node.js) และการจัดการฐานข้อมูลด้วย Prisma Schema</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">เว็บไซต์ CJP Frozen Food (cjpfrozenfood.co.th)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-1 space-y-1">
+                                        <li>พัฒาระบบแคตตาล็อกสินค้าที่เปิดให้ลูกค้าเลือกดูและหยิบสินค้าลงตะกร้าเพื่อขอใบเสนอราคา หรือเปิดใบสั่งซื้อ (PO) ได้</li>
+                                        <li>เชื่อมต่อ LINE Notify API เพื่อตั้งระบบแจ้งเตือนอัตโนมัติแบบเรียลไทม์ไปยังทีมแอดมินทันทีที่มีลูกค้ายื่นคำขอผ่านเว็บไซต์ ช่วยเพิ่มความรวดเร็วในการตอบกลับและให้บริการลูกค้า</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">เว็บไซต์ Yuki Pepper Art Store (yukipepper.com)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-1 space-y-1">
+                                        <li>สร้างแพลตฟอร์มอีคอมเมิร์ซสำหรับขายงานศิลปะ พร้อมระบบแจ้งเตือนคำสั่งซื้ออัตโนมัติผ่าน LINE</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">ระบบทำงานอัตโนมัติ — ติดตามพัสดุ (Make.com)</h3>
+                                    <ul class="list-disc list-outside ml-5 mt-1 space-y-1">
+                                        <li>ออกแบบเวิร์กโฟลว์บน <strong>Make.com</strong> (ชุด “Integration LINE”): รับเหตุการณ์จาก <strong>LINE</strong> → ดาวน์โหลดไฟล์แนบรูป → ส่งรูปไป <strong>OCR ผ่านโมดูล HTTP</strong> → ใช้ <strong>Text parser</strong> ดึงเลขพัสดุตามรูปแบบที่กำหนด → บันทึกแถวใน <strong>Google Sheets</strong> → ส่งข้อความแจ้งสถานะที่เตรียมไว้กลับลูกค้าด้วย <strong>LINE Push Message</strong> โดยตั้งรันแบบทันทีเมื่อมีข้อมูลเข้า</li>
+                                        <li>ลดงานพิมพ์ซ้ำของแอดมิน เหลือเพียงลำดับสั้นๆ คือ <strong>ถ่ายรูป → รอ → ก๊อปปี้ → ส่ง</strong> ขณะที่ส่วนอ่านตัวอักษร บันทึกชีต และแจ้งเตือนทำโดยอัตโนมัติ</li>
+                                        <li><strong>เครื่องมือที่ใช้:</strong> Make.com, LINE (Watch events / Download attachment / Push message), Google Sheets, HTTP + บริการ OCR, Text parser ของ Make</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Experience -->
+                        <section>
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> ประสบการณ์การทำงาน
+                            </h2>
+                            
+                            <div class="space-y-8">
+                                <div class="page-break-inside-avoid">
+                                    <div class="flex justify-between items-start mb-1 flex-col md:flex-row">
+                                        <h3 class="font-bold text-lg text-white">นักพัฒนาเว็บไซต์, นักการตลาดดิจิทัล และนักออกแบบ</h3>
+                                        <span class="text-zinc-500 text-sm font-medium whitespace-nowrap">มีนาคม 2025 - ปัจจุบัน</span>
+                                    </div>
+                                    <h4 class="text-[#00C389] font-medium mb-3 italic text-sm">ฟรีแลนซ์ (Freelance)</h4>
+                                    <ul class="list-disc list-outside ml-5 text-zinc-400 space-y-1 text-sm">
+                                        <li>รับออกแบบและพัฒนาเว็บไซต์ โดยเน้นการสร้างระบบอัตโนมัติ (Automation) เพื่อลดขั้นตอนการทำงานซ้ำซ้อนและเพิ่มประสิทธิภาพให้ธุรกิจ</li>
+                                        <li>ให้บริการด้านการออกแบบกราฟิก โดยมีความเชี่ยวชาญในการออกแบบบรรจุภัณฑ์ (Packaging Design) และสื่อสำหรับการตลาดออนไลน์</li>
+                                        <li>บริหารจัดการและปรับแต่งแคมเปญโฆษณาออนไลน์ (ยิงแอด) บนแพลตฟอร์มต่างๆ เพื่อดึงดูดกลุ่มเป้าหมาย เพิ่มยอดขาย และสร้างผลตอบแทน (ROI) สูงสุดให้กับลูกค้า</li>
+                                        <li>กำลังศึกษาและนำเทคโนโลยี AI มาประยุกต์ใช้เพื่อพัฒนาต่อยอดและเพิ่มศักยภาพในการทำงานของตนเองอย่างต่อเนื่อง</li>
+                                    </ul>
+                                </div>
+
+                                <div class="page-break-inside-avoid">
+                                    <div class="flex justify-between items-start mb-1 flex-col md:flex-row">
+                                        <h3 class="font-bold text-lg text-white">Content Moderator (ตรวจสอบและดูแลเนื้อหา)</h3>
+                                        <span class="text-zinc-500 text-sm font-medium whitespace-nowrap">ตุลาคม 2024 - มีนาคม 2025</span>
+                                    </div>
+                                    <h4 class="text-zinc-500 font-medium mb-3 italic text-sm">TRANSCOSMOS (THAILAND) CO., LTD.</h4>
+                                    <ul class="list-disc list-outside ml-5 text-zinc-400 space-y-1 text-sm">
+                                        <li>ตรวจสอบวิดีโอออนไลน์ เนื้อหา ข้อร้องเรียน และหนังสือแจ้งเตือนทางกฎหมายที่ได้รับจากลูกค้าปลายทางเกี่ยวกับปัญหาด้านลิขสิทธิ์</li>
+                                        <li>ประเมินและดูแลเนื้อหาบนแพลตฟอร์มโซเชียลมีเดียชื่อดัง เพื่อให้มั่นใจว่าสอดคล้องกับกฎระเบียบและมาตรฐานของชุมชน</li>
+                                    </ul>
+                                </div>
+
+                                <div class="page-break-inside-avoid">
+                                    <div class="flex justify-between items-start mb-1 flex-col md:flex-row">
+                                        <h3 class="font-bold text-lg text-white">กราฟิกดีไซเนอร์ (Graphic Designer)</h3>
+                                        <span class="text-zinc-500 text-sm font-medium whitespace-nowrap">2021 - 2023</span>
+                                    </div>
+                                    <h4 class="text-zinc-500 font-medium mb-3 italic text-sm">ZEA MANAGEMENT CORPORATION CO., LTD.</h4>
+                                    <ul class="list-disc list-outside ml-5 text-zinc-400 space-y-1 text-sm">
+                                        <li>วางแผนและกำหนดกลยุทธ์คอนเทนต์ตามเป้าหมายทางการตลาด ร่วมกับทีมการตลาดเพื่อกระตุ้นยอดขายและการมีส่วนร่วม</li>
+                                        <li>สร้างสรรค์และโพสต์คอนเทนต์ภาพที่ดึงดูดความสนใจให้เหมาะสมกับกลุ่มเป้าหมายในแพลตฟอร์มโซเชียลมีเดียต่างๆ</li>
+                                        <li>วิเคราะห์ผลลัพธ์และผลตอบรับหลังจบแคมเปญ เพื่อนำมาพัฒนาและปรับปรุงคุณภาพคอนเทนต์อย่างต่อเนื่อง</li>
+                                    </ul>
+                                </div>
+
+                                <div class="page-break-inside-avoid">
+                                    <div class="flex justify-between items-start mb-1 flex-col md:flex-row">
+                                        <h3 class="font-bold text-lg text-white">ฝ่ายสนับสนุนด้านไอที (IT Support)</h3>
+                                        <span class="text-zinc-500 text-sm font-medium whitespace-nowrap">2019 - ธันวาคม 2021</span>
+                                    </div>
+                                    <h4 class="text-zinc-500 font-medium mb-3 italic text-sm">SIAM HERB PRODUCT CO., LTD.</h4>
+                                    <ul class="list-disc list-outside ml-5 text-zinc-400 space-y-1 text-sm">
+                                        <li>ติดตั้ง ตั้งค่า และบำรุงรักษาโปรแกรมคอมพิวเตอร์ อุปกรณ์ฮาร์ดแวร์ และระบบเครือข่ายเน็ตเวิร์ค</li>
+                                        <li>แก้ไขปัญหาทางเทคนิคและซ่อมแซมระบบที่เกี่ยวข้องกับคอมพิวเตอร์ ซอฟต์แวร์ และอุปกรณ์ไอทีภายในบริษัท</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Right Column (Sidebar Content) -->
+                    <div class="space-y-10">
+                        
+                        <!-- Skills -->
+                        <section>
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> ทักษะและความเชี่ยวชาญ
+                            </h2>
+                            <div class="space-y-5 text-sm text-zinc-400">
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">การพัฒนาเว็บไซต์และระบบ</h3>
+                                    <p>Python, Django, Vue.js, WordPress, E-commerce, API Integration, Basic Automation & Bots</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">การตลาดดิจิทัล</h3>
+                                    <p>การยิงแอดและปรับแต่งโฆษณา (Ads Optimization), Social Media Marketing</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">การออกแบบและสื่อ</h3>
+                                    <p>การออกแบบบรรจุภัณฑ์ (Packaging Design), Adobe Creative Suite (Illustrator, Photoshop, Premiere Pro, After Effects), Figma (UX/UI Design), Canva</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">เครื่องมือและเทคนิค AI</h3>
+                                    <p class="mb-2"><strong class="text-zinc-300">LLMs & AI Coding:</strong> Cursor, Windsurf, VS Code (Claude Code), ChatGPT, Gemini, Grok มีประสบการณ์การเขียนโค้ดร่วมกับ AI (Vibecoding) และชอบใช้เทคนิคถามข้ามโมเดล (Multi-LLM Cross-referencing)</p>
+                                    <p><strong class="text-zinc-300">Computer Vision & Video AI:</strong> Flow, Higgsfield.ai เรียนรู้และประยุกต์ใช้โมเดล AI รวมถึงแนวคิดพื้นฐานอย่าง CNN ในการต่อยอด สร้างสรรค์เนื้อหา</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">ฮาร์ดแวร์และไอที</h3>
+                                    <p>ประกอบคอมและจัดสเปก (PC Assembling & Custom Specs), ติดตั้งฮาร์ดแวร์/ซอฟต์แวร์, แก้ไขปัญหา Windows</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">การถ่ายภาพและวิดีโอ</h3>
+                                    <p>DSLR, Digital Camera, Mirrorless Camera, ตัดต่อวิดีโอ (Video Editing)</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Soft Skills</h3>
+                                    <p>ทำงานภายใต้ความกดดันได้ดี, ส่งงานตรงเวลา, สื่อสารและประสานงานข้ามสายงานได้ดี</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Education -->
+                        <section class="page-break-inside-avoid">
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> การศึกษา
+                            </h2>
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="font-bold text-white text-sm">มหาวิทยาลัยแม่ฟ้าหลวง</h3>
+                                    <p class="text-zinc-400 text-sm">วิทยาศาสตรบัณฑิต (เทคโนโลยีมัลติมีเดียและการสร้างภาพเคลื่อนไหว)<br/>สำนักวิชาเทคโนโลยีสารสนเทศ</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-sm">Valuepoint Academy (เมืองปูเน่, ประเทศอินเดีย)</h3>
+                                    <p class="text-zinc-400 text-sm">ประกาศนียบัตรหลักสูตรภาษาอังกฤษ | สำเร็จการศึกษา: ปี 2018</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Certifications -->
+                        <section class="page-break-inside-avoid">
+                            <h2 class="font-syne text-2xl font-bold uppercase tracking-wider mb-6 text-white flex items-center gap-2">
+                                <span class="w-6 h-[2px] bg-zinc-500 inline-block"></span> ประกาศนียบัตร
+                            </h2>
+                            <div>
+                                <p class="font-bold text-white text-sm">TOEIC Listening and Reading Test</p>
+                                <p class="text-zinc-400 text-sm">คะแนน 590 (ปี 2024)</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ================= JAVASCRIPT SECTION ================= -->
+    <script>
+        // ฟังก์ชันสำหรับสลับหน้าจอระหว่าง Portfolio และ Resume
+        function switchView(viewName) {
+            const portfolioView = document.getElementById('view-portfolio');
+            const resumeView = document.getElementById('view-resume');
+            const btnPortfolio = document.getElementById('btn-portfolio');
+            const btnResume = document.getElementById('btn-resume');
+
+            if (viewName === 'portfolio') {
+                portfolioView.classList.remove('hidden-view');
+                resumeView.classList.add('hidden-view');
+                btnPortfolio.classList.add('nav-active');
+                btnResume.classList.remove('nav-active');
+            } else {
+                resumeView.classList.remove('hidden-view');
+                portfolioView.classList.add('hidden-view');
+                btnResume.classList.add('nav-active');
+                btnPortfolio.classList.remove('nav-active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ฟังก์ชันสำหรับสลับภาษาใน Resume
+        function setLang(lang) {
+            const resumeEn = document.getElementById('resume-en');
+            const resumeTh = document.getElementById('resume-th');
+            const btnEn = document.getElementById('lang-en');
+            const btnTh = document.getElementById('lang-th');
+
+            if (lang === 'en') {
+                resumeEn.classList.remove('hidden-view');
+                resumeTh.classList.add('hidden-view');
+                
+                btnEn.className = "px-4 py-1.5 text-sm font-bold bg-white text-black rounded-md transition-all shadow-sm";
+                btnTh.className = "px-4 py-1.5 text-sm font-bold text-zinc-400 hover:text-white rounded-md transition-all";
+            } else {
+                resumeTh.classList.remove('hidden-view');
+                resumeEn.classList.add('hidden-view');
+                
+                btnTh.className = "px-4 py-1.5 text-sm font-bold bg-white text-black rounded-md transition-all shadow-sm";
+                btnEn.className = "px-4 py-1.5 text-sm font-bold text-zinc-400 hover:text-white rounded-md transition-all";
+            }
+        }
+    </script>
+</body>
+</html>
