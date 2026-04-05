@@ -11,7 +11,7 @@
 | โปรเจกต์ | คืออะไร (สั้นๆ) |
 |-----------|------------------|
 | **MINI-ERP / Smart ERP** | ระบบ ERP บนเว็บสำหรับ SME — จัดซื้อ คลัง ขาย เอกสาร อนุมัติ ในที่เดียว ใช้ Django + Vue 3 มีคลิปสาธิต `miniocr.mp4` |
-| **SabaiBill** | แอปจัดการเอกสาร SME — ใบเสนอราคา ใบสั่งขาย ใบส่งของ ใบแจ้งหนี้ PDF รองรับไทย–อังกฤษ (React, Node.js, Prisma) |
+| **SabaiBill** | แอปเอกสาร SME (QT/SO/DO/IV) แปลงต่อเนื่อง คำนวณ VAT/WHT ส่วนลด พิมพ์ PDF ตั้งค่าบริษัท–เทมเพลต–QR ชำระเงิน UI ไทย/อังกฤษ คลิป `saibaiiii.mp4` · React, Node.js, Prisma |
 | **CJP Frozen Food** | เว็บแคตตาล็อก B2B + ขอใบเสนอราคา/PO เชื่อม **LINE Notify** แจ้งทีมแบบเรียลไทม์ |
 | **Yuki Pepper Art Store** | ร้านอีคอมเมิร์ซงานศิลปะ สไตล์มินิมอล แจ้งเตือนออเดอร์ผ่าน LINE |
 | **Workflow Automation (Make.com)** | เวิร์กโฟลว์ **Integration LINE** — รับรูปจาก LINE → OCR → ดึงเลขพัสดุ → บันทึก Google Sheets → ส่ง Push Message คลิป `ocr.mp4` |
@@ -35,6 +35,7 @@
 ```
 index.html          # เว็บพอร์ตโฟลิโอ + เรซูเม่
 miniocr.mp4         # คลิปสาธิต MINI-ERP
+saibaiiii.mp4       # คลิปสาธิต SabaiBill
 ocr.mp4             # คลิปสาธิตเวิร์กโฟลว์ Make.com + LINE
 image/              # รูปประกอบ (ถ้ามี)
 ```
