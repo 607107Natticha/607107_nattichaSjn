@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="th" class="scroll-smooth" data-site-lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +37,39 @@
 
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Workflow Automation — fade-up เมื่อเลื่อนเข้า (ใช้ !important กันถูก Tailwind เขียนทับ) */
+        #view-portfolio .workflow-reveal-group > * {
+            opacity: 0 !important;
+            transform: translate3d(0, 1.35rem, 0) !important;
+            transition: none;
+            will-change: opacity, transform;
+        }
+        #view-portfolio .workflow-reveal-group.is-visible > * {
+            opacity: 1 !important;
+            transform: translate3d(0, 0, 0) !important;
+            transition:
+                opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        #view-portfolio .workflow-reveal-group.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+        #view-portfolio .workflow-reveal-group.is-visible > *:nth-child(2) { transition-delay: 0.13s; }
+        #view-portfolio .workflow-reveal-group.is-visible > *:nth-child(3) { transition-delay: 0.21s; }
+        #view-portfolio .workflow-reveal-group.is-visible > *:nth-child(4) { transition-delay: 0.29s; }
+        #view-portfolio .workflow-reveal-group.is-visible > *:nth-child(5) { transition-delay: 0.37s; }
+        #view-portfolio .workflow-reveal-group.is-visible > *:nth-child(6) { transition-delay: 0.45s; }
+        #view-portfolio .workflow-reveal-group.is-visible > *:nth-child(7) { transition-delay: 0.53s; }
+        #view-portfolio .workflow-reveal-group.is-visible > *:nth-child(8) { transition-delay: 0.61s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            #view-portfolio .workflow-reveal-group > *,
+            #view-portfolio .workflow-reveal-group.is-visible > * {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                will-change: auto;
+            }
         }
 
         .project-image-container { overflow: hidden; }
@@ -106,9 +139,16 @@
         <div class="font-syne font-bold text-2xl tracking-tighter cursor-pointer" onclick="switchView('portfolio')">
             NATTICHA.
         </div>
-        <div class="flex gap-6 text-sm font-medium">
+        <div class="flex flex-wrap items-center justify-end gap-3 sm:gap-5 text-sm font-medium">
+            <div class="flex items-center rounded-lg border border-zinc-700/90 bg-zinc-900/70 p-0.5 shadow-sm" role="group" aria-label="ภาษาเว็บพอร์ตโฟลิโอ">
+                <button type="button" id="btn-portfolio-lang-th" onclick="setPortfolioLang('th')" class="px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold bg-white text-black shadow-sm transition-all">TH</button>
+                <button type="button" id="btn-portfolio-lang-en" onclick="setPortfolioLang('en')" class="px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition-all">EN</button>
+            </div>
             <button id="btn-portfolio" onclick="switchView('portfolio')" class="nav-active hover:text-gray-300 transition-colors">
                 WORK
+            </button>
+            <button id="btn-certs" onclick="switchView('certs')" class="hover:text-gray-300 transition-colors">
+                CERTS
             </button>
             <button id="btn-resume" onclick="switchView('resume')" class="hover:text-gray-300 transition-colors">
                 RESUME
@@ -120,14 +160,14 @@
     <main id="view-portfolio">
         <!-- Hero Section -->
         <section class="h-screen flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto pt-20">
-            <p class="text-zinc-400 uppercase tracking-[0.2em] mb-4 text-sm font-medium animate-fade-up">Web Developer & System Automator</p>
-            <h1 class="font-syne text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tighter animate-fade-up delay-100">
-                BUILDING <br />
-                <span class="text-zinc-500 italic font-medium">SMART</span> SYSTEMS & <br />
-                DIGITAL <span class="text-zinc-500 italic font-medium">EXPERIENCES</span>
+            <p class="text-zinc-400 uppercase tracking-[0.2em] mb-4 text-sm font-medium animate-fade-up" data-i18n="hero_kicker">นักพัฒนาเว็บ &amp; ระบบอัตโนมัติ</p>
+            <h1 class="font-syne text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tighter animate-fade-up delay-100" data-i18n="hero_title">
+                สร้าง <br />
+                <span class="text-zinc-500 italic font-medium">ระบบอัจฉริยะ</span> &amp; <br />
+                <span class="text-zinc-500 italic font-medium">ประสบการณ์ดิจิทัล</span>
             </h1>
-            <p class="max-w-2xl mt-8 text-zinc-400 text-lg md:text-xl leading-relaxed animate-fade-up delay-200">
-                Transitioned from Graphic Design to IT & Web Development. Passionate about LLMs, Automation, and creating user-centric solutions that eliminate manual workflows.
+            <p class="max-w-2xl mt-8 text-zinc-400 text-lg md:text-xl leading-relaxed animate-fade-up delay-200" data-i18n="hero_blurb">
+                เริ่มจากสายกราฟิก สู่ไอทีและเว็บดีเวลอปเมนต์ — สนใจ LLM, Automation และการออกแบบระบบที่ตอบโจทย์ผู้ใช้ ลดงานซ้ำซ้อนให้มากที่สุด
             </p>
         </section>
 
@@ -151,58 +191,64 @@
                 <div class="w-full xl:w-1/2 space-y-8">
                     <div>
                         <h2 class="font-syne text-4xl md:text-5xl font-bold text-white mb-2">MINI-ERP System</h2>
-                        <h3 class="text-xl text-[#00C389] font-medium">Smart ERP — Web-based Business System</h3>
-                        <p class="text-zinc-400 text-lg leading-relaxed mt-4">
+                        <h3 class="text-xl text-[#00C389] font-medium" data-i18n="mini_subtitle">Smart ERP — ระบบธุรกิจบนเว็บ</h3>
+                        <p class="text-zinc-400 text-lg leading-relaxed mt-4" data-i18n="mini_intro">
                             ระบบ ERP แบบเว็บสำหรับธุรกิจขนาดเล็ก–กลาง รวบรวมงานจัดซื้อ รับของ คลังสินค้า การขาย การจัดส่ง การเงินเบื้องต้น และระบบอนุมัติเอกสารไว้ในที่เดียว โครงสร้างแบบแยก API มั่นคง และหน้าจอใช้งานที่ทันสมัย ล็อกอินปลอดภัยด้วย JWT ใช้งานได้ลื่นไหลทั้งบนเดสก์ท็อปและมือถือ
                         </p>
                     </div>
 
                     <!-- Highlight Features -->
                     <div class="space-y-4 bg-zinc-900/40 p-6 rounded-xl border border-zinc-800">
-                        <h4 class="font-syne font-bold text-lg text-zinc-100 border-b border-zinc-800 pb-2">Core Modules</h4>
+                        <h4 class="font-syne font-bold text-lg text-zinc-100 border-b border-zinc-800 pb-2" data-i18n="mini_core_h">โมดูลหลัก</h4>
                         <ul class="space-y-3 text-zinc-300 text-sm">
                             <li class="flex items-start gap-3">
                                 <span class="text-[#00C389] mt-0.5">📦</span>
-                                <div><strong class="text-white">จัดซื้อ & คลังสินค้า:</strong> Workflow ตั้งแต่ PR → PO → GRN พร้อมอัปเดตสต็อกสินค้าทันที (Real-time)</div>
+                                <div data-i18n="mini_core_li1"><strong class="text-white">จัดซื้อ &amp; คลังสินค้า:</strong> Workflow ตั้งแต่ PR → PO → GRN พร้อมอัปเดตสต็อกสินค้าทันที (Real-time)</div>
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="text-[#00C389] mt-0.5">🛒</span>
-                                <div><strong class="text-white">การขาย:</strong> ใบเสนอราคา → SO → DO พร้อมสร้างลิงก์สำหรับยืนยันรับของให้ลูกค้า</div>
+                                <div data-i18n="mini_core_li2"><strong class="text-white">การขาย:</strong> ใบเสนอราคา → SO → DO พร้อมสร้างลิงก์สำหรับยืนยันรับของให้ลูกค้า</div>
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="text-[#00C389] mt-0.5">🗂️</span>
-                                <div><strong class="text-white">Master Data:</strong> จัดการฐานข้อมูลสินค้า, คู่ค้า, คลังสินค้า และหน่วยนับ (UOM)</div>
+                                <div data-i18n="mini_core_li3"><strong class="text-white">Master Data:</strong> จัดการฐานข้อมูลสินค้า, คู่ค้า, คลังสินค้า และหน่วยนับ (UOM)</div>
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="text-[#00C389] mt-0.5">🔐</span>
-                                <div><strong class="text-white">การจัดการสิทธิ์:</strong> แบ่ง Role ผู้ใช้อย่างชัดเจน พร้อมศูนย์รวมอนุมัติเอกสาร (Approval Center)</div>
+                                <div data-i18n="mini_core_li4"><strong class="text-white">การจัดการสิทธิ์:</strong> แบ่ง Role ผู้ใช้อย่างชัดเจน พร้อมศูนย์รวมอนุมัติเอกสาร (Approval Center)</div>
                             </li>
                         </ul>
                     </div>
 
-                    <!-- Challenges & honest notes -->
-                    <div class="rounded-xl border border-amber-500/25 bg-gradient-to-br from-amber-950/25 via-zinc-900/50 to-zinc-950 p-5 sm:p-6 space-y-4 shadow-lg shadow-black/20">
-                        <div class="flex items-start gap-3">
-                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 text-amber-400 border border-amber-500/25">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-                            </div>
+                    <!-- Challenges & learnings -->
+                    <div class="rounded-xl border border-amber-500/25 bg-gradient-to-br from-amber-950/25 via-zinc-900/40 to-zinc-950 p-5 sm:p-6 space-y-4 shadow-lg shadow-black/20">
+                        <div class="flex items-center gap-3">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 text-amber-400 ring-1 ring-amber-500/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"></path><path d="M12 17h.01"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                            </span>
                             <div>
-                                <h4 class="font-syne font-bold text-base text-zinc-100 tracking-tight">ความท้าทาย &amp; จุดที่กำลังเก็บตก</h4>
-                                <p class="text-xs text-amber-200/70 mt-1 font-medium tracking-wide uppercase">MINI-ERP — ความซับซ้อนที่ได้เรียนรู้จากงานจริง</p>
+                                <h4 class="font-syne font-bold text-base text-zinc-100 tracking-tight" data-i18n="mini_ch_h">ความท้าทายที่เจอ</h4>
+                                <p class="text-xs text-zinc-500 mt-0.5" data-i18n="mini_ch_sub">บันทึกตรงๆ จากการทำระบบจริง — จุดที่ยังต้องเก็บต่อ</p>
                             </div>
                         </div>
                         <ul class="space-y-3.5 text-sm text-zinc-400 leading-relaxed">
                             <li class="flex gap-3">
                                 <span class="mt-0.5 shrink-0 text-amber-400/90" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                                 </span>
-                                <span><strong class="text-zinc-200">โครงสร้าง &amp; UX/UI:</strong> โมดูลและสถานะเอกสารค่อนข้างลึก ผู้ใช้ใหม่ต้องใช้เวลาคุ้นเคย — บางหน้าข้อมูลหนาเกินจำเป็น ลำดับขั้นยังไม่ “ไหล” ตามหัวคนใช้เท่าที่ควร กำลังค่อยๆ เก็บ feedback เพื่อปรับ navigation และความชัดของขั้นตอน</span>
+                                <span data-i18n="mini_ch_li1"><strong class="text-zinc-200">โครงสร้าง &amp; UX/UI:</strong> โมดูลและสายงานค่อนข้างใหญ่ ผู้ใช้ใหม่อาจรู้สึกหนัก — เส้นทางใช้งานบางจุดยังไม่ลงตัว ต้องปรับลำดับขั้นและภาษาในหน้าจอให้ชัดขึ้นอีก</span>
                             </li>
                             <li class="flex gap-3">
                                 <span class="mt-0.5 shrink-0 text-amber-400/90" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 2 1.88 1.88"/><path d="M14.12 3.88 16 2"/><path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"/><path d="M12 20v-6"/><path d="M6.53 9C4.6 8.8 3 7.1 3 5"/><path d="M6 13H2"/><path d="M3 21c0-2.1 1.7-3.9 3.8-4"/><path d="M20.97 5c0 2.1-1.6 3.8-3.5 4"/><path d="m22 13-3 3"/><path d="M18 13h4"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                                 </span>
-                                <span><strong class="text-zinc-200">โค้ด &amp; workflow จัดซื้อ:</strong> เส้นทาง <strong class="text-zinc-300">PR → PO → GRN</strong> กับกฎอนุมัติบางเคสยังไม่นิ่ง — บางรอบสร้าง <strong class="text-zinc-300">PO</strong> ได้แต่การผูกกลับ <strong class="text-zinc-300">PR</strong> หลุด หรือสลับกันระหว่างรอบทดสอบ ต้องไล่เก็บ <strong class="text-zinc-300">validation</strong> กับการซิงค์สถานะระหว่างหน้าบ้านกับ API ให้สอดคล้องทุกเงื่อนไข</span>
+                                <span data-i18n="mini_ch_li2"><strong class="text-zinc-200">ฝั่งโค้ด (สั้นๆ):</strong> สถานะเอกสารจัดซื้อและสิทธิ์อนุมัติ (เช่น PR → PO) บางช่วงยังสลับกันหรือ edge case โผล่เป็นครั้งคราว — ต้องไล่ทั้ง API, serializer และการ sync กับหน้า Vue แบบ end-to-end</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="mt-0.5 shrink-0 text-amber-400/90" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                                </span>
+                                <span data-i18n="mini_ch_li3"><strong class="text-zinc-200">Flow จัดซื้อ:</strong> บางรอบทำ PO ลื่นกว่า PR หรือกลับกัน แล้วแต่สถานะและข้อมูล master — ยังต้องรวม feedback แล้วล็อกกฎธุรกิจให้สม่ำเสมอ</span>
                             </li>
                         </ul>
                     </div>
@@ -262,66 +308,72 @@
                 <div class="w-full xl:w-1/2 space-y-6">
                     <div>
                         <h2 class="font-syne text-4xl md:text-5xl font-bold text-white">SabaiBill</h2>
-                        <h3 class="text-xl text-[#00C389] mt-2 font-medium">SME Document Management System</h3>
+                        <h3 class="text-xl text-[#00C389] mt-2 font-medium" data-i18n="sabai_subtitle">ระบบจัดการเอกสาร SME</h3>
                     </div>
                     
-                    <p class="text-zinc-400 text-lg leading-relaxed">
+                    <p class="text-zinc-400 text-lg leading-relaxed" data-i18n="sabai_lead">
                         <strong class="text-zinc-200">SabaiBill</strong> คือแอปจัดการเอกสารซื้อขายสำหรับ SME — รวมการสร้าง แปลงต่อเนื่อง และพิมพ์/บันทึก PDF ไว้ที่เดียว เน้นใช้งานจริงและนำเสนอ demo ได้ทันที
                     </p>
 
                     <div class="space-y-3">
-                        <h4 class="font-syne text-sm font-bold uppercase tracking-wider text-zinc-200">โปรเจกต์นี้ช่วยให้ผู้ใช้</h4>
+                        <h4 class="font-syne text-sm font-bold uppercase tracking-wider text-zinc-200" data-i18n="sabai_feat_h">โปรเจกต์นี้ช่วยให้ผู้ใช้</h4>
                         <ul class="text-zinc-300 space-y-2.5 text-sm leading-relaxed bg-zinc-900/30 p-6 rounded-xl border border-zinc-800/50 list-disc list-outside ml-5">
-                            <li>สร้างและจัดเก็บเอกสาร <strong class="text-zinc-200">QT</strong> (ใบเสนอราคา), <strong class="text-zinc-200">SO</strong> (ใบสั่งขาย), <strong class="text-zinc-200">DO</strong> (ใบส่งของ), <strong class="text-zinc-200">IV</strong> (ใบแจ้งหนี้)</li>
-                            <li>แปลงต่อเนื่อง เช่น QT → SO → DO / IV โดยไม่ต้องกรอกซ้ำทั้งฉบับ</li>
-                            <li>ตั้งค่าข้อมูลบริษัท ธนาคาร เงื่อนไขท้ายบิล เทมเพลต ลายเซ็น QR ชำระเงิน และสกุลเงิน</li>
-                            <li>คำนวณ <strong class="text-zinc-200">VAT</strong> ส่วนลด <strong class="text-zinc-200">หัก ณ ที่จ่าย (WHT)</strong> และแสดงยอดสุทธิ</li>
-                            <li>พิมพ์ / บันทึก <strong class="text-zinc-200">PDF</strong> จากหน้า Preview</li>
-                            <li>จัดการลูกค้าและสินค้า พร้อมค้นหาแบบ autocomplete</li>
+                            <li data-i18n="sabai_li1">สร้างและจัดเก็บเอกสาร <strong class="text-zinc-200">QT</strong> (ใบเสนอราคา), <strong class="text-zinc-200">SO</strong> (ใบสั่งขาย), <strong class="text-zinc-200">DO</strong> (ใบส่งของ), <strong class="text-zinc-200">IV</strong> (ใบแจ้งหนี้)</li>
+                            <li data-i18n="sabai_li2">แปลงต่อเนื่อง เช่น QT → SO → DO / IV โดยไม่ต้องกรอกซ้ำทั้งฉบับ</li>
+                            <li data-i18n="sabai_li3">ตั้งค่าข้อมูลบริษัท ธนาคาร เงื่อนไขท้ายบิล เทมเพลต ลายเซ็น QR ชำระเงิน และสกุลเงิน</li>
+                            <li data-i18n="sabai_li4">คำนวณ <strong class="text-zinc-200">VAT</strong> ส่วนลด <strong class="text-zinc-200">หัก ณ ที่จ่าย (WHT)</strong> และแสดงยอดสุทธิ</li>
+                            <li data-i18n="sabai_li5">พิมพ์ / บันทึก <strong class="text-zinc-200">PDF</strong> จากหน้า Preview</li>
+                            <li data-i18n="sabai_li6">จัดการลูกค้าและสินค้า พร้อมค้นหาแบบ autocomplete</li>
                         </ul>
                     </div>
 
-                    <p class="text-sm text-zinc-500 leading-relaxed pl-4 border-l-2 border-amber-500/60 bg-zinc-900/20 py-3 pr-4 rounded-r-lg">
+                    <p class="text-sm text-zinc-500 leading-relaxed pl-4 border-l-2 border-amber-500/60 bg-zinc-900/20 py-3 pr-4 rounded-r-lg" data-i18n="sabai_access">
                         <strong class="text-zinc-400">การเข้าใช้งาน:</strong> ไม่มีหน้าสมัครหรือล็อกอินแยก — กดปุ่มเดียวแล้วระบบใช้ผู้ใช้คนเดียวในฐานข้อมูล เหมาะกับ <strong class="text-zinc-300">demo / ทดลองภายใน</strong> ไม่แนะนำสำหรับข้อมูลลับหากไม่มีชั้นป้องกันอื่น
                     </p>
 
                     <div class="space-y-2">
-                        <h4 class="font-syne text-sm font-bold uppercase tracking-wider text-zinc-200">ภาษาและประสบการณ์ผู้ใช้</h4>
+                        <h4 class="font-syne text-sm font-bold uppercase tracking-wider text-zinc-200" data-i18n="sabai_ux_h">ภาษาและประสบการณ์ผู้ใช้</h4>
                         <ul class="text-zinc-400 text-sm space-y-2 leading-relaxed">
-                            <li class="flex gap-2"><span class="text-[#00C389] shrink-0">✦</span> <span>ภาษาอินเทอร์เฟซ: <strong class="text-zinc-300">ไทยและอังกฤษ</strong> (สลับได้ในแอป)</span></li>
-                            <li class="flex gap-2"><span class="text-[#00C389] shrink-0">✦</span> <span>ข้อความในเอกสาร: รองรับฟิลด์คู่ไทย/อังกฤษ (ชื่อบริษัท ที่อยู่ ลูกค้า ฯลฯ)</span></li>
-                            <li class="flex gap-2"><span class="text-[#00C389] shrink-0">✦</span> <span>ออกแบบให้อ่านง่าย: ตัวอักษรโต ปุ่มกดใหญ่ เหมาะผู้ใช้ที่ต้องการความชัดเจน</span></li>
+                            <li class="flex gap-2"><span class="text-[#00C389] shrink-0">✦</span> <span data-i18n="sabai_ux1">ภาษาอินเทอร์เฟซ: <strong class="text-zinc-300">ไทยและอังกฤษ</strong> (สลับได้ในแอป)</span></li>
+                            <li class="flex gap-2"><span class="text-[#00C389] shrink-0">✦</span> <span data-i18n="sabai_ux2">ข้อความในเอกสาร: รองรับฟิลด์คู่ไทย/อังกฤษ (ชื่อบริษัท ที่อยู่ ลูกค้า ฯลฯ)</span></li>
+                            <li class="flex gap-2"><span class="text-[#00C389] shrink-0">✦</span> <span data-i18n="sabai_ux3">ออกแบบให้อ่านง่าย: ตัวอักษรโต ปุ่มกดใหญ่ เหมาะผู้ใช้ที่ต้องการความชัดเจน</span></li>
                         </ul>
                     </div>
 
-                    <div class="rounded-xl border border-sky-500/25 bg-gradient-to-br from-sky-950/20 via-zinc-900/50 to-zinc-950 p-5 sm:p-6 space-y-4 shadow-lg shadow-black/20">
-                        <div class="flex items-start gap-3">
-                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-500/15 text-sky-400 border border-sky-500/25">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
-                            </div>
+                    <div class="rounded-xl border border-sky-500/25 bg-gradient-to-br from-sky-950/20 via-zinc-900/40 to-zinc-950 p-5 sm:p-6 space-y-4 shadow-lg shadow-black/20">
+                        <div class="flex items-center gap-3">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-500/15 text-sky-400 ring-1 ring-sky-500/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"></path><path d="M12 18v4"></path><path d="m4.93 4.93 2.83 2.83"></path><path d="m16.24 16.24 2.83 2.83"></path><path d="M2 12h4"></path><path d="M18 12h4"></path><path d="m4.93 19.07 2.83-2.83"></path><path d="m16.24 7.76 2.83-2.83"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            </span>
                             <div>
-                                <h4 class="font-syne font-bold text-base text-zinc-100 tracking-tight">บทเรียนจาก MINI-ERP &amp; ความท้าทายต่อ</h4>
-                                <p class="text-xs text-sky-200/70 mt-1 font-medium tracking-wide uppercase">SabaiBill — เล็กลง ใช้ง่ายขึ้น แต่ยังมีที่ต้องขัดเกลา</p>
+                                <h4 class="font-syne font-bold text-base text-zinc-100 tracking-tight" data-i18n="sabai_ch_h">บทเรียนจาก MINI-ERP &amp; ความท้าทาย</h4>
+                                <p class="text-xs text-zinc-500 mt-0.5" data-i18n="sabai_ch_sub">SabaiBill = ย่อสเกลลงมา เน้นใช้ง่าย — แต่ยังมีจุดต้องเก็บ</p>
                             </div>
                         </div>
                         <ul class="space-y-3.5 text-sm text-zinc-400 leading-relaxed">
                             <li class="flex gap-3">
                                 <span class="mt-0.5 shrink-0 text-sky-400/90" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                                 </span>
-                                <span><strong class="text-zinc-200">ที่มา:</strong> SabaiBill คือการ <strong class="text-zinc-300">ย่อขอบเขต</strong> จากประสบการณ์ MINI-ERP — โฟกัสแค่เอกสารซื้อขายและลดความซับซ้อนของหน้าจอ เพื่อให้ SME เริ่มใช้ได้เร็ว</span>
+                                <span data-i18n="sabai_ch_li1"><strong class="text-zinc-200">ทิศทางโปรเจกต์:</strong> ตั้งใจให้เป็นคำตอบจากประสบการณ์ MINI-ERP — โฟกัสแค่เอกสารซื้อขาย ลดความซับซ้อนของระบบรอบข้าง</span>
                             </li>
                             <li class="flex gap-3">
                                 <span class="mt-0.5 shrink-0 text-sky-400/90" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
                                 </span>
-                                <span><strong class="text-zinc-200">Flow &amp; ความยืดหยุ่น:</strong> การวางลำดับขั้นตอนในแอปยังไม่ “ล็อก” ชัดพอ รายละเอียดระหว่างบิลแต่ละประเภทยังรู้สึก <strong class="text-zinc-300">ซ้ำและยืดหยุ่นไม่พอ</strong> — อยากต่อยอดให้ผู้ใช้ปรับเทมเพลต/ฟิลด์ได้อิสระมากขึ้นในรอบถัดไป</span>
+                                <span data-i18n="sabai_ch_li2"><strong class="text-zinc-200">Flow ยังไม่แน่นอน:</strong> ลำดับ QT → SO → DO / IV บางจุดยังต้องอธิบายผู้ใช้ — story การใช้งานยังไม่นิ่ง อยากให้ “รู้ว่าขั้นถัดไปคืออะไร” โดยไม่ต้องจำ</span>
                             </li>
                             <li class="flex gap-3">
                                 <span class="mt-0.5 shrink-0 text-sky-400/90" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path></svg>
                                 </span>
-                                <span><strong class="text-zinc-200">โค้ด (สั้นๆ):</strong> ฟอร์มยาวๆ กับ state ยังผูกกันแน่น บางจุด <strong class="text-zinc-300">validation ซ้ำ</strong> การแปลงเอกสารต่อเนื่อง (เช่น QT → SO) ยังต้องกัน edge case และ error handling ให้ครบ — เป็นเป้าหมาย refactor ต่อไป</span>
+                                <span data-i18n="sabai_ch_li3"><strong class="text-zinc-200">รายละเอียดบิล:</strong> โครงหน้าตาแต่ละประเภทยังรู้สึกใกล้เคียงกัน — SME แต่ละเจ้าต้องการความยืดหยุ่น (ฟิลด์ / layout / เงื่อนไข) มากกว่านี้</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="mt-0.5 shrink-0 text-sky-400/90" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                </span>
+                                <span data-i18n="sabai_ch_li4"><strong class="text-zinc-200">โค้ด (สั้นๆ):</strong> การ map ฟิลด์ระหว่างเอกสารกับ state ใน React บางส่วนยังผูกตาย ทำให้ขยายเทมเพลตหรือ validation ซ้ำ — กำลังมอง abstraction และ schema ที่ชัดขึ้น</span>
                             </li>
                         </ul>
                     </div>
@@ -337,7 +389,7 @@
                                 GitHub Repo
                             </a>
                         </div>
-                        <p class="text-sm text-zinc-500 pl-4 border-l-2 border-[#00C389] ml-2">กด <strong>เข้าใช้งาน</strong> แล้วเริ่มกรอกข้อมูลบริษัทหรือเข้าแดชบอร์ดได้ทันที — เหมาะสำหรับทดลองและนำเสนอ</p>
+                        <p class="text-sm text-zinc-500 pl-4 border-l-2 border-[#00C389] ml-2" data-i18n="sabai_hint">กด <strong>เข้าใช้งาน</strong> แล้วเริ่มกรอกข้อมูลบริษัทหรือเข้าแดชบอร์ดได้ทันที — เหมาะสำหรับทดลองและนำเสนอ</p>
                     </div>
                 </div>
             </div>
@@ -345,9 +397,9 @@
             <!-- Project 3: Web Design (Showcasing iframes) -->
             <div class="pt-20 border-t border-zinc-800/50">
                 <div class="text-center mb-16 max-w-3xl mx-auto space-y-4">
-                    <h2 class="font-syne text-4xl md:text-5xl font-bold text-white">Web Design & Commerce</h2>
-                    <p class="text-zinc-400 text-lg">
-                        Developing functional and aesthetically pleasing digital storefronts with integrated backend communication (LINE Notify API).
+                    <h2 class="font-syne text-4xl md:text-5xl font-bold text-white" data-i18n="web_h2">เว็บดีไซน์ &amp; คอมเมิร์ซ</h2>
+                    <p class="text-zinc-400 text-lg" data-i18n="web_sub">
+                        พัฒนาร้านค้าออนไลน์ที่ใช้งานได้จริงและสวยงาม พร้อมเชื่อมต่อแบ็กเอนด์ (เช่น LINE Notify API) สำหรับแจ้งเตือน
                     </p>
                 </div>
 
@@ -388,7 +440,7 @@
                                 <h3 class="font-syne text-2xl font-bold text-white">CJP Frozen Food</h3>
                                 <a href="https://www.cjpfrozenfood.co.th/" target="_blank" class="text-zinc-500 hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
                             </div>
-                            <p class="text-zinc-400 text-sm leading-relaxed">ระบบ B2B Product Catalog และขอใบเสนอราคา (PO Request System) มีการเชื่อมต่อ <strong>LINE Notify API</strong> เพื่อแจ้งเตือนออเดอร์ใหม่ไปยังทีมแอดมินแบบ Real-time</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="cjp_desc">ระบบ B2B Product Catalog และขอใบเสนอราคา (PO Request System) มีการเชื่อมต่อ <strong>LINE Notify API</strong> เพื่อแจ้งเตือนออเดอร์ใหม่ไปยังทีมแอดมินแบบ Real-time</p>
                         </div>
                     </div>
 
@@ -427,7 +479,7 @@
                                 <h3 class="font-syne text-2xl font-bold text-white">Yuki Pepper Art Store</h3>
                                 <a href="https://yukipepper.com/" target="_blank" class="text-zinc-500 hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
                             </div>
-                            <p class="text-zinc-400 text-sm leading-relaxed">แพลตฟอร์ม E-commerce สำหรับแสดงและขายผลงานศิลปะ ออกแบบสไตล์มินิมอล พร้อมระบบแจ้งเตือนออเดอร์อัตโนมัติผ่าน LINE</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="yuki_desc">แพลตฟอร์ม E-commerce สำหรับแสดงและขายผลงานศิลปะ ออกแบบสไตล์มินิมอล พร้อมระบบแจ้งเตือนออเดอร์อัตโนมัติผ่าน LINE</p>
                         </div>
                     </div>
                 </div>
@@ -435,29 +487,30 @@
 
             <!-- Project 4: Automation -->
             <div class="project-card flex flex-col lg:flex-row-reverse gap-12 items-start pt-20 border-t border-zinc-800/50">
-                <div class="w-full lg:w-3/5 lg:self-start">
-                    <figure class="rounded-xl border border-zinc-800 overflow-hidden bg-zinc-950 shadow-2xl lg:sticky lg:top-32 z-10">
+                <div class="w-full lg:w-3/5 lg:sticky lg:top-32 z-10 self-start">
+                    <figure class="rounded-xl border border-zinc-800 overflow-hidden bg-zinc-950 shadow-2xl">
                         <div class="aspect-video bg-black project-image-container relative">
                             <video class="absolute inset-0 w-full h-full object-contain bg-black" autoplay loop muted playsinline controls preload="auto" title="สาธิตเวิร์กโฟลว์ Make.com — ติดตามพัสดุผ่าน LINE">
                                 <source src="ocr.mp4" type="video/mp4" />
                             </video>
                         </div>
-                        <figcaption class="text-zinc-500 text-xs sm:text-sm leading-relaxed px-4 py-3 border-t border-zinc-800 bg-zinc-900/50">
+                        <figcaption class="text-zinc-500 text-xs sm:text-sm leading-relaxed px-4 py-3 border-t border-zinc-800 bg-zinc-900/50" data-i18n="wf_cap">
                             <strong class="text-zinc-400">คำอธิบายเวิร์กโฟลว์ (สอดคล้องกับคลิป)</strong> — สถานการณ์ <span class="text-zinc-300">Integration LINE</span> บน Make.com: สายหลักซ้ายไปขวา <span class="text-zinc-300">LINE — Watch Events</span> (ทริกเกอร์) → <span class="text-zinc-300">Download a Message Attachment</span> → <span class="text-zinc-300">HTTP — Make a request</span> (ส่งรูปไป OCR) → <span class="text-zinc-300">Text parser — Match pattern</span> (ดึงเลขพัสดุ) → <span class="text-zinc-300">Google Sheets — Add a Row</span> → <span class="text-zinc-300">LINE — Send a Push Message</span> แถบควบคุมด้านล่างเปิด <span class="text-zinc-300">Immediately as data arrives</span> สำหรับรันแบบเรียลไทม์; บนแคนวาสยังมีโมดูล <span class="text-zinc-300">LINE — Send a Reply Message</span> แยกจากสายหลัก (มักมี badge แจ้งเตือน)
                         </figcaption>
                     </figure>
                 </div>
-                <div class="w-full lg:w-2/5 space-y-6">
-                    <h2 class="font-syne text-4xl md:text-5xl font-bold">Workflow Automation</h2>
-                    <h3 class="text-xl text-[#00C389] font-medium leading-snug">ระบบทำงานอัตโนมัติ — ติดตามพัสดุ (Make.com)</h3>
-                    <p class="text-zinc-400 text-lg leading-relaxed">
+                <div class="w-full lg:w-2/5">
+                    <div class="workflow-reveal-group space-y-6">
+                    <h2 class="font-syne text-4xl md:text-5xl font-bold" data-i18n="wf_h2">Workflow Automation</h2>
+                    <h3 class="text-xl text-[#00C389] font-medium leading-snug" data-i18n="wf_h3">ระบบทำงานอัตโนมัติ — ติดตามพัสดุ (Make.com)</h3>
+                    <p class="text-zinc-400 text-lg leading-relaxed" data-i18n="wf_p1">
                         ออกแบบเวิร์กโฟลว์บน <span class="text-white font-medium">Make.com</span> (ชุด <span class="text-white font-medium">Integration LINE</span>): รับเหตุการณ์จาก LINE → ดาวน์โหลดไฟล์แนบรูป → ส่งรูปไป OCR ผ่านโมดูล HTTP → ใช้ Text parser ดึงเลขพัสดุตามรูปแบบที่กำหนด → บันทึกแถวใน Google Sheets → ส่งข้อความแจ้งสถานะที่เตรียมไว้กลับลูกค้าด้วย LINE Push Message โดยตั้งรันแบบ <span class="text-white font-medium">ทันทีเมื่อมีข้อมูลเข้า</span>
                     </p>
-                    <p class="text-zinc-500 text-sm border-l-2 border-[#00C389]/40 pl-4 py-1 leading-relaxed">
+                    <p class="text-zinc-500 text-sm border-l-2 border-[#00C389]/40 pl-4 py-1 leading-relaxed" data-i18n="wf_p2">
                         ลดงานพิมพ์ซ้ำของแอดมิน เหลือเพียงลำดับสั้นๆ คือ <span class="text-zinc-300 font-medium">ถ่ายรูป → รอ → ก๊อปปี้ → ส่ง</span> ขณะที่ส่วนอ่านตัวอักษร บันทึกชีต และแจ้งเตือนทำโดยอัตโนมัติ
                     </p>
                     <div>
-                        <p class="text-zinc-500 text-xs tracking-wider mb-2">เครื่องมือที่ใช้</p>
+                        <p class="text-zinc-500 text-xs tracking-wider mb-2" data-i18n="wf_tools">เครื่องมือที่ใช้</p>
                         <div class="flex flex-wrap gap-2">
                             <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-800/90 text-zinc-300 border border-zinc-700">Make.com</span>
                             <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-800/90 text-zinc-300 border border-zinc-700">LINE — Watch events / Download attachment / Push message</span>
@@ -467,36 +520,43 @@
                         </div>
                     </div>
 
-                    <div class="rounded-xl border border-violet-500/25 bg-gradient-to-br from-violet-950/25 via-zinc-900/50 to-zinc-950 p-5 sm:p-6 space-y-4 shadow-lg shadow-black/20">
-                        <div class="flex items-start gap-3">
-                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-violet-400 border border-violet-500/25">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
-                            </div>
+                    <div class="rounded-xl border border-violet-500/25 bg-gradient-to-br from-violet-950/25 via-zinc-900/40 to-zinc-950 p-5 sm:p-6 space-y-4 shadow-lg shadow-black/20">
+                        <div class="flex items-center gap-3">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300 ring-1 ring-violet-500/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>
+                            </span>
                             <div>
-                                <h4 class="font-syne font-bold text-base text-zinc-100 tracking-tight">ที่มา ความท้าทาย &amp; ทิศทางพัฒนา</h4>
-                                <p class="text-xs text-violet-200/70 mt-1 font-medium tracking-wide uppercase">Make.com — โปรเจกต์แรกจาก pain point ของตัวเอง</p>
+                                <h4 class="font-syne font-bold text-base text-zinc-100 tracking-tight" data-i18n="wf_v_h">ที่มา &amp; ข้อจำกัดจริง</h4>
+                                <p class="text-xs text-zinc-500 mt-0.5" data-i18n="wf_v_sub">อัตโนมัติครั้งแรกที่ผสม AI กับงานประจำวัน — ยังต้องพัฒนาต่อ</p>
                             </div>
                         </div>
                         <ul class="space-y-3.5 text-sm text-zinc-400 leading-relaxed">
                             <li class="flex gap-3">
                                 <span class="mt-0.5 shrink-0 text-violet-400/90" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path><path d="M8.5 8.5a2.5 2.5 0 1 0 0-2.5 2.5 2.5 0 0 0 0 2.5z"></path></svg>
                                 </span>
-                                <span><strong class="text-zinc-200">แรงบันดาลใจ:</strong> เป็นระบบอัตโนมัติชุดแรกที่ลองทำหลังเริ่มใช้เครื่องมืออย่าง AI ช่วยคิด flow — อยากส่งเลขพัสดุให้ทีมแบบ <strong class="text-zinc-300">รวดเร็ว</strong> ไม่ต้องมานั่งพิมพ์ซ้ำจากสลิปหรือป้าย</span>
+                                <span data-i18n="wf_v_li1"><strong class="text-zinc-200">แรงบันดาลใจ:</strong> อยากส่งเลขพัสดุให้ทีมเร็ว ไม่ต้องนั่งพิมพ์ซ้ำ — ใช้ AI ช่วยคิด flow และต่อกับ Make.com เป็นครั้งแรก</span>
                             </li>
                             <li class="flex gap-3">
                                 <span class="mt-0.5 shrink-0 text-violet-400/90" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>
                                 </span>
-                                <span><strong class="text-zinc-200">ข้อจำกัดของ OCR:</strong> บริการ OCR ที่ผูกผ่าน HTTP อ่าน <strong class="text-zinc-300">ภาษาไทยบนสลิป/ป้ายไทย</strong> ได้ไม่คงที่ ต้องพึ่งคุณภาพรูปและปรับ <strong class="text-zinc-300">Text parser / pattern</strong> บ่อยครั้ง</span>
+                                <span data-i18n="wf_v_li2"><strong class="text-zinc-200">OCR กับภาษาไทย:</strong> บริการที่ใช้อ่านตัวอักษรไทยบนสลิปจริงยังไม่นิ่ง ฟอนต์เล็ก/เบลอทำให้ต้องพึ่ง regex และการตรวจซ้ำ</span>
                             </li>
                             <li class="flex gap-3">
                                 <span class="mt-0.5 shrink-0 text-violet-400/90" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
                                 </span>
-                                <span><strong class="text-zinc-200">การใช้งานจริง:</strong> ตอนนี้ยังเน้นส่งรูป <strong class="text-zinc-300">ทีละแนบ</strong> ถ้าหลายพัสดุพร้อมกันยังรู้สึก <strong class="text-zinc-300">งงกับลำดับเคส</strong> — ทิศทางต่อไปคือปรับ flow ให้รองรับหลายรายการชัดเจนขึ้น หรือทดลอง OCR/โมเดลที่เหมาะกับภาษาไทยโดยเฉพาะ</span>
+                                <span data-i18n="wf_v_li3"><strong class="text-zinc-200">ทีละรูป &amp; หลายข้อความ:</strong> การแคปหรือแนบหลายใบพร้อมกันทำให้สับสนได้ — ต้องจัดลำดับ scenario และ error handling ใน Make ให้ชัด</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="mt-0.5 shrink-0 text-violet-400/90" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7"></path></svg>
+                                </span>
+                                <span data-i18n="wf_v_li4"><strong class="text-zinc-200">ทิศทางต่อไป:</strong> ลอง engine OCR ที่เหมาะกับไทยมากขึ้น รองรับ batch หรือแจ้งผู้ใช้เมื่อความมั่นใจของผลอ่านต่ำ</span>
                             </li>
                         </ul>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -515,12 +575,177 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                     </a>
                 </div>
-                <div class="text-zinc-500 text-sm">© 2025 All rights reserved.</div>
+                <div class="text-zinc-500 text-sm" data-i18n="footer_copy">© 2025 สงวนลิขสิทธิ์</div>
             </div>
         </footer>
     </main>
 
     <!-- ================= RESUME SECTION ================= -->
+    <!-- ================= CERTIFICATIONS SECTION ================= -->
+    <main id="view-certs" class="hidden-view bg-[#09090b] min-h-screen pt-28 pb-32 px-6 md:px-12 text-zinc-300">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- Page Header -->
+            <div class="mb-16">
+                <p class="text-zinc-500 uppercase tracking-[0.2em] text-xs font-medium mb-3">Professional Growth</p>
+                <h1 class="font-syne text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Certifications &amp;<br class="hidden sm:block" /> Professional Development</h1>
+                <div class="w-12 h-[2px] bg-[#00C389]"></div>
+            </div>
+
+            <!-- ── OFFICIAL CERTIFICATIONS ── -->
+            <section class="mb-24">
+                <h2 class="font-syne text-xl font-bold uppercase tracking-widest text-zinc-400 mb-10 flex items-center gap-3">
+                    <span class="w-8 h-[1px] bg-zinc-600 inline-block"></span> Official Certifications
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                    <!-- Card: HCCDA-AI -->
+                    <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 transition-colors overflow-hidden">
+                        <!-- Image placeholder -->
+                        <div class="aspect-[16/9] bg-zinc-900 border-b border-dashed border-zinc-700 flex items-center justify-center">
+                            <p class="text-zinc-600 text-sm text-center px-6 leading-relaxed">
+                                [ รูปใบ <strong class="text-zinc-500">HCCDA-AI</strong> ]<br/>
+                                <span class="text-xs text-zinc-700">Huawei Cloud Certified Developer Associate — AI</span>
+                            </p>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-4 mb-2 flex-wrap">
+                                <h3 class="font-syne font-bold text-white text-lg leading-tight">HCCDA-AI</h3>
+                                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-[#00C389]/10 text-[#00C389] border border-[#00C389]/20 whitespace-nowrap">Valid until Apr 2029</span>
+                            </div>
+                            <p class="text-[#00C389] text-sm font-medium mb-3">Huawei Cloud Certified Developer Associate | Huawei Cloud</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-4">Certified in AI development and implementation on Huawei Cloud platforms.</p>
+                            <p class="text-zinc-600 text-xs font-mono">Credential ID: HWENDCAIDA266070</p>
+                        </div>
+                    </div>
+
+                    <!-- Card: HCCDA-Tech Essentials -->
+                    <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 transition-colors overflow-hidden">
+                        <!-- Image placeholder -->
+                        <div class="aspect-[16/9] bg-zinc-900 border-b border-dashed border-zinc-700 flex items-center justify-center">
+                            <p class="text-zinc-600 text-sm text-center px-6 leading-relaxed">
+                                [ รูปใบ <strong class="text-zinc-500">HCCDA-Tech Essentials</strong> ]<br/>
+                                <span class="text-xs text-zinc-700">Huawei Cloud Certified Developer Associate — Tech Essentials</span>
+                            </p>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-4 mb-2 flex-wrap">
+                                <h3 class="font-syne font-bold text-white text-lg leading-tight">HCCDA-Tech Essentials</h3>
+                                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-[#00C389]/10 text-[#00C389] border border-[#00C389]/20 whitespace-nowrap">Valid until Apr 2029</span>
+                            </div>
+                            <p class="text-[#00C389] text-sm font-medium mb-3">Huawei Cloud Certified Developer Associate | Huawei Cloud</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-4">Demonstrated foundational knowledge in cloud computing architecture and tech essentials.</p>
+                            <p class="text-zinc-600 text-xs font-mono">Credential ID: HWENDCTEDA821114</p>
+                        </div>
+                    </div>
+
+                    <!-- Card: Super AI Engineer Season 6 -->
+                    <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 transition-colors overflow-hidden">
+                        <!-- Image placeholder -->
+                        <div class="aspect-[16/9] bg-zinc-900 border-b border-dashed border-zinc-700 flex items-center justify-center">
+                            <p class="text-zinc-600 text-sm text-center px-6 leading-relaxed">
+                                [ รูปใบ <strong class="text-zinc-500">Super AI Engineer Season 6</strong> ]<br/>
+                                <span class="text-xs text-zinc-700">Foundation AI (Theory) — AIAT</span>
+                            </p>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-4 mb-2 flex-wrap">
+                                <h3 class="font-syne font-bold text-white text-lg leading-tight">Super AI Engineer Season 6</h3>
+                                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 whitespace-nowrap">Level 2 — Current</span>
+                            </div>
+                            <p class="text-[#00C389] text-sm font-medium mb-3">Artificial Intelligence Association of Thailand (AIAT)</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Selected for the intensive <strong class="text-zinc-300">Level 2 camp</strong> (starting May 2026) after passing the Foundation AI (Theory) exam. 13-course curriculum covering Python, Mathematics for AI, Data Science, Machine Learning, Deep Learning, Computer Vision, NLP, AI Ethics, RAG, and more.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card: AI Ready ASEAN -->
+                    <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 transition-colors overflow-hidden">
+                        <!-- Image placeholder -->
+                        <div class="aspect-[16/9] bg-zinc-900 border-b border-dashed border-zinc-700 flex items-center justify-center">
+                            <p class="text-zinc-600 text-sm text-center px-6 leading-relaxed">
+                                [ รูปใบ <strong class="text-zinc-500">AI Ready ASEAN</strong> ]<br/>
+                                <span class="text-xs text-zinc-700">ASEAN Foundation & Google.org</span>
+                            </p>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-4 mb-2 flex-wrap">
+                                <h3 class="font-syne font-bold text-white text-lg leading-tight">AI Ready ASEAN</h3>
+                                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-700/60 text-zinc-300 border border-zinc-600 whitespace-nowrap">Mar 2026</span>
+                            </div>
+                            <p class="text-[#00C389] text-sm font-medium mb-3">ASEAN Foundation &amp; Google.org</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Completed all 15 AI learning modules (12 hours) for Youth, demonstrating a strong commitment to building future-ready AI skills. Topics include Generative AI, prompt engineering, AI ethics, data privacy, and AI for social good.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ── PRACTICAL AI EXPERIENCE & HACKATHONS ── -->
+            <section>
+                <h2 class="font-syne text-xl font-bold uppercase tracking-widest text-zinc-400 mb-10 flex items-center gap-3">
+                    <span class="w-8 h-[1px] bg-zinc-600 inline-block"></span> Practical AI Experience &amp; Hackathons
+                </h2>
+
+                <div class="space-y-8">
+
+                    <!-- Hackathon: FahMai RAG -->
+                    <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 transition-colors overflow-hidden flex flex-col lg:flex-row">
+                        <!-- Image placeholder -->
+                        <div class="w-full lg:w-72 shrink-0 aspect-video lg:aspect-auto min-h-[180px] bg-zinc-900 border-b lg:border-b-0 lg:border-r border-dashed border-zinc-700 flex items-center justify-center p-4">
+                            <p class="text-zinc-600 text-xs text-center leading-relaxed">
+                                [ รูป / Screenshot<br/><strong class="text-zinc-500">FahMai RAG Hackathon</strong> ]
+                            </p>
+                        </div>
+                        <div class="p-6 flex flex-col justify-center">
+                            <div class="flex items-start justify-between gap-4 mb-2 flex-wrap">
+                                <h3 class="font-syne font-bold text-white text-lg">FahMai RAG Hackathon</h3>
+                                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-700/60 text-zinc-300 border border-zinc-600 whitespace-nowrap">Super AI Engineer — Practice</span>
+                            </div>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Successfully implemented a <strong class="text-zinc-300">Retrieval-Augmented Generation (RAG)</strong> system based on the scoring criteria. Applied document retrieval, embedding, and LLM-based answer generation end-to-end.</p>
+                        </div>
+                    </div>
+
+                    <!-- Hackathon: Agentic Pipeline OCR -->
+                    <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 transition-colors overflow-hidden flex flex-col lg:flex-row">
+                        <!-- Image placeholder -->
+                        <div class="w-full lg:w-72 shrink-0 aspect-video lg:aspect-auto min-h-[180px] bg-zinc-900 border-b lg:border-b-0 lg:border-r border-dashed border-zinc-700 flex items-center justify-center p-4">
+                            <p class="text-zinc-600 text-xs text-center leading-relaxed">
+                                [ รูป / Screenshot<br/><strong class="text-zinc-500">Agentic Pipeline — OCR Challenge</strong> ]
+                            </p>
+                        </div>
+                        <div class="p-6 flex flex-col justify-center">
+                            <div class="flex items-start justify-between gap-4 mb-2 flex-wrap">
+                                <h3 class="font-syne font-bold text-white text-lg leading-tight">Agentic Pipeline Hackathon<span class="block text-base font-medium text-zinc-400">2026 Thai Election OCR Challenge</span></h3>
+                                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-700/60 text-zinc-300 border border-zinc-600 whitespace-nowrap">Super AI Engineer — Practice</span>
+                            </div>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Developed an AI pipeline utilizing <strong class="text-zinc-300">OCR technology</strong> for automated data processing. Built an end-to-end agentic workflow to extract and structure election-related data from scanned documents.</p>
+                        </div>
+                    </div>
+
+                    <!-- Hackathon: From Data to Insight -->
+                    <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 transition-colors overflow-hidden flex flex-col lg:flex-row">
+                        <!-- Image placeholder -->
+                        <div class="w-full lg:w-72 shrink-0 aspect-video lg:aspect-auto min-h-[180px] bg-zinc-900 border-b lg:border-b-0 lg:border-r border-dashed border-zinc-700 flex items-center justify-center p-4">
+                            <p class="text-zinc-600 text-xs text-center leading-relaxed">
+                                [ รูป / Screenshot<br/><strong class="text-zinc-500">From Data to Insight Hackathon</strong> ]
+                            </p>
+                        </div>
+                        <div class="p-6 flex flex-col justify-center">
+                            <div class="flex items-start justify-between gap-4 mb-2 flex-wrap">
+                                <h3 class="font-syne font-bold text-white text-lg">From Data to Insight Hackathon</h3>
+                                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-700/60 text-zinc-300 border border-zinc-600 whitespace-nowrap">Super AI Engineer — Practice</span>
+                            </div>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Applied <strong class="text-zinc-300">data analysis and machine learning</strong> techniques to extract actionable insights from raw data. Covered the full pipeline from data cleaning and EDA to model building and visualization.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
     <main id="view-resume" class="hidden-view bg-[#09090b] pt-24 pb-32 px-4 md:px-12 text-zinc-300">
         
         <!-- Controls for Resume (Print & Lang Toggle) -->
@@ -967,28 +1192,179 @@
 
     <!-- ================= JAVASCRIPT SECTION ================= -->
     <script>
-        // ฟังก์ชันสำหรับสลับหน้าจอระหว่าง Portfolio และ Resume
+        var portfolioThaiFrozen = {};
+        var workflowRevealObserver = null;
+
+        var PORTFOLIO_STRINGS_EN = {
+            hero_kicker: 'Web Developer &amp; System Automator',
+            hero_title: 'BUILDING <br /><span class="text-zinc-500 italic font-medium">SMART</span> SYSTEMS &amp; <br />DIGITAL <span class="text-zinc-500 italic font-medium">EXPERIENCES</span>',
+            hero_blurb: 'From Graphic Design into IT &amp; Web Development — passionate about LLMs, automation, and user-centric systems that cut manual work.',
+            mini_subtitle: 'Smart ERP — Web-based Business System',
+            mini_core_h: 'Core Modules',
+            mini_ch_h: 'Challenges faced',
+            mini_ch_sub: 'Straight from building the system — areas still to tighten',
+            mini_ch_li1: '<strong class="text-zinc-200">Structure &amp; UX/UI:</strong> Large module surface; onboarding feels heavy — some flows still need clearer steps and copy.',
+            mini_ch_li2: '<strong class="text-zinc-200">Code (short):</strong> Purchasing state and approvals (PR → PO) occasionally clash or hit edge cases — needs end-to-end checks across API, serializers, and Vue.',
+            mini_ch_li3: '<strong class="text-zinc-200">Purchasing flow:</strong> Sometimes PO feels smoother than PR or vice versa depending on status and master data — business rules need locking in.',
+            sabai_subtitle: 'SME Document Management System',
+            sabai_feat_h: 'What users get',
+            sabai_ux_h: 'Language &amp; UX',
+            sabai_ch_h: 'Lessons from MINI-ERP &amp; challenges',
+            sabai_ch_sub: 'SabaiBill scales down for simplicity — still rough edges to fix',
+            web_h2: 'Web Design &amp; Commerce',
+            wf_h2: 'Workflow Automation',
+            wf_h3: 'Automation — Parcel tracking (Make.com)',
+            wf_tools: 'Tools &amp; modules',
+            wf_v_h: 'Origin &amp; real limits',
+            wf_v_sub: 'First automation blending AI with daily ops — more to build',
+            footer_copy: '© 2025 All rights reserved.'
+        };
+
+        (function fillLongEn() {
+            var L = PORTFOLIO_STRINGS_EN;
+            L.mini_intro = 'A web ERP for SMEs: purchasing, GRN, inventory, sales, delivery, basic finance, and approvals in one place. Split API architecture, modern UI, JWT auth — desktop and mobile friendly.';
+            L.mini_core_li1 = '<strong class="text-white">Purchasing &amp; inventory:</strong> PR → PO → GRN with real-time stock updates.';
+            L.mini_core_li2 = '<strong class="text-white">Sales:</strong> Quotation → SO → DO with customer delivery-confirm links.';
+            L.mini_core_li3 = '<strong class="text-white">Master data:</strong> Products, partners, warehouses, and UOM.';
+            L.mini_core_li4 = '<strong class="text-white">Access control:</strong> Clear roles plus a central approval hub.';
+            L.sabai_lead = '<strong class="text-zinc-200">SabaiBill</strong> is an SME sales-doc app — create, chain, and export PDFs in one place. Built for real demos and day-to-day trials.';
+            L.sabai_li1 = 'Create and store <strong class="text-zinc-200">QT</strong> (quotation), <strong class="text-zinc-200">SO</strong>, <strong class="text-zinc-200">DO</strong>, <strong class="text-zinc-200">IV</strong> (invoice).';
+            L.sabai_li2 = 'Chain documents e.g. QT → SO → DO / IV without retyping everything.';
+            L.sabai_li3 = 'Company profile, bank, footer terms, templates, signature, payment QR, and currency.';
+            L.sabai_li4 = '<strong class="text-zinc-200">VAT</strong>, discounts, <strong class="text-zinc-200">WHT</strong>, and net totals.';
+            L.sabai_li5 = 'Print / save <strong class="text-zinc-200">PDF</strong> from Preview.';
+            L.sabai_li6 = 'Customers &amp; products with autocomplete search.';
+            L.sabai_access = '<strong class="text-zinc-400">Access:</strong> No separate signup — one button uses a single demo user. Fine for <strong class="text-zinc-300">internal trials</strong>; not for sensitive data without extra hardening.';
+            L.sabai_ux1 = 'UI: <strong class="text-zinc-300">Thai &amp; English</strong> (toggle in app).';
+            L.sabai_ux2 = 'Documents: bilingual fields (company, address, customer, etc.).';
+            L.sabai_ux3 = 'Large type and buttons for clarity.';
+            L.sabai_ch_li1 = '<strong class="text-zinc-200">Direction:</strong> A deliberate step down from MINI-ERP — focus on trade documents only.';
+            L.sabai_ch_li2 = '<strong class="text-zinc-200">Flow still fuzzy:</strong> QT → SO → DO / IV needs a clearer “what’s next” story for users.';
+            L.sabai_ch_li3 = '<strong class="text-zinc-200">Invoice layouts:</strong> Too similar across types — SMEs need more freedom (fields / layout / rules).';
+            L.sabai_ch_li4 = '<strong class="text-zinc-200">Code (short):</strong> Field mapping and React state are still rigid — templates and validation need better abstraction.';
+            L.sabai_hint = 'Tap <strong>Get started</strong>, fill company info or open the dashboard — ideal for demos.';
+            L.web_sub = 'Storefronts that look good and work hard, with backend hooks (e.g. LINE Notify) for alerts.';
+            L.cjp_desc = 'B2B catalog and quote / PO request flow with <strong>LINE Notify API</strong> for real-time admin alerts on new orders.';
+            L.yuki_desc = 'E-commerce for artwork in a minimal style, with LINE order notifications.';
+            L.wf_p1 = 'Make.com scenario <span class="text-white font-medium">Integration LINE</span>: LINE event → download attachment → <span class="text-white font-medium">HTTP</span> to OCR → <span class="text-white font-medium">Text parser</span> for tracking numbers → <span class="text-white font-medium">Google Sheets</span> row → <span class="text-white font-medium">LINE Push Message</span>, running <span class="text-white font-medium">immediately as data arrives</span>.';
+            L.wf_p2 = 'Less retyping for admins: <span class="text-zinc-300 font-medium">Snap → wait → copy → send</span> while OCR, the sheet, and alerts run automatically.';
+            L.wf_cap = '<strong class="text-zinc-400">Walkthrough (matches the clip)</strong> — <span class="text-zinc-300">Integration LINE</span> on Make.com: <span class="text-zinc-300">LINE — Watch Events</span> → <span class="text-zinc-300">Download a Message Attachment</span> → <span class="text-zinc-300">HTTP — Make a request</span> (OCR) → <span class="text-zinc-300">Text parser — Match pattern</span> → <span class="text-zinc-300">Google Sheets — Add a Row</span> → <span class="text-zinc-300">LINE — Send a Push Message</span>. Toolbar: <span class="text-zinc-300">Immediately as data arrives</span>. A separate <span class="text-zinc-300">LINE — Send a Reply Message</span> module may sit off the main chain.';
+            L.wf_v_li1 = '<strong class="text-zinc-200">Why:</strong> Ship tracking numbers to the team fast — first time wiring AI thinking into Make.com.';
+            L.wf_v_li2 = '<strong class="text-zinc-200">OCR &amp; Thai:</strong> Real slips are messy; small or blurry Thai text needs regex and manual checks.';
+            L.wf_v_li3 = '<strong class="text-zinc-200">One image &amp; chat noise:</strong> Multiple labels at once gets confusing — scenarios and errors in Make need tightening.';
+            L.wf_v_li4 = '<strong class="text-zinc-200">Next:</strong> Try a Thai-friendlier OCR, batching, or warn when confidence is low.';
+        })();
+
+        function freezePortfolioThaiOnce() {
+            if (Object.keys(portfolioThaiFrozen).length) return;
+            document.querySelectorAll('#view-portfolio [data-i18n]').forEach(function (el) {
+                var k = el.getAttribute('data-i18n');
+                if (k) portfolioThaiFrozen[k] = el.innerHTML;
+            });
+        }
+
+        function applyPortfolioLang(lang) {
+            freezePortfolioThaiOnce();
+            var map = lang === 'en' ? PORTFOLIO_STRINGS_EN : null;
+            document.querySelectorAll('#view-portfolio [data-i18n]').forEach(function (el) {
+                var k = el.getAttribute('data-i18n');
+                if (!k) return;
+                if (lang === 'en' && map[k]) el.innerHTML = map[k];
+                else if (portfolioThaiFrozen[k] !== undefined) el.innerHTML = portfolioThaiFrozen[k];
+            });
+        }
+
+        function updatePortfolioLangButtons(lang) {
+            var thBtn = document.getElementById('btn-portfolio-lang-th');
+            var enBtn = document.getElementById('btn-portfolio-lang-en');
+            if (!thBtn || !enBtn) return;
+            var active = 'px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold bg-white text-black shadow-sm transition-all';
+            var idle = 'px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition-all';
+            if (lang === 'en') {
+                thBtn.className = idle;
+                enBtn.className = active;
+            } else {
+                thBtn.className = active;
+                enBtn.className = idle;
+            }
+        }
+
+        function setPortfolioLang(lang) {
+            if (lang !== 'en' && lang !== 'th') lang = 'th';
+            document.documentElement.setAttribute('data-site-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+            try { localStorage.setItem('portfolioSiteLang', lang); } catch (e) {}
+            applyPortfolioLang(lang);
+            updatePortfolioLangButtons(lang);
+            initWorkflowReveal();
+        }
+
+        function initWorkflowReveal() {
+            var group = document.querySelector('.workflow-reveal-group');
+            if (!group) return;
+            if (workflowRevealObserver) {
+                workflowRevealObserver.disconnect();
+                workflowRevealObserver = null;
+            }
+            group.classList.remove('is-visible');
+            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                group.classList.add('is-visible');
+                return;
+            }
+            var pv = document.getElementById('view-portfolio');
+            if (pv && pv.classList.contains('hidden-view')) {
+                return;
+            }
+            workflowRevealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    if (workflowRevealObserver) workflowRevealObserver.unobserve(entry.target);
+                });
+            }, { root: null, rootMargin: '0px 0px -12% 0px', threshold: 0 });
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    workflowRevealObserver.observe(group);
+                    var r = group.getBoundingClientRect();
+                    var vh = window.innerHeight || document.documentElement.clientHeight;
+                    if (r.bottom > 64 && r.top < vh - 40) {
+                        group.classList.add('is-visible');
+                        workflowRevealObserver.unobserve(group);
+                    }
+                });
+            });
+        }
+
         function switchView(viewName) {
             const portfolioView = document.getElementById('view-portfolio');
+            const certsView = document.getElementById('view-certs');
             const resumeView = document.getElementById('view-resume');
             const btnPortfolio = document.getElementById('btn-portfolio');
+            const btnCerts = document.getElementById('btn-certs');
             const btnResume = document.getElementById('btn-resume');
+
+            portfolioView.classList.add('hidden-view');
+            certsView.classList.add('hidden-view');
+            resumeView.classList.add('hidden-view');
+            btnPortfolio.classList.remove('nav-active');
+            btnCerts.classList.remove('nav-active');
+            btnResume.classList.remove('nav-active');
 
             if (viewName === 'portfolio') {
                 portfolioView.classList.remove('hidden-view');
-                resumeView.classList.add('hidden-view');
                 btnPortfolio.classList.add('nav-active');
-                btnResume.classList.remove('nav-active');
+                initWorkflowReveal();
+            } else if (viewName === 'certs') {
+                certsView.classList.remove('hidden-view');
+                btnCerts.classList.add('nav-active');
             } else {
                 resumeView.classList.remove('hidden-view');
-                portfolioView.classList.add('hidden-view');
                 btnResume.classList.add('nav-active');
-                btnPortfolio.classList.remove('nav-active');
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ฟังก์ชันสำหรับสลับภาษาใน Resume
         function setLang(lang) {
             const resumeEn = document.getElementById('resume-en');
             const resumeTh = document.getElementById('resume-th');
@@ -1009,6 +1385,18 @@
                 btnEn.className = "px-4 py-1.5 text-sm font-bold text-zinc-400 hover:text-white rounded-md transition-all";
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            freezePortfolioThaiOnce();
+            var saved = 'th';
+            try { saved = localStorage.getItem('portfolioSiteLang') || 'th'; } catch (e) {}
+            if (saved === 'en') {
+                setPortfolioLang('en');
+            } else {
+                updatePortfolioLangButtons('th');
+                initWorkflowReveal();
+            }
+        });
     </script>
 </body>
 </html>
