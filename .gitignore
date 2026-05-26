@@ -1,3 +1,57 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Large videos — over GitHub 100MB limit
+car.mp4
+walking_in_d_loop_slow_pict.mp4
+
+# Reference images / mockups (not used by deployed site)
+1exsample.jpg
+2exsample.jpg
+agi.jpg
+exsample.jpg
+web.jpg
+
+# Source content PDFs (slides used only for content extraction)
+hero-wording.md.pdf
+machima1 putch.pdf
+Machima6_Hack2_Presentation.pdf
+Data Science Job Simulation.pdf
+
+# Legacy resumes (replaced by Tech Portfolio.pdf)
+607107_Natticha resume.pdf
+engresume.pdf
+thairesume.pdf
+
+# Working draft of the portfolio
+index-v2.html
+
+# Unused images in image/
+image/4706ffd8-6608-4e35-b889-ddf9aef4dbfb.png
+image/5fc28dad-fdc8-42c9-9559-534bf11f2155.mp4
+image/97776.jpg
+image/AI Ready ASEAN.png
+image/AIAT.png
+image/Developer Associate (HCCDA).png
+image/Edge AI .mp4
+image/E5E5693A-A4FE-4135-B40B-7B69D7B1DF27.png
+image/From Data to Insight Hackathon.jpg
+image/Hour of Code1.jpg
+image/Hour of Code2.jpg
+image/Hour of Code3.png
+image/Tech Essentials.png
+image/certificate.pdf
+image/cover.png
+image/make-line-integration.png
+image/messageImage_1777988572560.jpg
+image/messageImage_1777988580392.jpg
+
+# Scratch python scripts
+_reorder.py
+_reorder2.py
+_hack.py
+
+# Editor / OS
+.vscode/
+.idea/
