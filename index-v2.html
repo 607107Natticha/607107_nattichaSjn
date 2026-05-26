@@ -1046,12 +1046,25 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   display: flex;
   align-items: center; justify-content: center;
   flex-direction: column;
-  transition: opacity 0.9s cubic-bezier(0.76, 0, 0.24, 1), visibility 0.9s;
+  transition:
+    transform 1.2s cubic-bezier(0.76, 0, 0.24, 1),
+    opacity 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.15s,
+    visibility 1.2s;
+  will-change: transform, opacity;
 }
 .intro-overlay.is-done {
+  transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+/* Re-show: snap below viewport (no transition), then class removed → slides UP */
+.intro-overlay.is-rebooting {
+  transform: translateY(100%) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: none !important;
 }
 .intro-canvas {
   position: absolute;
@@ -1103,12 +1116,15 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   overflow: hidden;
 }
 .intro-bar {
-  height: 100%; width: 0%;
+  height: 100%; width: 30%;
   background: linear-gradient(90deg, #22D3EE 0%, #FF8FB7 100%);
   box-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
-  animation: introFill 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+  animation: introPulse 2.4s ease-in-out infinite;
 }
-@keyframes introFill { to { width: 100%; } }
+@keyframes introPulse {
+  0%, 100% { transform: translateX(-100%); }
+  50%      { transform: translateX(300%); }
+}
 .intro-skip {
   position: absolute;
   bottom: -120px;
@@ -1125,6 +1141,32 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
 .intro-skip:hover {
   color: #FFFFFF;
   border-color: #FFFFFF;
+}
+.intro-hint {
+  position: absolute;
+  bottom: 38px;
+  left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  animation: introHintFade 1.2s ease 1s both;
+  pointer-events: none;
+  z-index: 2;
+}
+.intro-hint .ih-arrow {
+  display: flex; align-items: center; justify-content: center;
+  color: #22D3EE;
+  animation: introArrow 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.5));
+}
+@keyframes introHintFade {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@keyframes introArrow {
+  0%, 100% { transform: translateY(-3px); opacity: 0.6; }
+  50%      { transform: translateY(4px);  opacity: 1; }
 }
 
 /* ============== HERO declutter — hide HUD overlays for clean look ============== */
@@ -3830,6 +3872,14 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     <div class="intro-progress"><div class="intro-bar"></div></div>
     <button class="intro-skip" id="introSkip" type="button">SKIP ↗</button>
   </div>
+  <div class="intro-hint" id="introHint">
+    <span class="ih-label">Scroll to enter</span>
+    <span class="ih-arrow">
+      <svg width="14" height="20" viewBox="0 0 14 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 2 V18 M2 13 L7 18 L12 13"/>
+      </svg>
+    </span>
+  </div>
 </div>
 
 <!-- ================= GLITTER STARS (twinkling overlay) ================= -->
@@ -4328,10 +4378,10 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
 <aside class="section-indicator" id="sectionIndicator" aria-hidden="true">
   <button class="indi-item" data-idx="0" type="button"><span class="label">Profile</span><span class="bar"></span></button>
   <button class="indi-item" data-idx="1" type="button"><span class="label">About</span><span class="bar"></span></button>
-  <button class="indi-item" data-idx="2" type="button"><span class="label">Projects</span><span class="bar"></span></button>
-  <button class="indi-item" data-idx="3" type="button"><span class="label">Hackathon</span><span class="bar"></span></button>
+  <button class="indi-item" data-idx="2" type="button"><span class="label">Work</span><span class="bar"></span></button>
+  <button class="indi-item" data-idx="3" type="button"><span class="label">Projects</span><span class="bar"></span></button>
   <button class="indi-item" data-idx="4" type="button"><span class="label">Certs</span><span class="bar"></span></button>
-  <button class="indi-item" data-idx="5" type="button"><span class="label">Work</span><span class="bar"></span></button>
+  <button class="indi-item" data-idx="5" type="button"><span class="label">Hackathon</span><span class="bar"></span></button>
   <button class="indi-item" data-idx="6" type="button"><span class="label">Skills</span><span class="bar"></span></button>
   <button class="indi-item" data-idx="7" type="button"><span class="label">Contact</span><span class="bar"></span></button>
 </aside>
@@ -4475,7 +4525,6 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     </div>
   </div>
 </section>
-
 <!-- ================= 02 ABOUT ================= -->
 <section id="about">
   <div class="wrap">
@@ -4521,8 +4570,87 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     <p class="bio reveal">"Art eye, data mind — built across graphic design, IT, web, and now AI. I don't just study systems. I ship them."</p>
   </div>
 </section>
+<!-- ================= 03 WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label">05 — Work</div>
+      <h2 class="section-title">A non-linear path,<br/><em>told in one line.</em></h2>
+      <p class="section-intro">From IT support to graphic design to AI engineering — plus a recent stint in international business development.</p>
+    </div>
 
-<!-- ================= 03 PROJECTS ================= -->
+    <!-- Featured: Vietnam Market Expansion -->
+    <div class="work-feature reveal">
+      <div class="wf-meta">
+        <span class="wf-tag"><span class="dot"></span> FEATURED · Business Development</span>
+        <span class="wf-date">7 August 2025 · Lotte Hotel, HCMC</span>
+      </div>
+      <h3 class="wf-title">Sabaijang — <em>Vietnam</em> Market Expansion</h3>
+      <p class="wf-lead">Represented <strong>Sabaijang</strong> (herbal mint spray &amp; wellness products) at the <em>Vietnam–Thailand Health, Medical, Beauty &amp; Personal Care Products Business Matching</em> event — organized by <strong>DITP</strong> (Department of International Trade Promotion).</p>
+
+      <div class="wf-grid">
+        <div class="wf-gallery">
+          <img src="image/vienam/LINE_ALBUM_08082025_260525_3.jpg" alt="DITP business matching event" loading="lazy">
+          <img src="image/vienam/LINE_ALBUM_08082025_260525_7.jpg" alt="Vietnam buyer engagement" loading="lazy">
+          <img src="image/vienam/LINE_ALBUM_08082025_260525_8.jpg" alt="Product samples" loading="lazy">
+          <img src="image/vienam/LINE_ALBUM_08082025_260525_10.jpg" alt="Sabaijang stand at the event" loading="lazy">
+        </div>
+        <div class="wf-bullets">
+          <div class="wf-bullet">
+            <div class="wf-bullet-label">Demand Validation</div>
+            <p>Product demand from Vietnamese buyers <strong>exceeded available samples</strong> — demonstrating strong market potential for a herbal wellness brand.</p>
+          </div>
+          <div class="wf-bullet">
+            <div class="wf-bullet-label">Retail Channel · Saigon Co.op</div>
+            <p>Strategic meeting with the <strong>CEO of Saigon Co.op</strong> — a leading pioneer in Vietnam's modern retail — who expressed willingness to introduce Sabaijang products into the Vietnamese market.</p>
+          </div>
+          <div class="wf-bullet">
+            <div class="wf-bullet-label">Clinical Channel · Hanoi</div>
+            <p>Met an acupuncture &amp; cupping clinic owner-physician in Hanoi interested in distribution + <strong>Private Label / OEM</strong> branding for his clinic and professional network.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vtimeline reveal-stagger">
+      <div class="vt-item">
+        <div class="vt-date">Mar 2025 — present</div>
+        <div class="vt-role">Freelance Web Developer &amp; Digital Marketer</div>
+        <div class="vt-org">Independent</div>
+        <div class="vt-desc">Building full-stack web systems (MINI-ERP, SabaiBill), e-commerce, OCR/automation pipelines, and AI-assisted workflows.</div>
+      </div>
+      <div class="vt-item">
+        <div class="vt-date">Oct 2024 — Mar 2025</div>
+        <div class="vt-role">Content Moderator</div>
+        <div class="vt-org">Transcosmos</div>
+        <div class="vt-desc">High-volume review and classification — the human-side analog of running a classifier in production.</div>
+      </div>
+      <div class="vt-item">
+        <div class="vt-date">2021 — 2023</div>
+        <div class="vt-role">Graphic Designer</div>
+        <div class="vt-org">ZEA Management</div>
+        <div class="vt-desc">Brand, print, and digital design — the visual eye that still shows up in every dashboard and UI I build.</div>
+      </div>
+      <div class="vt-item">
+        <div class="vt-date">2019 — Dec 2021</div>
+        <div class="vt-role">IT Support</div>
+        <div class="vt-org">Siam Herb Product</div>
+        <div class="vt-desc">First exposure to production systems, networking, and the discipline of methodical debugging.</div>
+      </div>
+    </div>
+
+    <div class="edu-block reveal">
+      <h4>Education</h4>
+      <p><strong>Mae Fah Luang University</strong> — B.Sc. Multimedia Technology &amp; Animation</p>
+      <p><strong>Valuepoint Academy</strong>, Pune, India — 2018</p>
+    </div>
+
+    <div class="resume-cta reveal">
+      <a href="Tech%20Portfolio.pdf" download="Natticha-Benz-Tech-Portfolio.pdf" class="btn btn-primary">Download Full Resume ↓</a>
+    </div>
+  </div>
+</section>
+<!-- ================= 04 PROJECTS ================= -->
 <section id="projects">
   <div class="wrap">
     <div class="reveal">
@@ -4754,8 +4882,88 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     </div>
   </div>
 </section>
+<!-- ================= 05 CERTS ================= -->
+<section id="certs">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label">04 — Certifications</div>
+      <h2 class="section-title">Currently learning.<br/><em>Always shipping.</em></h2>
+      <p class="section-intro">Active programs and credentials — the formal record of an ongoing apprenticeship in AI.</p>
+    </div>
 
-<!-- ================= 04 HACKATHONS ================= -->
+    <div class="cert-grid reveal-stagger">
+      <div class="cert-card featured">
+        <span class="cert-status progress"><span class="pulse"></span> LV.2 · Seeking Internship (LV.3)</span>
+        <h3 class="cert-title">Super AI Engineer Season 6 — LV.2</h3>
+        <div class="cert-issuer">AIAT — Association of AI Technology</div>
+        <div class="cert-meta">
+          <div>Completed <strong>LV.1 Intensive Camp</strong></div>
+          <div>Currently <strong>LV.2</strong> · Seeking an internship for <strong>LV.3</strong></div>
+          <div><strong>Curriculum:</strong> 13 courses — Python, Math for AI, Data Science, ML, Deep Learning, CV, NLP, AI Ethics, RAG, Design Thinking</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status valid">Valid · Apr 2029</span>
+        <h3 class="cert-title">Huawei HCCDA — AI</h3>
+        <div class="cert-issuer">Huawei Career Certification — Developer Associate</div>
+        <div class="cert-meta">
+          <div><strong>Credential ID:</strong> HWENDCAIDA266070</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status valid">Valid · Apr 2029</span>
+        <h3 class="cert-title">Huawei HCCDA — Tech Essentials</h3>
+        <div class="cert-issuer">Huawei Career Certification</div>
+        <div class="cert-meta">
+          <div><strong>Credential ID:</strong> HWENDCTEDA821114</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status done">Completed</span>
+        <h3 class="cert-title">Data Science Job Simulation</h3>
+        <div class="cert-issuer">Virtual Experience Program · May 2026</div>
+        <p class="cert-desc">End-to-end data-science workflow on a real business case — framed the problem, ran <strong>EDA &amp; data cleaning</strong>, engineered features, trained and evaluated models, and delivered <strong>insights &amp; recommendations</strong> back to the business.</p>
+        <div class="cert-meta">
+          <div><strong>Scope:</strong> 6 tasks · Apr–May 2026</div>
+          <div><strong>Tasks:</strong> Business framing · EDA · Feature Engineering · Modeling · Evaluation · Insights</div>
+          <div><strong>Verify:</strong> <code>7pWEa6HJM2M</code></div>
+          <div><a class="cert-link" href="Data%20Science%20Job%20Simulation.pdf.pdf" target="_blank" rel="noopener">View certificate ↗</a></div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status done">Completed</span>
+        <h3 class="cert-title">AI Ready ASEAN</h3>
+        <div class="cert-issuer">ASEAN Foundation × Google.org</div>
+        <div class="cert-meta">
+          <div><strong>Scope:</strong> 15 modules · 12 hours</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status done">Completed</span>
+        <h3 class="cert-title">TOEIC — 590</h3>
+        <div class="cert-issuer">Test of English for International Communication · 2024</div>
+        <div class="cert-meta">
+          <div><strong>Year:</strong> 2024</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status done">Completed</span>
+        <h3 class="cert-title">Hour of Code</h3>
+        <div class="cert-issuer">Code.org</div>
+        <div class="cert-meta">
+          <div><strong>Modules:</strong> AI for Oceans · Music Lab</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= 06 HACKATHONS ================= -->
 <section id="hackathons">
   <div class="wrap">
     <div class="reveal">
@@ -5256,170 +5464,6 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     </div>
   </div>
 </section>
-
-<!-- ================= 05 CERTS ================= -->
-<section id="certs">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-label">04 — Certifications</div>
-      <h2 class="section-title">Currently learning.<br/><em>Always shipping.</em></h2>
-      <p class="section-intro">Active programs and credentials — the formal record of an ongoing apprenticeship in AI.</p>
-    </div>
-
-    <div class="cert-grid reveal-stagger">
-      <div class="cert-card featured">
-        <span class="cert-status progress"><span class="pulse"></span> LV.2 · Seeking Internship (LV.3)</span>
-        <h3 class="cert-title">Super AI Engineer Season 6 — LV.2</h3>
-        <div class="cert-issuer">AIAT — Association of AI Technology</div>
-        <div class="cert-meta">
-          <div>Completed <strong>LV.1 Intensive Camp</strong></div>
-          <div>Currently <strong>LV.2</strong> · Seeking an internship for <strong>LV.3</strong></div>
-          <div><strong>Curriculum:</strong> 13 courses — Python, Math for AI, Data Science, ML, Deep Learning, CV, NLP, AI Ethics, RAG, Design Thinking</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status valid">Valid · Apr 2029</span>
-        <h3 class="cert-title">Huawei HCCDA — AI</h3>
-        <div class="cert-issuer">Huawei Career Certification — Developer Associate</div>
-        <div class="cert-meta">
-          <div><strong>Credential ID:</strong> HWENDCAIDA266070</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status valid">Valid · Apr 2029</span>
-        <h3 class="cert-title">Huawei HCCDA — Tech Essentials</h3>
-        <div class="cert-issuer">Huawei Career Certification</div>
-        <div class="cert-meta">
-          <div><strong>Credential ID:</strong> HWENDCTEDA821114</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status done">Completed</span>
-        <h3 class="cert-title">Data Science Job Simulation</h3>
-        <div class="cert-issuer">Virtual Experience Program · May 2026</div>
-        <p class="cert-desc">End-to-end data-science workflow on a real business case — framed the problem, ran <strong>EDA &amp; data cleaning</strong>, engineered features, trained and evaluated models, and delivered <strong>insights &amp; recommendations</strong> back to the business.</p>
-        <div class="cert-meta">
-          <div><strong>Scope:</strong> 6 tasks · Apr–May 2026</div>
-          <div><strong>Tasks:</strong> Business framing · EDA · Feature Engineering · Modeling · Evaluation · Insights</div>
-          <div><strong>Verify:</strong> <code>7pWEa6HJM2M</code></div>
-          <div><a class="cert-link" href="Data%20Science%20Job%20Simulation.pdf.pdf" target="_blank" rel="noopener">View certificate ↗</a></div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status done">Completed</span>
-        <h3 class="cert-title">AI Ready ASEAN</h3>
-        <div class="cert-issuer">ASEAN Foundation × Google.org</div>
-        <div class="cert-meta">
-          <div><strong>Scope:</strong> 15 modules · 12 hours</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status done">Completed</span>
-        <h3 class="cert-title">TOEIC — 590</h3>
-        <div class="cert-issuer">Test of English for International Communication · 2024</div>
-        <div class="cert-meta">
-          <div><strong>Year:</strong> 2024</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status done">Completed</span>
-        <h3 class="cert-title">Hour of Code</h3>
-        <div class="cert-issuer">Code.org</div>
-        <div class="cert-meta">
-          <div><strong>Modules:</strong> AI for Oceans · Music Lab</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 06 WORK ================= -->
-<section id="work">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-label">05 — Work</div>
-      <h2 class="section-title">A non-linear path,<br/><em>told in one line.</em></h2>
-      <p class="section-intro">From IT support to graphic design to AI engineering — plus a recent stint in international business development.</p>
-    </div>
-
-    <!-- Featured: Vietnam Market Expansion -->
-    <div class="work-feature reveal">
-      <div class="wf-meta">
-        <span class="wf-tag"><span class="dot"></span> FEATURED · Business Development</span>
-        <span class="wf-date">7 August 2025 · Lotte Hotel, HCMC</span>
-      </div>
-      <h3 class="wf-title">Sabaijang — <em>Vietnam</em> Market Expansion</h3>
-      <p class="wf-lead">Represented <strong>Sabaijang</strong> (herbal mint spray &amp; wellness products) at the <em>Vietnam–Thailand Health, Medical, Beauty &amp; Personal Care Products Business Matching</em> event — organized by <strong>DITP</strong> (Department of International Trade Promotion).</p>
-
-      <div class="wf-grid">
-        <div class="wf-gallery">
-          <img src="image/vienam/LINE_ALBUM_08082025_260525_3.jpg" alt="DITP business matching event" loading="lazy">
-          <img src="image/vienam/LINE_ALBUM_08082025_260525_7.jpg" alt="Vietnam buyer engagement" loading="lazy">
-          <img src="image/vienam/LINE_ALBUM_08082025_260525_8.jpg" alt="Product samples" loading="lazy">
-          <img src="image/vienam/LINE_ALBUM_08082025_260525_10.jpg" alt="Sabaijang stand at the event" loading="lazy">
-        </div>
-        <div class="wf-bullets">
-          <div class="wf-bullet">
-            <div class="wf-bullet-label">Demand Validation</div>
-            <p>Product demand from Vietnamese buyers <strong>exceeded available samples</strong> — demonstrating strong market potential for a herbal wellness brand.</p>
-          </div>
-          <div class="wf-bullet">
-            <div class="wf-bullet-label">Retail Channel · Saigon Co.op</div>
-            <p>Strategic meeting with the <strong>CEO of Saigon Co.op</strong> — a leading pioneer in Vietnam's modern retail — who expressed willingness to introduce Sabaijang products into the Vietnamese market.</p>
-          </div>
-          <div class="wf-bullet">
-            <div class="wf-bullet-label">Clinical Channel · Hanoi</div>
-            <p>Met an acupuncture &amp; cupping clinic owner-physician in Hanoi interested in distribution + <strong>Private Label / OEM</strong> branding for his clinic and professional network.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="vtimeline reveal-stagger">
-      <div class="vt-item">
-        <div class="vt-date">Mar 2025 — present</div>
-        <div class="vt-role">Freelance Web Developer &amp; Digital Marketer</div>
-        <div class="vt-org">Independent</div>
-        <div class="vt-desc">Building full-stack web systems (MINI-ERP, SabaiBill), e-commerce, OCR/automation pipelines, and AI-assisted workflows.</div>
-      </div>
-      <div class="vt-item">
-        <div class="vt-date">Oct 2024 — Mar 2025</div>
-        <div class="vt-role">Content Moderator</div>
-        <div class="vt-org">Transcosmos</div>
-        <div class="vt-desc">High-volume review and classification — the human-side analog of running a classifier in production.</div>
-      </div>
-      <div class="vt-item">
-        <div class="vt-date">2021 — 2023</div>
-        <div class="vt-role">Graphic Designer</div>
-        <div class="vt-org">ZEA Management</div>
-        <div class="vt-desc">Brand, print, and digital design — the visual eye that still shows up in every dashboard and UI I build.</div>
-      </div>
-      <div class="vt-item">
-        <div class="vt-date">2019 — Dec 2021</div>
-        <div class="vt-role">IT Support</div>
-        <div class="vt-org">Siam Herb Product</div>
-        <div class="vt-desc">First exposure to production systems, networking, and the discipline of methodical debugging.</div>
-      </div>
-    </div>
-
-    <div class="edu-block reveal">
-      <h4>Education</h4>
-      <p><strong>Mae Fah Luang University</strong> — B.Sc. Multimedia Technology &amp; Animation</p>
-      <p><strong>Valuepoint Academy</strong>, Pune, India — 2018</p>
-    </div>
-
-    <div class="resume-cta reveal">
-      <a href="Tech%20Portfolio.pdf" download="Natticha-Benz-Tech-Portfolio.pdf" class="btn btn-primary">Download Full Resume ↓</a>
-    </div>
-  </div>
-</section>
-
 <!-- ================= 07 SKILLS ================= -->
 <section id="skills">
   <div class="wrap">
@@ -5491,7 +5535,6 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     </div>
   </div>
 </section>
-
 <!-- ================= 08 CONTACT ================= -->
 <section id="contact">
   <canvas id="contact-particles"></canvas>
@@ -5544,6 +5587,13 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     <footer>© 2025 Natticha Satjawatthana · Built from scratch, no templates.</footer>
   </div>
 </section>
+
+
+
+
+
+
+
 
 <script>
 (function () {
@@ -5947,6 +5997,8 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
 
   /* ---------- wheel ---------- */
   function handleWheel (e) {
+    // Intro still in DOM (including during slide-out) → don't advance section
+    if (isIntroActive()) return;
     const sec = sections[current];
     if (animating) {
       // block any default scroll while transitioning
@@ -5965,6 +6017,12 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
       wheelLock = Date.now();
       goTo(current + 1);
     } else if (dy < 0 && atTop) {
+      // On Hero top + scroll up → bring back the intro globe
+      if (current === 0 && typeof window.__showIntro === 'function') {
+        if (e.cancelable) e.preventDefault();
+        window.__showIntro();
+        return;
+      }
       if (e.cancelable) e.preventDefault();
       if (Date.now() - wheelLock < 800) return;
       wheelLock = Date.now();
@@ -5974,15 +6032,27 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
   }
   window.addEventListener('wheel', handleWheel, { passive: false });
 
+  function isIntroActive () {
+    // Intro stays in DOM (so it can be re-shown). Active only when visible (no is-done class).
+    const el = document.getElementById('introOverlay');
+    return !!el && !el.classList.contains('is-done');
+  }
+
   /* ---------- keyboard ---------- */
   document.addEventListener('keydown', e => {
+    if (isIntroActive()) return; // let intro handle its own dismiss
     if (animating) return;
     const fsMenu = document.getElementById('fullscreenMenu');
     if (fsMenu && fsMenu.classList.contains('open')) return; // menu handles ESC itself
     if (['ArrowDown', 'PageDown'].includes(e.key)) {
       e.preventDefault(); goTo(current + 1);
     } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
-      e.preventDefault(); goTo(current - 1);
+      e.preventDefault();
+      if (current === 0 && typeof window.__showIntro === 'function') {
+        window.__showIntro();
+      } else {
+        goTo(current - 1);
+      }
     } else if (e.key === 'Home') {
       e.preventDefault(); goTo(0);
     } else if (e.key === 'End') {
@@ -5998,6 +6068,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     touchStartTime = Date.now();
   }, { passive: true });
   window.addEventListener('touchend', e => {
+    if (isIntroActive()) return; // intro takes over
     if (animating) return;
     const dy = touchStartY - e.changedTouches[0].clientY; // positive = swipe up
     const dt = Date.now() - touchStartTime;
@@ -6009,7 +6080,13 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     const atBottom = sec.scrollTop + sec.clientHeight >= sec.scrollHeight - 4;
 
     if (dy > 0 && atBottom) goTo(current + 1);
-    else if (dy < 0 && atTop) goTo(current - 1);
+    else if (dy < 0 && atTop) {
+      if (current === 0 && typeof window.__showIntro === 'function') {
+        window.__showIntro();
+      } else {
+        goTo(current - 1);
+      }
+    }
   }, { passive: true });
 
   /* ---------- indicator clicks ---------- */
@@ -6260,32 +6337,36 @@ import * as THREE from 'three';
   resize();
   window.addEventListener('resize', resize);
 
-  // Dotted globe — 800 points distributed via Fibonacci spiral
-  const N = 800;
-  const pos = new Float32Array(N * 3);
-  const col = new Float32Array(N * 3);
-  const cCyan  = new THREE.Color(0x22D3EE);
-  const cPink  = new THREE.Color(0xFF8FB7);
-  const cWhite = new THREE.Color(0xFFFFFF);
-  const R = 1.8;
+  // === AGI GLOBE: dotted earth + AI hub nodes + data-flow arcs ===
+  const N = 2400;
+  const pos     = new Float32Array(N * 3);
+  const origPos = new Float32Array(N * 3);
+  const col     = new Float32Array(N * 3);
+
+  const R = 1.9;
+  const cDim    = new THREE.Color(0x3B7DB0); // base dot tone (cool blue)
+  const cBright = new THREE.Color(0x22D3EE); // accent dots
+  const cWhite  = new THREE.Color(0xFFFFFF);
+
+  // Fibonacci-sphere surface points
   for (let i = 0; i < N; i++) {
     const y = 1 - (i / (N - 1)) * 2;
     const r = Math.sqrt(1 - y * y);
-    const t = i * Math.PI * (3 - Math.sqrt(5)); // golden angle
-    pos[i*3]     = R * Math.cos(t) * r;
-    pos[i*3 + 1] = R * y;
-    pos[i*3 + 2] = R * Math.sin(t) * r;
+    const t = i * Math.PI * (3 - Math.sqrt(5));
+    const px = R * Math.cos(t) * r;
+    const py = R * y;
+    const pz = R * Math.sin(t) * r;
+    pos[i*3]     = px; pos[i*3+1]     = py; pos[i*3+2]     = pz;
+    origPos[i*3] = px; origPos[i*3+1] = py; origPos[i*3+2] = pz;
     const ra = Math.random();
-    const c = ra < 0.06 ? cPink : (ra < 0.16 ? cWhite : cCyan);
-    col[i*3]     = c.r;
-    col[i*3 + 1] = c.g;
-    col[i*3 + 2] = c.b;
+    const c = ra < 0.03 ? cWhite : (ra < 0.12 ? cBright : cDim);
+    col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
   }
   const dotGeo = new THREE.BufferGeometry();
   dotGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
   dotGeo.setAttribute('color',    new THREE.BufferAttribute(col, 3));
   const dotMat = new THREE.PointsMaterial({
-    size: 0.055,
+    size: 0.034,
     vertexColors: true,
     transparent: true,
     opacity: 0.95,
@@ -6296,30 +6377,170 @@ import * as THREE from 'three';
   const dotGlobe = new THREE.Points(dotGeo, dotMat);
   scene.add(dotGlobe);
 
-  // Wireframe sphere outline (subtle meridians)
+  // Subtle wireframe meridians (lat/lon) — gives the "earth" silhouette
   const wireSphere = new THREE.LineSegments(
-    new THREE.WireframeGeometry(new THREE.SphereGeometry(R, 26, 14)),
-    new THREE.LineBasicMaterial({ color: 0x22D3EE, transparent: true, opacity: 0.10 })
+    new THREE.WireframeGeometry(new THREE.SphereGeometry(R * 0.998, 24, 14)),
+    new THREE.LineBasicMaterial({ color: 0x22D3EE, transparent: true, opacity: 0.06, blending: THREE.AdditiveBlending, depthWrite: false })
   );
-  scene.add(wireSphere);
+  dotGlobe.add(wireSphere); // child → inherits rotation
 
-  // Outer glow ring (orbiting)
-  const ringGeo = new THREE.RingGeometry(R * 1.25, R * 1.27, 64);
-  const ringMat = new THREE.MeshBasicMaterial({
-    color: 0x22D3EE, transparent: true, opacity: 0.4, side: THREE.DoubleSide,
+  // === AI HUB NODES — bigger glowing dots scattered on sphere ===
+  const NUM_HUBS = 22;
+  const HUBS = [];
+  for (let i = 0; i < NUM_HUBS; i++) {
+    const u = Math.random(), v = Math.random();
+    const theta = 2 * Math.PI * u;
+    const phi = Math.acos(2 * v - 1);
+    HUBS.push(new THREE.Vector3(
+      R * Math.sin(phi) * Math.cos(theta),
+      R * Math.cos(phi),
+      R * Math.sin(phi) * Math.sin(theta),
+    ));
+  }
+  const hubPos = new Float32Array(NUM_HUBS * 3);
+  const hubCol = new Float32Array(NUM_HUBS * 3);
+  for (let i = 0; i < NUM_HUBS; i++) {
+    hubPos[i*3]   = HUBS[i].x;
+    hubPos[i*3+1] = HUBS[i].y;
+    hubPos[i*3+2] = HUBS[i].z;
+    // Alternate cyan and pink hubs
+    const useC = i % 2 === 0;
+    hubCol[i*3]   = useC ? 0.13 : 1.0;
+    hubCol[i*3+1] = useC ? 0.83 : 0.56;
+    hubCol[i*3+2] = useC ? 0.93 : 0.72;
+  }
+  const hubGeo = new THREE.BufferGeometry();
+  hubGeo.setAttribute('position', new THREE.BufferAttribute(hubPos, 3));
+  hubGeo.setAttribute('color',    new THREE.BufferAttribute(hubCol, 3));
+  const hubMat = new THREE.PointsMaterial({
+    size: 0.11, vertexColors: true, transparent: true, opacity: 1,
+    sizeAttenuation: true, depthWrite: false, blending: THREE.AdditiveBlending,
   });
-  const orbitRing = new THREE.Mesh(ringGeo, ringMat);
-  orbitRing.rotation.x = Math.PI / 2.6;
-  scene.add(orbitRing);
+  const hubPoints = new THREE.Points(hubGeo, hubMat);
+  dotGlobe.add(hubPoints);
+
+  // === DATA FLOW ARCS — neural connections between hubs ===
+  const NUM_ARCS = 10;
+  const ARC_SEG = 40;
+  const arcs = [];
+  function makeArc () {
+    const a = HUBS[Math.floor(Math.random() * NUM_HUBS)];
+    let b; do { b = HUBS[Math.floor(Math.random() * NUM_HUBS)]; } while (b === a);
+    const mid = new THREE.Vector3().addVectors(a, b).multiplyScalar(0.5);
+    const arcHeight = R + a.distanceTo(b) * 0.35;
+    if (mid.length() > 0.001) mid.setLength(arcHeight);
+    const curve = new THREE.QuadraticBezierCurve3(a.clone(), mid, b.clone());
+    const points = curve.getPoints(ARC_SEG);
+    const arr = new Float32Array(points.length * 3);
+    for (let i = 0; i < points.length; i++) {
+      arr[i*3]   = points[i].x;
+      arr[i*3+1] = points[i].y;
+      arr[i*3+2] = points[i].z;
+    }
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+    const mat = new THREE.LineBasicMaterial({
+      color: Math.random() < 0.5 ? 0x22D3EE : 0xFF8FB7,
+      transparent: true, opacity: 0,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+    });
+    const line = new THREE.Line(geom, mat);
+    dotGlobe.add(line);
+    return {
+      line, mat,
+      progress: 0,
+      speed: 0.004 + Math.random() * 0.008,
+    };
+  }
+  function resetArc (arc) {
+    dotGlobe.remove(arc.line);
+    arc.line.geometry.dispose();
+    arc.line.material.dispose();
+    Object.assign(arc, makeArc());
+  }
+  for (let i = 0; i < NUM_ARCS; i++) {
+    const a = makeArc();
+    a.progress = Math.random(); // stagger
+    arcs.push(a);
+  }
+  // Expose for tick()
+  const orbitRing = { arcs, resetArc, hubPoints }; // re-use orbitRing name as data-flow container
 
   let rafId = null;
   let rotation = 0;
+  // Mouse parallax — smooth lerped offsets
+  let mxRaw = 0, myRaw = 0, mx = 0, my = 0;
+  // NDC mouse for scatter (–1..1, +Y up — matches camera.project output)
+  const mouseNDC = new THREE.Vector2(99, 99); // start off-screen
+  let lastMouseMove = 0;
+  window.addEventListener('mousemove', e => {
+    mxRaw = (e.clientX / window.innerWidth) - 0.5;
+    myRaw = (e.clientY / window.innerHeight) - 0.5;
+    mouseNDC.x =  (e.clientX / window.innerWidth)  * 2 - 1;
+    mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    lastMouseMove = performance.now();
+  }, { passive: true });
+
+  // Scatter scratch vectors (reused per frame, no GC pressure)
+  const _v = new THREE.Vector3();
+  const SCATTER_RADIUS = 0.18;   // NDC radius of influence
+  const SCATTER_STRENGTH = 0.55; // how far dots fly outward (in local units)
+  const SCATTER_RESTORE = 0.12;  // lerp-back rate per frame
+
   function tick () {
-    rotation += 0.005;
-    dotGlobe.rotation.y = rotation;
-    dotGlobe.rotation.x = Math.sin(rotation * 0.3) * 0.15;
-    wireSphere.rotation.y = rotation * 0.6;
-    orbitRing.rotation.z = rotation * 0.8;
+    // Lerp toward target mouse position — smooth follow
+    mx += (mxRaw - mx) * 0.05;
+    my += (myRaw - my) * 0.05;
+
+    rotation += 0.0035;
+    // Globe spin + mouse-driven tilt
+    dotGlobe.rotation.y = rotation + mx * 0.7;
+    dotGlobe.rotation.x = Math.sin(rotation * 0.3) * 0.12 + my * 0.45;
+    // Subtle camera dolly toward mouse
+    camera.position.x = mx * 0.55;
+    camera.position.y = -my * 0.4;
+    camera.lookAt(0, 0, 0);
+
+    // --- Data flow arcs: animate progress (fade in → out), regenerate when done
+    for (let i = 0; i < orbitRing.arcs.length; i++) {
+      const arc = orbitRing.arcs[i];
+      arc.progress += arc.speed;
+      arc.mat.opacity = arc.progress < 0.5
+        ? arc.progress * 1.4
+        : Math.max(0, (1 - arc.progress) * 1.4);
+      if (arc.progress >= 1) orbitRing.resetArc(arc);
+    }
+    // Hub pulse — sync size to global beat
+    orbitRing.hubPoints.material.size = 0.10 + Math.sin(rotation * 6) * 0.02;
+
+    // --- Scatter: particles near cursor push OUTWARD in 3D radial direction
+    dotGlobe.updateMatrixWorld();
+    const recentlyMoved = performance.now() - lastMouseMove < 1500;
+    const arr = dotGeo.attributes.position.array;
+    for (let i = 0; i < N; i++) {
+      const ox = origPos[i*3], oy = origPos[i*3+1], oz = origPos[i*3+2];
+      let tx = ox, ty = oy, tz = oz;
+      if (recentlyMoved) {
+        _v.set(ox, oy, oz).applyMatrix4(dotGlobe.matrixWorld).project(camera);
+        const dx = _v.x - mouseNDC.x;
+        const dy = _v.y - mouseNDC.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < SCATTER_RADIUS && _v.z < 1) {
+          // 3D radial push — particles fly outward from globe center
+          const len = Math.sqrt(ox*ox + oy*oy + oz*oz) || 1;
+          const push = (1 - dist / SCATTER_RADIUS) * SCATTER_STRENGTH;
+          const factor = 1 + push;
+          tx = ox / len * R * factor;
+          ty = oy / len * R * factor;
+          tz = oz / len * R * factor;
+        }
+      }
+      arr[i*3]   += (tx - arr[i*3])   * SCATTER_RESTORE;
+      arr[i*3+1] += (ty - arr[i*3+1]) * SCATTER_RESTORE;
+      arr[i*3+2] += (tz - arr[i*3+2]) * SCATTER_RESTORE;
+    }
+    dotGeo.attributes.position.needsUpdate = true;
+
     renderer.render(scene, camera);
     rafId = requestAnimationFrame(tick);
   }
@@ -6328,19 +6549,68 @@ import * as THREE from 'three';
   function finishIntro () {
     overlay.classList.add('is-done');
     overlay.setAttribute('aria-hidden', 'true');
-    // Cleanup after fade
-    setTimeout(() => {
-      if (rafId !== null) cancelAnimationFrame(rafId);
-      rafId = null;
-      dotGeo.dispose(); dotMat.dispose();
-      wireSphere.geometry.dispose(); wireSphere.material.dispose();
-      ringGeo.dispose(); ringMat.dispose();
-      renderer.dispose();
-      overlay.remove();
-    }, 1000);
   }
-  if (skipBtn) skipBtn.addEventListener('click', finishIntro);
-  setTimeout(finishIntro, 3500); // auto-finish after 3.5s
+  // Pause rAF after slide-out animation completes (intro DOM stays for re-show)
+  overlay.addEventListener('transitionend', () => {
+    if (overlay.classList.contains('is-done') && rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  });
+  // Expose re-show for scroll-up-on-hero behaviour — slides UP from below
+  window.__showIntro = function showIntro () {
+    // Step 1: snap below viewport with transitions disabled
+    overlay.classList.add('is-rebooting');
+    overlay.classList.remove('is-done');
+    overlay.setAttribute('aria-hidden', 'false');
+    // Step 2: force reflow so the snap commits, then remove → animates UP to 0
+    void overlay.offsetWidth;
+    overlay.classList.remove('is-rebooting');
+    dismissed = false; // allow dismissing again
+    if (rafId === null) tick();
+  };
+  // Dismiss intro on user input (scroll / key / touch / click)
+  let dismissed = false;
+  function dismiss () {
+    if (dismissed) return;
+    dismissed = true;
+    finishIntro();
+  }
+  if (skipBtn) skipBtn.addEventListener('click', dismiss);
+
+  function isVisible () { return !overlay.classList.contains('is-done'); }
+
+  // Wheel = scroll down → dismiss intro
+  function onWheel (e) {
+    if (!isVisible()) return;          // intro hidden — let scroll-hijack handle
+    if (e.cancelable) e.preventDefault();
+    if (e.deltaY > 2) dismiss();
+  }
+  window.addEventListener('wheel', onWheel, { passive: false });
+
+  // Keyboard ArrowDown / PageDown / Space / Enter
+  function onKey (e) {
+    if (!isVisible()) return;
+    if (['ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) {
+      e.preventDefault();
+      dismiss();
+    }
+  }
+  document.addEventListener('keydown', onKey);
+
+  // Touch swipe up → dismiss
+  let touchY0 = 0;
+  function onTouchStart (e) { touchY0 = e.touches[0].clientY; }
+  function onTouchEnd (e) {
+    if (!isVisible()) return;
+    const dy = touchY0 - e.changedTouches[0].clientY;
+    if (dy > 24) dismiss();
+  }
+  window.addEventListener('touchstart', onTouchStart, { passive: true });
+  window.addEventListener('touchend',   onTouchEnd,   { passive: true });
+
+  // Fallback auto-dismiss after first show (user-driven entry is primary)
+  setTimeout(dismiss, 12000);
 })();
 
 (function initHero3D () {
