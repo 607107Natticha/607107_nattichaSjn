@@ -84,16 +84,16 @@ section {
 }
 section {
   --bg:
-    radial-gradient(ellipse 50% 40% at 10% 10%, rgba(255, 143, 183, 0.12), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 90% 20%, rgba(196, 168, 255, 0.14), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 10% 10%, rgba(125, 211, 252, 0.12), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 90% 20%, rgba(96, 165, 250, 0.14), transparent 65%),
     radial-gradient(ellipse 50% 40% at 80% 90%, rgba(34, 211, 238, 0.13), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(255, 215, 158, 0.08), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(147, 197, 253, 0.08), transparent 65%),
     linear-gradient(135deg, #03060D 0%, #06101F 45%, #0A1A33 100%);
   --text: var(--c-white);
   --text-dim: rgba(255, 255, 255, 0.78);
   --text-faint: rgba(255, 255, 255, 0.50);
   --accent: var(--c-cyan);
-  --accent-soft: #FF8FB7;
+  --accent-soft: #7DD3FC;
   --border: rgba(255, 255, 255, 0.16);
   --border-strong: rgba(255, 255, 255, 0.32);
   --border-accent: rgba(34, 211, 238, 0.55);
@@ -168,7 +168,7 @@ section::-webkit-scrollbar-thumb {
   background-clip: padding-box;
 }
 section::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FF8FB7 0%, #1E5BD6 100%);
+  background: linear-gradient(180deg, #7DD3FC 0%, #1E5BD6 100%);
   background-clip: padding-box;
 }
 section.is-current,
@@ -281,9 +281,9 @@ section.is-visited {
   border: 1px solid transparent;
 }
 .btn-primary {
-  background: linear-gradient(135deg, #1E5BD6 0%, #22D3EE 50%, #FF8FB7 100%);
+  background: linear-gradient(135deg, #1E5BD6 0%, #22D3EE 50%, #7DD3FC 100%);
   color: var(--c-white);
-  box-shadow: 0 12px 30px -10px rgba(34, 211, 238, 0.5), 0 4px 16px rgba(255, 143, 183, 0.3);
+  box-shadow: 0 12px 30px -10px rgba(34, 211, 238, 0.5), 0 4px 16px rgba(125, 211, 252, 0.3);
   border-radius: 999px;
   font-weight: 600;
   position: relative;
@@ -291,7 +291,7 @@ section.is-visited {
 }
 .btn-primary::before {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, #FF8FB7 0%, #22D3EE 50%, #1E5BD6 100%);
+  background: linear-gradient(135deg, #7DD3FC 0%, #22D3EE 50%, #1E5BD6 100%);
   opacity: 0;
   transition: opacity 0.4s;
   border-radius: inherit;
@@ -299,7 +299,7 @@ section.is-visited {
 .btn-primary > * { position: relative; z-index: 1; }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 40px -10px rgba(34, 211, 238, 0.7), 0 6px 20px rgba(255, 143, 183, 0.4);
+  box-shadow: 0 18px 40px -10px rgba(34, 211, 238, 0.7), 0 6px 20px rgba(125, 211, 252, 0.4);
 }
 .btn-primary:hover::before { opacity: 1; }
 .btn-ghost {
@@ -373,7 +373,7 @@ section.is-visited {
   position: absolute; inset: 0;
   background:
     radial-gradient(ellipse 50% 40% at 80% 20%, rgba(34, 211, 238, 0.10), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 20% 90%, rgba(255, 143, 183, 0.10), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 20% 90%, rgba(125, 211, 252, 0.10), transparent 65%),
     linear-gradient(135deg, #02040A 0%, #06101F 50%, #08152B 100%);
   transform: scale(1.05);
   opacity: 0;
@@ -400,8 +400,8 @@ section.is-visited {
   z-index: 6;
   display: inline-flex; align-items: center; gap: 10px;
   padding: 12px 22px;
-  background: linear-gradient(135deg, rgba(255,143,183,0.20), rgba(34,211,238,0.20));
-  border: 1px solid rgba(255,143,183,0.50);
+  background: linear-gradient(135deg, rgba(125,211,252,0.20), rgba(34,211,238,0.20));
+  border: 1px solid rgba(125,211,252,0.50);
   border-radius: 999px;
   color: var(--c-white);
   font-family: 'Space Mono', monospace;
@@ -416,7 +416,7 @@ section.is-visited {
 }
 .dashboard.open .dash-back { opacity: 1; transform: translateY(0); }
 .dash-back:hover {
-  background: linear-gradient(135deg, #FF8FB7, #22D3EE);
+  background: linear-gradient(135deg, #7DD3FC, #22D3EE);
   border-color: transparent;
   box-shadow: 0 10px 30px rgba(34, 211, 238, 0.42);
 }
@@ -514,7 +514,7 @@ section.is-visited {
   filter: drop-shadow(0 0 3px currentColor);
 }
 .sig-c1 { stroke: #22D3EE; color: #22D3EE; }
-.sig-c2 { stroke: #FF8FB7; color: #FF8FB7; opacity: 0.85; }
+.sig-c2 { stroke: #7DD3FC; color: #7DD3FC; opacity: 0.85; }
 .sig-c3 { stroke: #FFFFFF; color: #FFFFFF; opacity: 0.6; }
 
 .dash-inner {
@@ -553,7 +553,7 @@ section.is-visited {
   display: inline-block;
 }
 .led--c { background: #22D3EE; color: #22D3EE; }
-.led--p { background: #FF8FB7; color: #FF8FB7; animation-delay: 0.4s; }
+.led--p { background: #7DD3FC; color: #7DD3FC; animation-delay: 0.4s; }
 .led--w { background: #FFFFFF; color: #FFFFFF; animation-delay: 0.8s; }
 
 .dash-title {
@@ -650,7 +650,7 @@ section.is-visited {
   border-radius: 50%;
   background:
     radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35), transparent 60%),
-    linear-gradient(135deg, #1E5BD6 0%, #22D3EE 60%, #FF8FB7 130%);
+    linear-gradient(135deg, #1E5BD6 0%, #22D3EE 60%, #7DD3FC 130%);
   display: flex; align-items: center; justify-content: center;
   color: #FFFFFF;
   font-family: 'Fraunces', serif; font-weight: 500;
@@ -664,7 +664,7 @@ section.is-visited {
   position: absolute; inset: 0;
   border: 1.5px solid transparent;
   border-top-color: #22D3EE;
-  border-right-color: #FF8FB7;
+  border-right-color: #7DD3FC;
   border-radius: 50%;
   animation: paRing 6s linear infinite;
   filter: drop-shadow(0 0 4px rgba(34,211,238,0.5));
@@ -721,7 +721,7 @@ section.is-visited {
   content: '';
   position: absolute; top: -1px; left: 16px; right: 16px;
   height: 2px;
-  background: linear-gradient(90deg, #22D3EE, #FF8FB7);
+  background: linear-gradient(90deg, #22D3EE, #7DD3FC);
   border-radius: 2px;
 }
 .pp-head {
@@ -780,7 +780,7 @@ section.is-visited {
 .ps--done .ps-lv { color: rgba(255,255,255,0.7); }
 .ps--done .ps-state { color: #22D3EE; }
 .ps--active {
-  background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(255,143,183,0.14));
+  background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(125,211,252,0.14));
   border-color: #22D3EE;
   box-shadow:
     0 0 16px rgba(34,211,238,0.35),
@@ -791,14 +791,14 @@ section.is-visited {
   color: #FFFFFF;
   text-shadow: 0 0 8px rgba(34,211,238,0.7);
 }
-.ps--active .ps-state { color: #FF8FB7; }
+.ps--active .ps-state { color: #7DD3FC; }
 .ps--next {
   border-style: dashed;
-  border-color: rgba(255,143,183,0.4);
+  border-color: rgba(125,211,252,0.4);
   opacity: 0.8;
 }
 .ps--next .ps-lv { color: rgba(255,255,255,0.6); }
-.ps--next .ps-state { color: #FF8FB7; }
+.ps--next .ps-state { color: #7DD3FC; }
 .ps-line {
   align-self: center;
   height: 2px;
@@ -806,7 +806,7 @@ section.is-visited {
   border-radius: 2px;
 }
 .ps-line--dashed {
-  background: repeating-linear-gradient(90deg, rgba(255,143,183,0.5) 0 4px, transparent 4px 8px);
+  background: repeating-linear-gradient(90deg, rgba(125,211,252,0.5) 0 4px, transparent 4px 8px);
 }
 
 .profile-quick {
@@ -834,9 +834,9 @@ section.is-visited {
   animation: pulse 1.4s ease-in-out infinite;
 }
 .qc--p {
-  background: rgba(255,143,183,0.12);
-  border-color: rgba(255,143,183,0.4);
-  color: #FF8FB7;
+  background: rgba(125,211,252,0.12);
+  border-color: rgba(125,211,252,0.4);
+  color: #7DD3FC;
 }
 
 /* Radar */
@@ -889,7 +889,7 @@ section.is-visited {
   font-weight: 700;
   letter-spacing: 0.1em;
 }
-.proj-item--hack .pi-id { color: #FF8FB7; }
+.proj-item--hack .pi-id { color: #7DD3FC; }
 .pi-name {
   font-family: 'Fraunces', serif;
   font-style: italic;
@@ -928,9 +928,9 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   border: 1px solid rgba(255,255,255,0.18);
 }
 .pi-hack {
-  color: #FF8FB7;
-  background: rgba(255,143,183,0.10);
-  border: 1px solid rgba(255,143,183,0.35);
+  color: #7DD3FC;
+  background: rgba(125,211,252,0.10);
+  border: 1px solid rgba(125,211,252,0.35);
 }
 .dw-num-cell {
   padding: 12px 14px;
@@ -962,7 +962,7 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   fill: rgba(255,255,255,0.8);
   font-size: 8px;
 }
-.oc-mark .oc-now { fill: #FF8FB7; font-weight: 700; }
+.oc-mark .oc-now { fill: #7DD3FC; font-weight: 700; }
 
 /* Stack matrix */
 .stack-grid { display: grid; gap: 10px; }
@@ -998,7 +998,7 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
 .feed-time { color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
 .feed-dot { width: 6px; height: 6px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
 .dot-c { background: #22D3EE; color: #22D3EE; }
-.dot-p { background: #FF8FB7; color: #FF8FB7; }
+.dot-p { background: #7DD3FC; color: #7DD3FC; }
 .dot-w { background: #FFFFFF; color: #FFFFFF; }
 .feed-text { color: rgba(255,255,255,0.75); }
 .feed-text strong { color: #FFFFFF; }
@@ -1035,138 +1035,6 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   width: 6px; height: 6px; border-radius: 50%;
   background: #22D3EE; box-shadow: 0 0 8px #22D3EE;
   animation: pulse 1.4s ease-in-out infinite;
-}
-
-/* ============== Intro overlay (rotating globe → reveal hero) ============== */
-.intro-overlay {
-  position: fixed; inset: 0;
-  z-index: 500;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 50%, #04080F, #000000 80%);
-  display: flex;
-  align-items: center; justify-content: center;
-  flex-direction: column;
-  transition:
-    transform 1.2s cubic-bezier(0.76, 0, 0.24, 1),
-    opacity 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.15s,
-    visibility 1.2s;
-  will-change: transform, opacity;
-}
-.intro-overlay.is-done {
-  transform: translateY(-100%);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-/* Re-show: snap below viewport (no transition), then class removed → slides UP */
-.intro-overlay.is-rebooting {
-  transform: translateY(100%) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  transition: none !important;
-}
-.intro-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.intro-text {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  display: flex; flex-direction: column; align-items: center; gap: 14px;
-}
-.intro-eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: 'Space Mono', monospace;
-  font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
-  color: rgba(34, 211, 238, 0.85);
-}
-.intro-led {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #22D3EE;
-  box-shadow: 0 0 10px #22D3EE;
-  animation: pulse 1.2s ease-in-out infinite;
-}
-.intro-name {
-  font-family: 'Fraunces', serif;
-  font-weight: 300; font-style: italic;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  color: #FFFFFF;
-  letter-spacing: -0.025em;
-  margin: 0;
-  line-height: 1;
-}
-.intro-name em {
-  color: #22D3EE;
-  font-style: italic;
-}
-.intro-sub {
-  font-family: 'Space Mono', monospace;
-  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-}
-.intro-progress {
-  width: 220px; height: 2px;
-  background: rgba(255, 255, 255, 0.10);
-  border-radius: 999px;
-  margin-top: 10px;
-  overflow: hidden;
-}
-.intro-bar {
-  height: 100%; width: 30%;
-  background: linear-gradient(90deg, #22D3EE 0%, #FF8FB7 100%);
-  box-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
-  animation: introPulse 2.4s ease-in-out infinite;
-}
-@keyframes introPulse {
-  0%, 100% { transform: translateX(-100%); }
-  50%      { transform: translateX(300%); }
-}
-.intro-skip {
-  position: absolute;
-  bottom: -120px;
-  padding: 8px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.30);
-  border-radius: 999px;
-  color: rgba(255, 255, 255, 0.7);
-  background: transparent;
-  font-family: 'Space Mono', monospace;
-  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-.intro-skip:hover {
-  color: #FFFFFF;
-  border-color: #FFFFFF;
-}
-.intro-hint {
-  position: absolute;
-  bottom: 38px;
-  left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  color: rgba(255, 255, 255, 0.55);
-  font-family: 'Space Mono', monospace;
-  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
-  animation: introHintFade 1.2s ease 1s both;
-  pointer-events: none;
-  z-index: 2;
-}
-.intro-hint .ih-arrow {
-  display: flex; align-items: center; justify-content: center;
-  color: #22D3EE;
-  animation: introArrow 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.5));
-}
-@keyframes introHintFade {
-  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-@keyframes introArrow {
-  0%, 100% { transform: translateY(-3px); opacity: 0.6; }
-  50%      { transform: translateY(4px);  opacity: 1; }
 }
 
 /* ============== HERO declutter — hide HUD overlays for clean look ============== */
@@ -1228,11 +1096,11 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   box-shadow: 0 0 8px #22D3EE;
   animation: pulse 2s ease-in-out infinite;
 }
-.hud-mini-dot { background: #FF8FB7; box-shadow: 0 0 8px #FF8FB7; }
+.hud-mini-dot { background: #7DD3FC; box-shadow: 0 0 8px #7DD3FC; }
 .hud-pulse {
   width: 6px; height: 6px; border-radius: 50%;
-  background: #FF8FB7;
-  box-shadow: 0 0 8px #FF8FB7;
+  background: #7DD3FC;
+  box-shadow: 0 0 8px #7DD3FC;
   animation: pulse 1.4s ease-in-out infinite;
 }
 .hud-label { font-weight: 700; }
@@ -1301,7 +1169,7 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
 }
 .hml-name { color: #FFFFFF; font-weight: 700; }
 .hml-sep  { color: #22D3EE; font-weight: 700; }
-.hml-val  { color: #FF8FB7; font-weight: 700; }
+.hml-val  { color: #7DD3FC; font-weight: 700; }
 .hud-model-line.fading { opacity: 0.15; }
 
 /* Radar SVG */
@@ -1329,7 +1197,7 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   flex-wrap: wrap;
 }
 .tk-prefix { color: #22D3EE; font-weight: 700; }
-.tk-sep { color: #FF8FB7; }
+.tk-sep { color: #7DD3FC; }
 .tk-text { color: rgba(255, 255, 255, 0.85); transition: opacity 0.4s ease; }
 .tk-text.fading { opacity: 0.15; }
 .tk-cursor {
@@ -1359,7 +1227,7 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
 .status-val {
   margin-left: auto;
   padding: 4px 10px;
-  background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(255, 143, 183, 0.18));
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(125, 211, 252, 0.18));
   border: 1px solid rgba(34, 211, 238, 0.4);
   border-radius: 999px;
   color: #FFFFFF;
@@ -2200,12 +2068,12 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   border-radius: 999px;
 }
 .hack-chart-card .bar-row .bar-fill {
-  background: linear-gradient(90deg, #1E5BD6 0%, #22D3EE 60%, #FF8FB7 100%);
+  background: linear-gradient(90deg, #1E5BD6 0%, #22D3EE 60%, #7DD3FC 100%);
   border-radius: 999px;
   box-shadow: 0 2px 8px rgba(30, 91, 214, 0.35);
 }
 .hack-chart-card .bar-row.win .bar-fill {
-  background: linear-gradient(90deg, #1E5BD6 0%, #22D3EE 50%, #FF8FB7 100%);
+  background: linear-gradient(90deg, #1E5BD6 0%, #22D3EE 50%, #7DD3FC 100%);
   box-shadow: 0 4px 14px rgba(34, 211, 238, 0.55);
 }
 .hack-chart-card .bar-row.win .bar-name,
@@ -2646,8 +2514,8 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   border-radius: 16px;
 }
 .proj-block--challenge {
-  background: linear-gradient(135deg, rgba(255, 143, 183, 0.06), rgba(196, 168, 255, 0.06));
-  border-color: rgba(255, 143, 183, 0.18);
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.06), rgba(96, 165, 250, 0.06));
+  border-color: rgba(125, 211, 252, 0.18);
 }
 .proj-block h5 {
   font-family: 'Fraunces', serif;
@@ -2979,7 +2847,7 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
 .cert-card:hover::before { opacity: 1; }
 .cert-card.featured {
   background:
-    linear-gradient(160deg, rgba(34, 211, 238, 0.10), rgba(255, 143, 183, 0.06)),
+    linear-gradient(160deg, rgba(34, 211, 238, 0.10), rgba(125, 211, 252, 0.06)),
     var(--c-card);
   border: 0;
   position: relative;
@@ -2992,7 +2860,7 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   content: '';
   position: absolute;
   inset: -2px;
-  background: linear-gradient(135deg, #1E5BD6, #22D3EE, #FF8FB7, #C4A8FF);
+  background: linear-gradient(135deg, #1E5BD6, #22D3EE, #7DD3FC, #C4A8FF);
   border-radius: 24px;
   z-index: -1;
   opacity: 1;
@@ -3640,7 +3508,7 @@ footer {
   box-shadow:
     0 0 4px rgba(255, 255, 255, 0.9),
     0 0 10px rgba(34, 211, 238, 0.55),
-    0 0 16px rgba(255, 143, 183, 0.35);
+    0 0 16px rgba(125, 211, 252, 0.35);
   opacity: 0;
   animation: starTwinkle var(--dur, 3.5s) ease-in-out infinite;
   animation-delay: var(--delay, 0s);
@@ -3862,25 +3730,6 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
 </head>
 <body>
 
-<!-- ================= INTRO OVERLAY (rotating globe → reveals hero) ================= -->
-<div class="intro-overlay" id="introOverlay" aria-hidden="true">
-  <canvas id="introCanvas" class="intro-canvas"></canvas>
-  <div class="intro-text">
-    <div class="intro-eyebrow"><span class="intro-led"></span> SYSTEM · INITIALISING</div>
-    <h1 class="intro-name">Natticha <em>Benz</em></h1>
-    <div class="intro-sub">Data Scientist · AI Engineer</div>
-    <div class="intro-progress"><div class="intro-bar"></div></div>
-    <button class="intro-skip" id="introSkip" type="button">SKIP ↗</button>
-  </div>
-  <div class="intro-hint" id="introHint">
-    <span class="ih-label">Scroll to enter</span>
-    <span class="ih-arrow">
-      <svg width="14" height="20" viewBox="0 0 14 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M7 2 V18 M2 13 L7 18 L12 13"/>
-      </svg>
-    </span>
-  </div>
-</div>
 
 <!-- ================= GLITTER STARS (twinkling overlay) ================= -->
 <div class="glitter-layer" id="glitterLayer" aria-hidden="true"></div>
@@ -4227,7 +4076,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
         <div class="dw-head"><span class="dw-num">03b</span><span class="dw-label">SIGNAL · OSCILLOSCOPE</span><span class="led led--c"></span></div>
         <div class="signal-meta">
           <span class="sm-ch"><i style="background:#22D3EE"></i> CH1 · LEARNING</span>
-          <span class="sm-ch"><i style="background:#FF8FB7"></i> CH2 · BUILDING</span>
+          <span class="sm-ch"><i style="background:#7DD3FC"></i> CH2 · BUILDING</span>
           <span class="sm-ch"><i style="background:#FFFFFF"></i> CH3 · SHIPPING</span>
         </div>
         <svg class="signal-svg" viewBox="0 0 600 140" preserveAspectRatio="none">
@@ -4250,7 +4099,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
             <linearGradient id="careerLine" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%"  stop-color="#1E5BD6"/>
               <stop offset="50%" stop-color="#22D3EE"/>
-              <stop offset="100%" stop-color="#FF8FB7"/>
+              <stop offset="100%" stop-color="#7DD3FC"/>
             </linearGradient>
             <linearGradient id="careerArea" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%"  stop-color="rgba(34,211,238,0.35)"/>
@@ -4289,17 +4138,17 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
             <text x="330" y="72"  text-anchor="middle" class="oc-anno">Freelance</text>
           </g>
           <g class="oc-mark">
-            <circle cx="430" cy="55"  r="4" fill="#FF8FB7"/>
+            <circle cx="430" cy="55"  r="4" fill="#7DD3FC"/>
             <text x="430" y="155" text-anchor="middle">2026·1</text>
             <text x="430" y="45"  text-anchor="middle" class="oc-anno">AI LV.1</text>
           </g>
           <g class="oc-mark">
-            <circle cx="530" cy="28"  r="5" fill="#FF8FB7" filter="drop-shadow(0 0 6px #FF8FB7)"/>
+            <circle cx="530" cy="28"  r="5" fill="#7DD3FC" filter="drop-shadow(0 0 6px #7DD3FC)"/>
             <text x="530" y="155" text-anchor="middle">NOW</text>
             <text x="530" y="18"  text-anchor="middle" class="oc-anno oc-now">LV.2 ★</text>
           </g>
           <g class="oc-mark oc-future">
-            <circle cx="570" cy="18"  r="3" fill="rgba(255,143,183,0.6)" stroke="#FF8FB7" stroke-dasharray="2 2"/>
+            <circle cx="570" cy="18"  r="3" fill="rgba(125,211,252,0.6)" stroke="#7DD3FC" stroke-dasharray="2 2"/>
             <text x="570" y="155" text-anchor="middle">LV.3?</text>
           </g>
         </svg>
@@ -4408,12 +4257,12 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
         <defs>
           <linearGradient id="sparkG" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%"  stop-color="#22D3EE"/>
-            <stop offset="100%" stop-color="#FF8FB7"/>
+            <stop offset="100%" stop-color="#7DD3FC"/>
           </linearGradient>
         </defs>
         <polyline class="spark-line" fill="none" stroke="url(#sparkG)" stroke-width="1.5"
           points="0,28 10,22 20,30 30,15 40,24 50,10 60,20 70,8 80,18 90,12 100,26 110,16 120,22 130,14 140,20"/>
-        <circle class="spark-cursor" cx="140" cy="20" r="2.5" fill="#FF8FB7"/>
+        <circle class="spark-cursor" cx="140" cy="20" r="2.5" fill="#7DD3FC"/>
       </svg>
       <!-- mini frequency bars -->
       <div class="hud-bars">
@@ -4455,7 +4304,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
         </g>
         <!-- detected targets -->
         <circle cx="68" cy="32" r="1.5" fill="#22D3EE" class="radar-target"/>
-        <circle cx="34" cy="56" r="1.2" fill="#FF8FB7" class="radar-target" style="animation-delay:.5s"/>
+        <circle cx="34" cy="56" r="1.2" fill="#7DD3FC" class="radar-target" style="animation-delay:.5s"/>
         <circle cx="62" cy="72" r="1" fill="#FFFFFF" class="radar-target" style="animation-delay:1s"/>
       </svg>
       <div class="hud-meta">3 targets locked</div>
@@ -4473,7 +4322,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     <!-- bottom · status LEDs row -->
     <div class="hud-status">
       <span class="status-led"><i style="background:#22D3EE"></i> SYS OK</span>
-      <span class="status-led"><i style="background:#FF8FB7;animation-delay:.6s"></i> NEURAL</span>
+      <span class="status-led"><i style="background:#7DD3FC;animation-delay:.6s"></i> NEURAL</span>
       <span class="status-led"><i style="background:#FFFFFF;animation-delay:1.2s"></i> READY</span>
       <span class="status-val">LV.2 · ↑ INTERNSHIP</span>
     </div>
@@ -5036,7 +4885,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
                   </g>
                   <!-- China 42% → height 63, y=117 -->
                   <g class="vb-bar" style="--d:.28s">
-                    <rect x="194" y="117" width="56" height="63"  rx="8" fill="#FF8FB7"/>
+                    <rect x="194" y="117" width="56" height="63"  rx="8" fill="#7DD3FC"/>
                     <text x="222" y="109" text-anchor="middle" class="vb-val">~42%</text>
                     <text x="222" y="200" text-anchor="middle" class="vb-lbl">China</text>
                   </g>
@@ -5308,7 +5157,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
                   </g>
                   <!-- ARIMA WMAPE 18.4 -> height 150, y=30 -->
                   <g class="vb-bar" style="--d:.32s">
-                    <rect x="260" y="30"  width="80" height="150" rx="10" fill="#FF8FB7" opacity="0.6"/>
+                    <rect x="260" y="30"  width="80" height="150" rx="10" fill="#7DD3FC" opacity="0.6"/>
                     <text x="300" y="22"  text-anchor="middle" class="vb-val">18.4</text>
                     <text x="300" y="200" text-anchor="middle" class="vb-lbl">ARIMA</text>
                   </g>
@@ -6017,12 +5866,6 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
       wheelLock = Date.now();
       goTo(current + 1);
     } else if (dy < 0 && atTop) {
-      // On Hero top + scroll up → bring back the intro globe
-      if (current === 0 && typeof window.__showIntro === 'function') {
-        if (e.cancelable) e.preventDefault();
-        window.__showIntro();
-        return;
-      }
       if (e.cancelable) e.preventDefault();
       if (Date.now() - wheelLock < 800) return;
       wheelLock = Date.now();
@@ -6032,11 +5875,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
   }
   window.addEventListener('wheel', handleWheel, { passive: false });
 
-  function isIntroActive () {
-    // Intro stays in DOM (so it can be re-shown). Active only when visible (no is-done class).
-    const el = document.getElementById('introOverlay');
-    return !!el && !el.classList.contains('is-done');
-  }
+  function isIntroActive () { return false; }
 
   /* ---------- keyboard ---------- */
   document.addEventListener('keydown', e => {
@@ -6048,11 +5887,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
       e.preventDefault(); goTo(current + 1);
     } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
       e.preventDefault();
-      if (current === 0 && typeof window.__showIntro === 'function') {
-        window.__showIntro();
-      } else {
-        goTo(current - 1);
-      }
+      goTo(current - 1);
     } else if (e.key === 'Home') {
       e.preventDefault(); goTo(0);
     } else if (e.key === 'End') {
@@ -6081,11 +5916,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
 
     if (dy > 0 && atBottom) goTo(current + 1);
     else if (dy < 0 && atTop) {
-      if (current === 0 && typeof window.__showIntro === 'function') {
-        window.__showIntro();
-      } else {
-        goTo(current - 1);
-      }
+      goTo(current - 1);
     }
   }, { passive: true });
 
@@ -6312,14 +6143,9 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
 <script type="module">
 import * as THREE from 'three';
 
-/* ============================================================
-   INTRO OVERLAY — rotating dot globe → fades away to reveal hero
-   ============================================================ */
-(function initIntroGlobe () {
-  const overlay = document.getElementById('introOverlay');
-  const canvas  = document.getElementById('introCanvas');
-  const skipBtn = document.getElementById('introSkip');
-  if (!overlay || !canvas) return;
+/* initIntroGlobe removed */
+(function _noop() {
+  if (false) {
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -6440,7 +6266,7 @@ import * as THREE from 'three';
     const geom = new THREE.BufferGeometry();
     geom.setAttribute('position', new THREE.BufferAttribute(arr, 3));
     const mat = new THREE.LineBasicMaterial({
-      color: Math.random() < 0.5 ? 0x22D3EE : 0xFF8FB7,
+      color: Math.random() < 0.5 ? 0x22D3EE : 0x7DD3FC,
       transparent: true, opacity: 0,
       blending: THREE.AdditiveBlending, depthWrite: false,
     });
@@ -6611,7 +6437,7 @@ import * as THREE from 'three';
 
   // Fallback auto-dismiss after first show (user-driven entry is primary)
   setTimeout(dismiss, 12000);
-})();
+}})();
 
 (function initHero3D () {
   const canvas = document.getElementById('hero-particles');
@@ -6661,7 +6487,7 @@ import * as THREE from 'three';
 
   const cInner  = new THREE.Color(0xFFFFFF);    // bright white core
   const cYellow = new THREE.Color(0xFFD680);    // golden yellow inner-ring
-  const cPink   = new THREE.Color(0xFF8FB7);    // pink mid-ring
+  const cPink   = new THREE.Color(0x7DD3FC);    // pink mid-ring
   const cMid    = new THREE.Color(0x6FB8FF);    // cyan-blue
   const cOuter  = new THREE.Color(0x1E5BD6);    // deep blue edge
   const cSparkY = new THREE.Color(0xFFE39A);    // bright yellow sparkle
@@ -6787,7 +6613,7 @@ import * as THREE from 'three';
 
   // 5 layered nebula clouds at varying depths — yellow / pink / cyan / blue / violet
   const nebulaYellow = makeNebula(0xFFD680, { count: 35, spread: 26, zCenter: -16, zSpread: 5, size: 4.8, opacity: 0.16 });
-  const nebulaPink   = makeNebula(0xFF8FB7, { count: 50, spread: 26, zCenter: -13, zSpread: 4, size: 4.5, opacity: 0.20 });
+  const nebulaPink   = makeNebula(0x7DD3FC, { count: 50, spread: 26, zCenter: -13, zSpread: 4, size: 4.5, opacity: 0.20 });
   const nebulaViolet = makeNebula(0xB078FF, { count: 30, spread: 30, zCenter: -19, zSpread: 5, size: 5.2, opacity: 0.12 });
   const nebulaCyan   = makeNebula(0x22D3EE, { count: 35, spread: 22, zCenter: -9,  zSpread: 4, size: 3.6, opacity: 0.22 });
   const nebulaBlue   = makeNebula(0x4A8AE8, { count: 25, spread: 18, zCenter: -5,  zSpread: 3, size: 2.6, opacity: 0.16 });
@@ -6806,7 +6632,7 @@ import * as THREE from 'three';
   const octEdges = new THREE.EdgesGeometry(new THREE.OctahedronGeometry(0.7, 0));
   const wireOct = new THREE.LineSegments(
     octEdges,
-    new THREE.LineBasicMaterial({ color: 0xFF8FB7, transparent: true, opacity: 0.5 })
+    new THREE.LineBasicMaterial({ color: 0x7DD3FC, transparent: true, opacity: 0.5 })
   );
   wireOct.position.set(4.0, -1.2, 1.0);
   scene.add(wireOct);
@@ -6854,7 +6680,7 @@ import * as THREE from 'three';
     return new THREE.Line(g, new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.65 }));
   }
   const o = new THREE.Vector3(0, 0, 0);
-  axesGroup.add(makeAxis(o, new THREE.Vector3(0.9, 0, 0), 0xFF8FB7)); // X — pink
+  axesGroup.add(makeAxis(o, new THREE.Vector3(0.9, 0, 0), 0x7DD3FC)); // X — pink
   axesGroup.add(makeAxis(o, new THREE.Vector3(0, 0.9, 0), 0x22D3EE)); // Y — cyan
   axesGroup.add(makeAxis(o, new THREE.Vector3(0, 0, 0.9), 0xFFFFFF)); // Z — white
   axesGroup.position.set(3.8, 1.8, -1);
