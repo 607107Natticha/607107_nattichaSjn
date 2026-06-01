@@ -3104,7 +3104,18 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
 /* ========================================================================
    CONTACT
    ======================================================================== */
-#contact { text-align: center; }
+#contact {
+  text-align: center;
+  --bg: linear-gradient(160deg, #060E1C 0%, #0A1A3A 50%, #0D2045 100%);
+  --text: #FFFFFF;
+  --text-dim: rgba(255,255,255,0.72);
+  --text-faint: rgba(255,255,255,0.45);
+  --accent: #22D3EE;
+  --border: rgba(255,255,255,0.12);
+  --border-accent: rgba(34,211,238,0.50);
+  --panel: rgba(255,255,255,0.07);
+  --glow-accent: 0 0 28px rgba(34,211,238,0.30);
+}
 #contact-particles {
   position: absolute; inset: 0; width: 100%; height: 100%;
   z-index: 0; pointer-events: none;
@@ -3116,10 +3127,10 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   font-weight: 300;
   font-style: italic;
   letter-spacing: -0.03em;
-  color: var(--text);
+  color: #FFFFFF;
 }
-.contact-h em { font-style: normal; color: var(--accent); font-weight: 400; }
-.contact-sub { color: var(--text-dim); margin-bottom: 56px; font-size: 1.05rem; }
+.contact-h em { font-style: normal; color: #22D3EE; font-weight: 400; }
+.contact-sub { color: rgba(255,255,255,0.72); margin-bottom: 56px; font-size: 1.05rem; }
 .contact-cards {
   display: grid;
   grid-template-columns: 1fr;
@@ -3137,7 +3148,7 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   border: 1px solid var(--border);
   border-radius: 999px;
   color: var(--text-dim);
-  background: rgba(13, 10, 6, 0.6);
+  background: rgba(255,255,255,0.06);
 }
 .cc--link:hover .cc-open { color: var(--accent); border-color: var(--accent); }
 .cc {
@@ -3154,10 +3165,10 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(255, 107, 61, 0.15), rgba(201, 155, 106, 0.15));
-  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(30,91,214,0.30), rgba(34,211,238,0.20));
+  border: 1px solid rgba(34,211,238,0.30);
   margin-bottom: 14px;
-  color: var(--accent);
+  color: #22D3EE;
 }
 .cc-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; }
 .cc-val {
@@ -3169,13 +3180,13 @@ a.pi-name:hover { color: #22D3EE; text-decoration: underline; text-underline-off
   position: absolute; top: 18px; right: 18px;
   padding: 5px 10px;
   font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,0.20);
   border-radius: 999px;
-  color: var(--text-dim);
-  background: rgba(13, 10, 6, 0.6);
+  color: rgba(255,255,255,0.60);
+  background: rgba(255,255,255,0.06);
   transition: all 0.2s;
 }
-.cc-copy:hover, .cc-copy.copied { color: var(--accent); border-color: var(--accent); }
+.cc-copy:hover, .cc-copy.copied { color: #22D3EE; border-color: #22D3EE; }
 .cc-copy.copied::after { content: ' ✓'; }
 
 footer {
@@ -4401,449 +4412,11 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     </div>
   </div>
 </section>
-<!-- ================= 02 ABOUT ================= -->
-<section id="about">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-user"/></svg> 01 — About</div>
-      <h2 class="section-title">From graphics <em>to graphs</em><br/>— a career convergence.</h2>
-      <p class="section-intro">Six years across IT, design, content, web — now converging on Data Science and AI.</p>
-    </div>
-
-    <div class="timeline reveal-stagger" id="timeline">
-      <div class="tl-card now">
-        <div class="tl-year">2026</div>
-        <div class="tl-role">Super AI Engineer S6 — LV.2</div>
-        <div class="tl-org">AIAT · Seeking LV.3 Internship</div>
-        <div class="tl-desc">Completed LV.1 Intensive Camp · Currently LV.2 · Looking for an internship to step into LV.3.</div>
-      </div>
-      <div class="tl-card">
-        <div class="tl-year">2025 — present</div>
-        <div class="tl-role">Freelance Web &amp; AI Developer</div>
-        <div class="tl-org">Independent</div>
-        <div class="tl-desc">MINI-ERP, SabaiBill, e-commerce, automation pipelines — building real systems for real businesses.</div>
-      </div>
-      <div class="tl-card">
-        <div class="tl-year">2024 — 2025</div>
-        <div class="tl-role">Content Moderator</div>
-        <div class="tl-org">Transcosmos</div>
-        <div class="tl-desc">Pattern recognition at scale across thousands of items — the human version of a classifier.</div>
-      </div>
-      <div class="tl-card">
-        <div class="tl-year">2021 — 2023</div>
-        <div class="tl-role">Graphic Designer</div>
-        <div class="tl-org">ZEA Management</div>
-        <div class="tl-desc">Brand identity, print, and digital — the visual eye I still bring to every dashboard and UI today.</div>
-      </div>
-      <div class="tl-card">
-        <div class="tl-year">2019 — 2021</div>
-        <div class="tl-role">IT Support</div>
-        <div class="tl-org">Siam Herb Product</div>
-        <div class="tl-desc">First hands-on with systems, networks, and the discipline of debugging real production problems.</div>
-      </div>
-    </div>
-
-    <p class="bio reveal">"Art eye, data mind — built across graphic design, IT, web, and now AI. I don't just study systems. I ship them."</p>
-  </div>
-</section>
-<!-- ================= 03 WORK ================= -->
-<section id="work">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-briefcase"/></svg> 05 — Work</div>
-      <h2 class="section-title">A non-linear path,<br/><em>told in one line.</em></h2>
-      <p class="section-intro">From IT support to graphic design to AI engineering — plus a recent stint in international business development.</p>
-    </div>
-
-    <!-- Featured: Vietnam Market Expansion -->
-    <div class="work-feature reveal">
-      <div class="wf-meta">
-        <span class="wf-tag"><span class="dot"></span> FEATURED · Business Development</span>
-        <span class="wf-date">7 August 2025 · Lotte Hotel, HCMC</span>
-      </div>
-      <h3 class="wf-title">Sabaijang — <em>Vietnam</em> Market Expansion</h3>
-      <p class="wf-lead">Represented <strong>Sabaijang</strong> (herbal mint spray &amp; wellness products) at the <em>Vietnam–Thailand Health, Medical, Beauty &amp; Personal Care Products Business Matching</em> event — organized by <strong>DITP</strong> (Department of International Trade Promotion).</p>
-
-      <div class="wf-grid">
-        <div class="wf-gallery">
-          <img src="image/vienam/LINE_ALBUM_08082025_260525_3.jpg" alt="DITP business matching event" loading="lazy">
-          <img src="image/vienam/LINE_ALBUM_08082025_260525_7.jpg" alt="Vietnam buyer engagement" loading="lazy">
-          <img src="image/vienam/LINE_ALBUM_08082025_260525_8.jpg" alt="Product samples" loading="lazy">
-          <img src="image/vienam/LINE_ALBUM_08082025_260525_10.jpg" alt="Sabaijang stand at the event" loading="lazy">
-        </div>
-        <div class="wf-bullets">
-          <div class="wf-bullet">
-            <div class="wf-bullet-label">Demand Validation</div>
-            <p>Product demand from Vietnamese buyers <strong>exceeded available samples</strong> — demonstrating strong market potential for a herbal wellness brand.</p>
-          </div>
-          <div class="wf-bullet">
-            <div class="wf-bullet-label">Retail Channel · Saigon Co.op</div>
-            <p>Strategic meeting with the <strong>CEO of Saigon Co.op</strong> — a leading pioneer in Vietnam's modern retail — who expressed willingness to introduce Sabaijang products into the Vietnamese market.</p>
-          </div>
-          <div class="wf-bullet">
-            <div class="wf-bullet-label">Clinical Channel · Hanoi</div>
-            <p>Met an acupuncture &amp; cupping clinic owner-physician in Hanoi interested in distribution + <strong>Private Label / OEM</strong> branding for his clinic and professional network.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="vtimeline reveal-stagger">
-      <div class="vt-item">
-        <div class="vt-date">Mar 2025 — present</div>
-        <div class="vt-role">Freelance Web Developer &amp; Digital Marketer</div>
-        <div class="vt-org">Independent</div>
-        <div class="vt-desc">Building full-stack web systems (MINI-ERP, SabaiBill), e-commerce, OCR/automation pipelines, and AI-assisted workflows.</div>
-      </div>
-      <div class="vt-item">
-        <div class="vt-date">Oct 2024 — Mar 2025</div>
-        <div class="vt-role">Content Moderator</div>
-        <div class="vt-org">Transcosmos</div>
-        <div class="vt-desc">High-volume review and classification — the human-side analog of running a classifier in production.</div>
-      </div>
-      <div class="vt-item">
-        <div class="vt-date">2021 — 2023</div>
-        <div class="vt-role">Graphic Designer</div>
-        <div class="vt-org">ZEA Management</div>
-        <div class="vt-desc">Brand, print, and digital design — the visual eye that still shows up in every dashboard and UI I build.</div>
-      </div>
-      <div class="vt-item">
-        <div class="vt-date">2019 — Dec 2021</div>
-        <div class="vt-role">IT Support</div>
-        <div class="vt-org">Siam Herb Product</div>
-        <div class="vt-desc">First exposure to production systems, networking, and the discipline of methodical debugging.</div>
-      </div>
-    </div>
-
-    <div class="edu-block reveal">
-      <h4>Education</h4>
-      <p><strong>Mae Fah Luang University</strong> — B.Sc. Multimedia Technology &amp; Animation</p>
-      <p><strong>Valuepoint Academy</strong>, Pune, India — 2018</p>
-    </div>
-
-    <div class="resume-cta reveal">
-      <a href="Tech%20Portfolio.pdf" download="Natticha-Benz-Tech-Portfolio.pdf" class="btn btn-primary">Download Full Resume ↓</a>
-    </div>
-  </div>
-</section>
-<!-- ================= 04 PROJECTS ================= -->
-<section id="projects">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-folder-open"/></svg> 02 — Projects</div>
-      <h2 class="section-title">Real systems<br/><em>shipped for real users.</em></h2>
-      <p class="section-intro">From ERP to e-commerce to OCR automation — projects that have customers, transactions, and uptime to care about.</p>
-    </div>
-
-    <!-- ===== Project 1 · MINI-ERP System ===== -->
-    <article class="proj-deep reveal">
-      <div class="proj-deep-grid">
-        <figure class="proj-deep-media">
-          <video src="miniocr.mp4" muted loop playsinline preload="metadata" autoplay></video>
-          <div class="pdm-tech">
-            <span class="pdm-chip">Vue 3</span><span class="pdm-chip">Django 6</span><span class="pdm-chip">Tailwind</span>
-          </div>
-        </figure>
-        <div class="proj-deep-body">
-          <h3 class="proj-deep-title">MINI-ERP System</h3>
-          <h4 class="proj-deep-sub">Smart ERP — Web-based business system</h4>
-          <p class="proj-deep-intro">A web-based ERP for small-to-medium businesses. Brings purchasing, receiving, inventory, sales, delivery, basic finance, and document approvals into one place. Clean separated-API architecture, modern UI, secure JWT login — runs smoothly on desktop and mobile.</p>
-
-          <div class="proj-block proj-block--core">
-            <h5>Core modules</h5>
-            <ul class="proj-list">
-              <li><span class="pl-ic">📦</span><div><strong>Purchasing &amp; Inventory:</strong> PR → PO → GRN workflow with real-time stock updates.</div></li>
-              <li><span class="pl-ic">🛒</span><div><strong>Sales:</strong> Quotation → SO → DO with customer delivery-confirmation links.</div></li>
-              <li><span class="pl-ic">🗂️</span><div><strong>Master Data:</strong> products, partners, warehouses, units of measure (UOM).</div></li>
-              <li><span class="pl-ic">🔐</span><div><strong>Permissions:</strong> clear role split + centralised Approval Center for documents.</div></li>
-            </ul>
-          </div>
-
-          <div class="proj-block proj-block--challenge">
-            <h5>What I'm still solving</h5>
-            <ul class="proj-list proj-list--alt">
-              <li><div><strong>Structure &amp; UX:</strong> the module surface is wide — new users feel the weight; some flows still need clearer copy and step ordering.</div></li>
-              <li><div><strong>Code (briefly):</strong> doc-status transitions (e.g. PR → PO) and approval rights occasionally show edge cases — chasing API, serializer and Vue sync end-to-end.</div></li>
-              <li><div><strong>Purchasing flow:</strong> sometimes PO feels smoother than PR or vice versa depending on master data — locking business rules consistently.</div></li>
-            </ul>
-          </div>
-
-          <div class="proj-tech-grid">
-            <div class="ptg-cell">
-              <span class="ptg-label">Backend Architecture</span>
-              <span class="ptg-val">Python · Django 6 · DRF · JWT · PostgreSQL · Gunicorn</span>
-            </div>
-            <div class="ptg-cell">
-              <span class="ptg-label">Frontend Architecture</span>
-              <span class="ptg-val">Vue 3 · Vite · ES Modules · Tailwind CSS</span>
-            </div>
-          </div>
-
-          <div class="proj-actions">
-            <a href="https://minierpbybez.vercel.app/" target="_blank" rel="noopener" class="pa-btn pa-btn--primary">
-              <svg class="hi hi-sm"><use href="#hi-arrow-top-right"/></svg>
-              Live Demo
-            </a>
-            <a href="https://github.com/beetwowin2-coder/minierpbybez.git" target="_blank" rel="noopener" class="pa-btn pa-btn--ghost">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.17A5.02 5.02 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.02 5.02 0 0 0-1.5 3.78c0 5.72 3.35 6.79 6.5 7.17A4.8 4.8 0 0 0 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-              GitHub Repo
-            </a>
-          </div>
-          <div class="proj-creds">
-            <span class="pc-label">Demo Credentials</span>
-            <div class="pc-rows">
-              <div><span class="pc-k">User:</span> <code class="pc-v">admin</code></div>
-              <div><span class="pc-k">Pass:</span> <code class="pc-v">12101995Bp</code></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- ===== Project 2 · SabaiBill ===== -->
-    <article class="proj-deep proj-deep--reverse reveal">
-      <div class="proj-deep-grid">
-        <figure class="proj-deep-media">
-          <video src="saibaiiii.mp4" muted loop playsinline preload="metadata" autoplay></video>
-          <div class="pdm-tech">
-            <span class="pdm-chip">React</span><span class="pdm-chip">Node.js</span><span class="pdm-chip">Prisma</span>
-          </div>
-        </figure>
-        <div class="proj-deep-body">
-          <h3 class="proj-deep-title">SabaiBill</h3>
-          <h4 class="proj-deep-sub">SME Document Management System</h4>
-          <p class="proj-deep-intro"><strong>SabaiBill</strong> is a sales-doc app for SMEs — create, chain, and print/save PDFs in one place. Built to be real-world useful and instantly demoable.</p>
-
-          <div class="proj-block proj-block--core">
-            <h5>What users can do</h5>
-            <ul class="proj-list">
-              <li><div>Create and store <strong>QT</strong> (quotation), <strong>SO</strong> (sales order), <strong>DO</strong> (delivery order), <strong>IV</strong> (invoice).</div></li>
-              <li><div>Chain documents — QT → SO → DO/IV — without re-entering data.</div></li>
-              <li><div>Configure company info, bank details, terms, templates, signatures, payment QR, and currency.</div></li>
-              <li><div>Auto-calculate <strong>VAT</strong>, discounts, <strong>withholding tax (WHT)</strong>, and net totals.</div></li>
-              <li><div>Print / save <strong>PDF</strong> directly from the preview page.</div></li>
-              <li><div>Manage customers and products with autocomplete search.</div></li>
-            </ul>
-          </div>
-
-          <p class="proj-note">
-            <strong>Access:</strong> no separate sign-up / login — one-button entry using a shared DB user. Built for <strong>demo / internal trial</strong>; not for sensitive data without an extra security layer.
-          </p>
-
-          <div class="proj-block proj-block--ux">
-            <h5>Language &amp; UX</h5>
-            <ul class="proj-list">
-              <li><span class="pl-ic">✦</span><div>Interface in <strong>TH and EN</strong> (toggle in-app).</div></li>
-              <li><span class="pl-ic">✦</span><div>Document fields support bilingual TH/EN (company, address, customer, etc.).</div></li>
-              <li><span class="pl-ic">✦</span><div>Readable typography, large buttons — designed for clarity.</div></li>
-            </ul>
-          </div>
-
-          <div class="proj-block proj-block--challenge">
-            <h5>Lessons from MINI-ERP &amp; what's next</h5>
-            <ul class="proj-list proj-list--alt">
-              <li><div><strong>Direction:</strong> a deliberate step down from MINI-ERP — focus only on trade documents, less surrounding system noise.</div></li>
-              <li><div><strong>Flow uncertainty:</strong> QT → SO → DO/IV still needs better guidance — users should "know the next step" without remembering.</div></li>
-              <li><div><strong>Bill detail:</strong> doc types feel too similar — SMEs need more flexible fields / layouts / conditions.</div></li>
-              <li><div><strong>Code (briefly):</strong> field mapping between doc and React state is partly hard-coded — exploring cleaner abstractions and a schema layer.</div></li>
-            </ul>
-          </div>
-
-          <div class="proj-actions">
-            <a href="https://baibillbybez.onrender.com/login" target="_blank" rel="noopener" class="pa-btn pa-btn--primary">
-              <svg class="hi hi-sm"><use href="#hi-arrow-top-right"/></svg>
-              Live Demo
-            </a>
-            <a href="https://github.com/beetwowin2-coder/billbybz.git" target="_blank" rel="noopener" class="pa-btn pa-btn--ghost">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.17A5.02 5.02 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.02 5.02 0 0 0-1.5 3.78c0 5.72 3.35 6.79 6.5 7.17A4.8 4.8 0 0 0 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-              GitHub Repo
-            </a>
-          </div>
-          <p class="proj-hint">Hit <strong>Live Demo</strong>, sign in, and start filling company info or jump to the dashboard — built for trying and presenting.</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- ===== Project 3 · Workflow Automation ===== -->
-    <article class="proj-deep reveal">
-      <div class="proj-deep-grid">
-        <figure class="proj-deep-media">
-          <video src="ocr.mp4" muted loop playsinline preload="metadata" autoplay></video>
-          <figcaption class="pdm-cap">
-            <strong>Workflow walkthrough</strong> — Make.com Integration LINE: <em>LINE Watch Events</em> (trigger) → <em>Download Message Attachment</em> → <em>HTTP Request</em> (image → OCR) → <em>Text parser · Match pattern</em> (extract tracking #) → <em>Google Sheets · Add Row</em> → <em>LINE Send Push Message</em>. Run mode set to <em>Immediately as data arrives</em>.
-          </figcaption>
-        </figure>
-        <div class="proj-deep-body">
-          <h3 class="proj-deep-title">Workflow Automation</h3>
-          <h4 class="proj-deep-sub">Parcel Tracking (Make.com)</h4>
-          <p class="proj-deep-intro">A Make.com workflow (Integration LINE): receive a LINE event → download the attached image → send to OCR via HTTP → parse the tracking number with the Text parser → log a row in Google Sheets → push a status message back to the customer via LINE — running <strong>immediately as data arrives</strong>.</p>
-
-          <p class="proj-note">
-            Removes the admin's repetitive typing. The flow shrinks to <strong>Take photo → Wait → Copy → Send</strong>, while OCR, sheet logging, and notifications all happen automatically.
-          </p>
-
-          <div class="proj-block">
-            <h5>Tools used</h5>
-            <div class="proj-tech">
-              <span>Make.com</span>
-              <span>LINE · Watch events / Download attachment / Push message</span>
-              <span>HTTP module</span>
-              <span>Text parser</span>
-              <span>Google Sheets</span>
-            </div>
-          </div>
-
-          <div class="proj-actions">
-            <a href="#contact" class="pa-btn pa-btn--primary">
-              <svg class="hi hi-sm"><use href="#hi-chat-bubble"/></svg>
-              Contact for demo
-            </a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- ===== Web Design subsection ===== -->
-    <div class="web-section reveal">
-      <div class="web-head">
-        <h3 class="web-h">Web Design <em>&amp; Commerce</em></h3>
-        <p class="web-sub">Real, working online stores with backend integrations (LINE Notify API) for real-time alerts.</p>
-      </div>
-
-      <div class="web-grid">
-        <div class="web-card">
-          <div class="browser-mockup">
-            <div class="bm-bar">
-              <span class="bm-dot" style="background:#FF5F56"></span>
-              <span class="bm-dot" style="background:#FFBD2E"></span>
-              <span class="bm-dot" style="background:#27C93F"></span>
-              <span class="bm-url">cjpfrozenfood.co.th</span>
-            </div>
-            <div class="bm-frame">
-              <iframe src="https://www.cjpfrozenfood.co.th/" loading="lazy" title="CJP Frozen Food preview"
-                      sandbox="allow-scripts allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
-              <a href="https://www.cjpfrozenfood.co.th/" target="_blank" rel="noopener" class="bm-overlay">
-                <span class="bm-pill">Visit Full Site ↗</span>
-              </a>
-            </div>
-          </div>
-          <div class="web-body">
-            <h4 class="web-title">CJP Frozen Food</h4>
-            <p class="web-desc">A <strong>B2B Product Catalog</strong> and PO Request system, connected to <strong>LINE Notify API</strong> to alert the admin team of new orders in real time.</p>
-          </div>
-        </div>
-
-        <div class="web-card">
-          <div class="browser-mockup">
-            <div class="bm-bar">
-              <span class="bm-dot" style="background:#FF5F56"></span>
-              <span class="bm-dot" style="background:#FFBD2E"></span>
-              <span class="bm-dot" style="background:#27C93F"></span>
-              <span class="bm-url">yukipepper.com</span>
-            </div>
-            <div class="bm-frame">
-              <iframe src="https://yukipepper.com/" loading="lazy" title="Yuki Pepper preview"
-                      sandbox="allow-scripts allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
-              <a href="https://yukipepper.com/" target="_blank" rel="noopener" class="bm-overlay">
-                <span class="bm-pill">Visit Full Site ↗</span>
-              </a>
-            </div>
-          </div>
-          <div class="web-body">
-            <h4 class="web-title">Yuki Pepper Art Store</h4>
-            <p class="web-desc">An <strong>E-commerce platform</strong> for displaying and selling art — minimalist styling, with automated order alerts via LINE.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ================= 05 CERTS ================= -->
-<section id="certs">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-academic-cap"/></svg> 04 — Certifications</div>
-      <h2 class="section-title">Currently learning.<br/><em>Always shipping.</em></h2>
-      <p class="section-intro">Active programs and credentials — the formal record of an ongoing apprenticeship in AI.</p>
-    </div>
-
-    <div class="cert-grid reveal-stagger">
-      <div class="cert-card featured">
-        <span class="cert-status progress"><span class="pulse"></span> LV.2 · Seeking Internship (LV.3)</span>
-        <h3 class="cert-title">Super AI Engineer Season 6 — LV.2</h3>
-        <div class="cert-issuer">AIAT — Association of AI Technology</div>
-        <div class="cert-meta">
-          <div>Completed <strong>LV.1 Intensive Camp</strong></div>
-          <div>Currently <strong>LV.2</strong> · Seeking an internship for <strong>LV.3</strong></div>
-          <div><strong>Curriculum:</strong> 13 courses — Python, Math for AI, Data Science, ML, Deep Learning, CV, NLP, AI Ethics, RAG, Design Thinking</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status valid">Valid · Apr 2029</span>
-        <h3 class="cert-title">Huawei HCCDA — AI</h3>
-        <div class="cert-issuer">Huawei Career Certification — Developer Associate</div>
-        <div class="cert-meta">
-          <div><strong>Credential ID:</strong> HWENDCAIDA266070</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status valid">Valid · Apr 2029</span>
-        <h3 class="cert-title">Huawei HCCDA — Tech Essentials</h3>
-        <div class="cert-issuer">Huawei Career Certification</div>
-        <div class="cert-meta">
-          <div><strong>Credential ID:</strong> HWENDCTEDA821114</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status done">Completed</span>
-        <h3 class="cert-title">Data Science Job Simulation</h3>
-        <div class="cert-issuer">Virtual Experience Program · May 2026</div>
-        <p class="cert-desc">End-to-end data-science workflow on a real business case — framed the problem, ran <strong>EDA &amp; data cleaning</strong>, engineered features, trained and evaluated models, and delivered <strong>insights &amp; recommendations</strong> back to the business.</p>
-        <div class="cert-meta">
-          <div><strong>Scope:</strong> 6 tasks · Apr–May 2026</div>
-          <div><strong>Tasks:</strong> Business framing · EDA · Feature Engineering · Modeling · Evaluation · Insights</div>
-          <div><strong>Verify:</strong> <code>7pWEa6HJM2M</code></div>
-          <div><a class="cert-link" href="Data%20Science%20Job%20Simulation.pdf.pdf" target="_blank" rel="noopener">View certificate ↗</a></div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status done">Completed</span>
-        <h3 class="cert-title">AI Ready ASEAN</h3>
-        <div class="cert-issuer">ASEAN Foundation × Google.org</div>
-        <div class="cert-meta">
-          <div><strong>Scope:</strong> 15 modules · 12 hours</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status done">Completed</span>
-        <h3 class="cert-title">TOEIC — 590</h3>
-        <div class="cert-issuer">Test of English for International Communication · 2024</div>
-        <div class="cert-meta">
-          <div><strong>Year:</strong> 2024</div>
-        </div>
-      </div>
-
-      <div class="cert-card">
-        <span class="cert-status done">Completed</span>
-        <h3 class="cert-title">Hour of Code</h3>
-        <div class="cert-issuer">Code.org</div>
-        <div class="cert-meta">
-          <div><strong>Modules:</strong> AI for Oceans · Music Lab</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- ================= 06 HACKATHONS ================= -->
 <section id="hackathons">
   <div class="wrap">
     <div class="reveal">
-      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-cpu-chip"/></svg> 03 — Hackathons</div>
+      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-cpu-chip"/></svg> 02 — Hackathons</div>
       <h2 class="section-title">Five hackathons.<br/><em>Five stacks. One operator.</em></h2>
       <p class="section-intro">Click any row to expand — certificate, flow diagrams, key insights, and (where it earned them) charts and live video.</p>
     </div>
@@ -5340,11 +4913,449 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
     </div>
   </div>
 </section>
+<!-- ================= 02 ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-user"/></svg> 03 — About</div>
+      <h2 class="section-title">From graphics <em>to graphs</em><br/>— a career convergence.</h2>
+      <p class="section-intro">Six years across IT, design, content, web — now converging on Data Science and AI.</p>
+    </div>
+
+    <div class="timeline reveal-stagger" id="timeline">
+      <div class="tl-card now">
+        <div class="tl-year">2026</div>
+        <div class="tl-role">Super AI Engineer S6 — LV.2</div>
+        <div class="tl-org">AIAT · Seeking LV.3 Internship</div>
+        <div class="tl-desc">Completed LV.1 Intensive Camp · Currently LV.2 · Looking for an internship to step into LV.3.</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-year">2025 — present</div>
+        <div class="tl-role">Freelance Web &amp; AI Developer</div>
+        <div class="tl-org">Independent</div>
+        <div class="tl-desc">MINI-ERP, SabaiBill, e-commerce, automation pipelines — building real systems for real businesses.</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-year">2024 — 2025</div>
+        <div class="tl-role">Content Moderator</div>
+        <div class="tl-org">Transcosmos</div>
+        <div class="tl-desc">Pattern recognition at scale across thousands of items — the human version of a classifier.</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-year">2021 — 2023</div>
+        <div class="tl-role">Graphic Designer</div>
+        <div class="tl-org">ZEA Management</div>
+        <div class="tl-desc">Brand identity, print, and digital — the visual eye I still bring to every dashboard and UI today.</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-year">2019 — 2021</div>
+        <div class="tl-role">IT Support</div>
+        <div class="tl-org">Siam Herb Product</div>
+        <div class="tl-desc">First hands-on with systems, networks, and the discipline of debugging real production problems.</div>
+      </div>
+    </div>
+
+    <p class="bio reveal">"Art eye, data mind — built across graphic design, IT, web, and now AI. I don't just study systems. I ship them."</p>
+  </div>
+</section>
+<!-- ================= 03 WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-briefcase"/></svg> 04 — Work</div>
+      <h2 class="section-title">A non-linear path,<br/><em>told in one line.</em></h2>
+      <p class="section-intro">From IT support to graphic design to AI engineering — plus a recent stint in international business development.</p>
+    </div>
+
+    <!-- Featured: Vietnam Market Expansion -->
+    <div class="work-feature reveal">
+      <div class="wf-meta">
+        <span class="wf-tag"><span class="dot"></span> FEATURED · Business Development</span>
+        <span class="wf-date">7 August 2025 · Lotte Hotel, HCMC</span>
+      </div>
+      <h3 class="wf-title">Sabaijang — <em>Vietnam</em> Market Expansion</h3>
+      <p class="wf-lead">Represented <strong>Sabaijang</strong> (herbal mint spray &amp; wellness products) at the <em>Vietnam–Thailand Health, Medical, Beauty &amp; Personal Care Products Business Matching</em> event — organized by <strong>DITP</strong> (Department of International Trade Promotion).</p>
+
+      <div class="wf-grid">
+        <div class="wf-gallery">
+          <img src="image/vienam/LINE_ALBUM_08082025_260525_3.jpg" alt="DITP business matching event" loading="lazy">
+          <img src="image/vienam/LINE_ALBUM_08082025_260525_7.jpg" alt="Vietnam buyer engagement" loading="lazy">
+          <img src="image/vienam/LINE_ALBUM_08082025_260525_8.jpg" alt="Product samples" loading="lazy">
+          <img src="image/vienam/LINE_ALBUM_08082025_260525_10.jpg" alt="Sabaijang stand at the event" loading="lazy">
+        </div>
+        <div class="wf-bullets">
+          <div class="wf-bullet">
+            <div class="wf-bullet-label">Demand Validation</div>
+            <p>Product demand from Vietnamese buyers <strong>exceeded available samples</strong> — demonstrating strong market potential for a herbal wellness brand.</p>
+          </div>
+          <div class="wf-bullet">
+            <div class="wf-bullet-label">Retail Channel · Saigon Co.op</div>
+            <p>Strategic meeting with the <strong>CEO of Saigon Co.op</strong> — a leading pioneer in Vietnam's modern retail — who expressed willingness to introduce Sabaijang products into the Vietnamese market.</p>
+          </div>
+          <div class="wf-bullet">
+            <div class="wf-bullet-label">Clinical Channel · Hanoi</div>
+            <p>Met an acupuncture &amp; cupping clinic owner-physician in Hanoi interested in distribution + <strong>Private Label / OEM</strong> branding for his clinic and professional network.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vtimeline reveal-stagger">
+      <div class="vt-item">
+        <div class="vt-date">Mar 2025 — present</div>
+        <div class="vt-role">Freelance Web Developer &amp; Digital Marketer</div>
+        <div class="vt-org">Independent</div>
+        <div class="vt-desc">Building full-stack web systems (MINI-ERP, SabaiBill), e-commerce, OCR/automation pipelines, and AI-assisted workflows.</div>
+      </div>
+      <div class="vt-item">
+        <div class="vt-date">Oct 2024 — Mar 2025</div>
+        <div class="vt-role">Content Moderator</div>
+        <div class="vt-org">Transcosmos</div>
+        <div class="vt-desc">High-volume review and classification — the human-side analog of running a classifier in production.</div>
+      </div>
+      <div class="vt-item">
+        <div class="vt-date">2021 — 2023</div>
+        <div class="vt-role">Graphic Designer</div>
+        <div class="vt-org">ZEA Management</div>
+        <div class="vt-desc">Brand, print, and digital design — the visual eye that still shows up in every dashboard and UI I build.</div>
+      </div>
+      <div class="vt-item">
+        <div class="vt-date">2019 — Dec 2021</div>
+        <div class="vt-role">IT Support</div>
+        <div class="vt-org">Siam Herb Product</div>
+        <div class="vt-desc">First exposure to production systems, networking, and the discipline of methodical debugging.</div>
+      </div>
+    </div>
+
+    <div class="edu-block reveal">
+      <h4>Education</h4>
+      <p><strong>Mae Fah Luang University</strong> — B.Sc. Multimedia Technology &amp; Animation</p>
+      <p><strong>Valuepoint Academy</strong>, Pune, India — 2018</p>
+    </div>
+
+    <div class="resume-cta reveal">
+      <a href="Tech%20Portfolio.pdf" download="Natticha-Benz-Tech-Portfolio.pdf" class="btn btn-primary">Download Full Resume ↓</a>
+    </div>
+  </div>
+</section>
+<!-- ================= 04 PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-folder-open"/></svg> 05 — Projects</div>
+      <h2 class="section-title">Real systems<br/><em>shipped for real users.</em></h2>
+      <p class="section-intro">From ERP to e-commerce to OCR automation — projects that have customers, transactions, and uptime to care about.</p>
+    </div>
+
+    <!-- ===== Project 1 · MINI-ERP System ===== -->
+    <article class="proj-deep reveal">
+      <div class="proj-deep-grid">
+        <figure class="proj-deep-media">
+          <video src="miniocr.mp4" muted loop playsinline preload="metadata" autoplay></video>
+          <div class="pdm-tech">
+            <span class="pdm-chip">Vue 3</span><span class="pdm-chip">Django 6</span><span class="pdm-chip">Tailwind</span>
+          </div>
+        </figure>
+        <div class="proj-deep-body">
+          <h3 class="proj-deep-title">MINI-ERP System</h3>
+          <h4 class="proj-deep-sub">Smart ERP — Web-based business system</h4>
+          <p class="proj-deep-intro">A web-based ERP for small-to-medium businesses. Brings purchasing, receiving, inventory, sales, delivery, basic finance, and document approvals into one place. Clean separated-API architecture, modern UI, secure JWT login — runs smoothly on desktop and mobile.</p>
+
+          <div class="proj-block proj-block--core">
+            <h5>Core modules</h5>
+            <ul class="proj-list">
+              <li><span class="pl-ic">📦</span><div><strong>Purchasing &amp; Inventory:</strong> PR → PO → GRN workflow with real-time stock updates.</div></li>
+              <li><span class="pl-ic">🛒</span><div><strong>Sales:</strong> Quotation → SO → DO with customer delivery-confirmation links.</div></li>
+              <li><span class="pl-ic">🗂️</span><div><strong>Master Data:</strong> products, partners, warehouses, units of measure (UOM).</div></li>
+              <li><span class="pl-ic">🔐</span><div><strong>Permissions:</strong> clear role split + centralised Approval Center for documents.</div></li>
+            </ul>
+          </div>
+
+          <div class="proj-block proj-block--challenge">
+            <h5>What I'm still solving</h5>
+            <ul class="proj-list proj-list--alt">
+              <li><div><strong>Structure &amp; UX:</strong> the module surface is wide — new users feel the weight; some flows still need clearer copy and step ordering.</div></li>
+              <li><div><strong>Code (briefly):</strong> doc-status transitions (e.g. PR → PO) and approval rights occasionally show edge cases — chasing API, serializer and Vue sync end-to-end.</div></li>
+              <li><div><strong>Purchasing flow:</strong> sometimes PO feels smoother than PR or vice versa depending on master data — locking business rules consistently.</div></li>
+            </ul>
+          </div>
+
+          <div class="proj-tech-grid">
+            <div class="ptg-cell">
+              <span class="ptg-label">Backend Architecture</span>
+              <span class="ptg-val">Python · Django 6 · DRF · JWT · PostgreSQL · Gunicorn</span>
+            </div>
+            <div class="ptg-cell">
+              <span class="ptg-label">Frontend Architecture</span>
+              <span class="ptg-val">Vue 3 · Vite · ES Modules · Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="proj-actions">
+            <a href="https://minierpbybez.vercel.app/" target="_blank" rel="noopener" class="pa-btn pa-btn--primary">
+              <svg class="hi hi-sm"><use href="#hi-arrow-top-right"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/beetwowin2-coder/minierpbybez.git" target="_blank" rel="noopener" class="pa-btn pa-btn--ghost">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.17A5.02 5.02 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.02 5.02 0 0 0-1.5 3.78c0 5.72 3.35 6.79 6.5 7.17A4.8 4.8 0 0 0 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub Repo
+            </a>
+          </div>
+          <div class="proj-creds">
+            <span class="pc-label">Demo Credentials</span>
+            <div class="pc-rows">
+              <div><span class="pc-k">User:</span> <code class="pc-v">admin</code></div>
+              <div><span class="pc-k">Pass:</span> <code class="pc-v">12101995Bp</code></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== Project 2 · SabaiBill ===== -->
+    <article class="proj-deep proj-deep--reverse reveal">
+      <div class="proj-deep-grid">
+        <figure class="proj-deep-media">
+          <video src="saibaiiii.mp4" muted loop playsinline preload="metadata" autoplay></video>
+          <div class="pdm-tech">
+            <span class="pdm-chip">React</span><span class="pdm-chip">Node.js</span><span class="pdm-chip">Prisma</span>
+          </div>
+        </figure>
+        <div class="proj-deep-body">
+          <h3 class="proj-deep-title">SabaiBill</h3>
+          <h4 class="proj-deep-sub">SME Document Management System</h4>
+          <p class="proj-deep-intro"><strong>SabaiBill</strong> is a sales-doc app for SMEs — create, chain, and print/save PDFs in one place. Built to be real-world useful and instantly demoable.</p>
+
+          <div class="proj-block proj-block--core">
+            <h5>What users can do</h5>
+            <ul class="proj-list">
+              <li><div>Create and store <strong>QT</strong> (quotation), <strong>SO</strong> (sales order), <strong>DO</strong> (delivery order), <strong>IV</strong> (invoice).</div></li>
+              <li><div>Chain documents — QT → SO → DO/IV — without re-entering data.</div></li>
+              <li><div>Configure company info, bank details, terms, templates, signatures, payment QR, and currency.</div></li>
+              <li><div>Auto-calculate <strong>VAT</strong>, discounts, <strong>withholding tax (WHT)</strong>, and net totals.</div></li>
+              <li><div>Print / save <strong>PDF</strong> directly from the preview page.</div></li>
+              <li><div>Manage customers and products with autocomplete search.</div></li>
+            </ul>
+          </div>
+
+          <p class="proj-note">
+            <strong>Access:</strong> no separate sign-up / login — one-button entry using a shared DB user. Built for <strong>demo / internal trial</strong>; not for sensitive data without an extra security layer.
+          </p>
+
+          <div class="proj-block proj-block--ux">
+            <h5>Language &amp; UX</h5>
+            <ul class="proj-list">
+              <li><span class="pl-ic">✦</span><div>Interface in <strong>TH and EN</strong> (toggle in-app).</div></li>
+              <li><span class="pl-ic">✦</span><div>Document fields support bilingual TH/EN (company, address, customer, etc.).</div></li>
+              <li><span class="pl-ic">✦</span><div>Readable typography, large buttons — designed for clarity.</div></li>
+            </ul>
+          </div>
+
+          <div class="proj-block proj-block--challenge">
+            <h5>Lessons from MINI-ERP &amp; what's next</h5>
+            <ul class="proj-list proj-list--alt">
+              <li><div><strong>Direction:</strong> a deliberate step down from MINI-ERP — focus only on trade documents, less surrounding system noise.</div></li>
+              <li><div><strong>Flow uncertainty:</strong> QT → SO → DO/IV still needs better guidance — users should "know the next step" without remembering.</div></li>
+              <li><div><strong>Bill detail:</strong> doc types feel too similar — SMEs need more flexible fields / layouts / conditions.</div></li>
+              <li><div><strong>Code (briefly):</strong> field mapping between doc and React state is partly hard-coded — exploring cleaner abstractions and a schema layer.</div></li>
+            </ul>
+          </div>
+
+          <div class="proj-actions">
+            <a href="https://baibillbybez.onrender.com/login" target="_blank" rel="noopener" class="pa-btn pa-btn--primary">
+              <svg class="hi hi-sm"><use href="#hi-arrow-top-right"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/beetwowin2-coder/billbybz.git" target="_blank" rel="noopener" class="pa-btn pa-btn--ghost">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.17A5.02 5.02 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.02 5.02 0 0 0-1.5 3.78c0 5.72 3.35 6.79 6.5 7.17A4.8 4.8 0 0 0 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub Repo
+            </a>
+          </div>
+          <p class="proj-hint">Hit <strong>Live Demo</strong>, sign in, and start filling company info or jump to the dashboard — built for trying and presenting.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== Project 3 · Workflow Automation ===== -->
+    <article class="proj-deep reveal">
+      <div class="proj-deep-grid">
+        <figure class="proj-deep-media">
+          <video src="ocr.mp4" muted loop playsinline preload="metadata" autoplay></video>
+          <figcaption class="pdm-cap">
+            <strong>Workflow walkthrough</strong> — Make.com Integration LINE: <em>LINE Watch Events</em> (trigger) → <em>Download Message Attachment</em> → <em>HTTP Request</em> (image → OCR) → <em>Text parser · Match pattern</em> (extract tracking #) → <em>Google Sheets · Add Row</em> → <em>LINE Send Push Message</em>. Run mode set to <em>Immediately as data arrives</em>.
+          </figcaption>
+        </figure>
+        <div class="proj-deep-body">
+          <h3 class="proj-deep-title">Workflow Automation</h3>
+          <h4 class="proj-deep-sub">Parcel Tracking (Make.com)</h4>
+          <p class="proj-deep-intro">A Make.com workflow (Integration LINE): receive a LINE event → download the attached image → send to OCR via HTTP → parse the tracking number with the Text parser → log a row in Google Sheets → push a status message back to the customer via LINE — running <strong>immediately as data arrives</strong>.</p>
+
+          <p class="proj-note">
+            Removes the admin's repetitive typing. The flow shrinks to <strong>Take photo → Wait → Copy → Send</strong>, while OCR, sheet logging, and notifications all happen automatically.
+          </p>
+
+          <div class="proj-block">
+            <h5>Tools used</h5>
+            <div class="proj-tech">
+              <span>Make.com</span>
+              <span>LINE · Watch events / Download attachment / Push message</span>
+              <span>HTTP module</span>
+              <span>Text parser</span>
+              <span>Google Sheets</span>
+            </div>
+          </div>
+
+          <div class="proj-actions">
+            <a href="#contact" class="pa-btn pa-btn--primary">
+              <svg class="hi hi-sm"><use href="#hi-chat-bubble"/></svg>
+              Contact for demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== Web Design subsection ===== -->
+    <div class="web-section reveal">
+      <div class="web-head">
+        <h3 class="web-h">Web Design <em>&amp; Commerce</em></h3>
+        <p class="web-sub">Real, working online stores with backend integrations (LINE Notify API) for real-time alerts.</p>
+      </div>
+
+      <div class="web-grid">
+        <div class="web-card">
+          <div class="browser-mockup">
+            <div class="bm-bar">
+              <span class="bm-dot" style="background:#FF5F56"></span>
+              <span class="bm-dot" style="background:#FFBD2E"></span>
+              <span class="bm-dot" style="background:#27C93F"></span>
+              <span class="bm-url">cjpfrozenfood.co.th</span>
+            </div>
+            <div class="bm-frame">
+              <iframe src="https://www.cjpfrozenfood.co.th/" loading="lazy" title="CJP Frozen Food preview"
+                      sandbox="allow-scripts allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
+              <a href="https://www.cjpfrozenfood.co.th/" target="_blank" rel="noopener" class="bm-overlay">
+                <span class="bm-pill">Visit Full Site ↗</span>
+              </a>
+            </div>
+          </div>
+          <div class="web-body">
+            <h4 class="web-title">CJP Frozen Food</h4>
+            <p class="web-desc">A <strong>B2B Product Catalog</strong> and PO Request system, connected to <strong>LINE Notify API</strong> to alert the admin team of new orders in real time.</p>
+          </div>
+        </div>
+
+        <div class="web-card">
+          <div class="browser-mockup">
+            <div class="bm-bar">
+              <span class="bm-dot" style="background:#FF5F56"></span>
+              <span class="bm-dot" style="background:#FFBD2E"></span>
+              <span class="bm-dot" style="background:#27C93F"></span>
+              <span class="bm-url">yukipepper.com</span>
+            </div>
+            <div class="bm-frame">
+              <iframe src="https://yukipepper.com/" loading="lazy" title="Yuki Pepper preview"
+                      sandbox="allow-scripts allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
+              <a href="https://yukipepper.com/" target="_blank" rel="noopener" class="bm-overlay">
+                <span class="bm-pill">Visit Full Site ↗</span>
+              </a>
+            </div>
+          </div>
+          <div class="web-body">
+            <h4 class="web-title">Yuki Pepper Art Store</h4>
+            <p class="web-desc">An <strong>E-commerce platform</strong> for displaying and selling art — minimalist styling, with automated order alerts via LINE.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= 05 CERTS ================= -->
+<section id="certs">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-academic-cap"/></svg> 06 — Certifications</div>
+      <h2 class="section-title">Currently learning.<br/><em>Always shipping.</em></h2>
+      <p class="section-intro">Active programs and credentials — the formal record of an ongoing apprenticeship in AI.</p>
+    </div>
+
+    <div class="cert-grid reveal-stagger">
+      <div class="cert-card featured">
+        <span class="cert-status progress"><span class="pulse"></span> LV.2 · Seeking Internship (LV.3)</span>
+        <h3 class="cert-title">Super AI Engineer Season 6 — LV.2</h3>
+        <div class="cert-issuer">AIAT — Association of AI Technology</div>
+        <div class="cert-meta">
+          <div>Completed <strong>LV.1 Intensive Camp</strong></div>
+          <div>Currently <strong>LV.2</strong> · Seeking an internship for <strong>LV.3</strong></div>
+          <div><strong>Curriculum:</strong> 13 courses — Python, Math for AI, Data Science, ML, Deep Learning, CV, NLP, AI Ethics, RAG, Design Thinking</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status valid">Valid · Apr 2029</span>
+        <h3 class="cert-title">Huawei HCCDA — AI</h3>
+        <div class="cert-issuer">Huawei Career Certification — Developer Associate</div>
+        <div class="cert-meta">
+          <div><strong>Credential ID:</strong> HWENDCAIDA266070</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status valid">Valid · Apr 2029</span>
+        <h3 class="cert-title">Huawei HCCDA — Tech Essentials</h3>
+        <div class="cert-issuer">Huawei Career Certification</div>
+        <div class="cert-meta">
+          <div><strong>Credential ID:</strong> HWENDCTEDA821114</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status done">Completed</span>
+        <h3 class="cert-title">Data Science Job Simulation</h3>
+        <div class="cert-issuer">Virtual Experience Program · May 2026</div>
+        <p class="cert-desc">End-to-end data-science workflow on a real business case — framed the problem, ran <strong>EDA &amp; data cleaning</strong>, engineered features, trained and evaluated models, and delivered <strong>insights &amp; recommendations</strong> back to the business.</p>
+        <div class="cert-meta">
+          <div><strong>Scope:</strong> 6 tasks · Apr–May 2026</div>
+          <div><strong>Tasks:</strong> Business framing · EDA · Feature Engineering · Modeling · Evaluation · Insights</div>
+          <div><strong>Verify:</strong> <code>7pWEa6HJM2M</code></div>
+          <div><a class="cert-link" href="Data%20Science%20Job%20Simulation.pdf.pdf" target="_blank" rel="noopener">View certificate ↗</a></div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status done">Completed</span>
+        <h3 class="cert-title">AI Ready ASEAN</h3>
+        <div class="cert-issuer">ASEAN Foundation × Google.org</div>
+        <div class="cert-meta">
+          <div><strong>Scope:</strong> 15 modules · 12 hours</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status done">Completed</span>
+        <h3 class="cert-title">TOEIC — 590</h3>
+        <div class="cert-issuer">Test of English for International Communication · 2024</div>
+        <div class="cert-meta">
+          <div><strong>Year:</strong> 2024</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <span class="cert-status done">Completed</span>
+        <h3 class="cert-title">Hour of Code</h3>
+        <div class="cert-issuer">Code.org</div>
+        <div class="cert-meta">
+          <div><strong>Modules:</strong> AI for Oceans · Music Lab</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- ================= 07 SKILLS ================= -->
 <section id="skills">
   <div class="wrap">
     <div class="reveal">
-      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-cpu-chip"/></svg> 06 — Stack</div>
+      <div class="section-label"><svg class="hi hi-sm"><use href="#hi-cpu-chip"/></svg> 07 — Stack</div>
       <h2 class="section-title">A toolbox built for<br/><em>shipping intelligent things.</em></h2>
       <p class="section-intro">Three layers: the data &amp; modeling stack on top, the web/dev stack to deliver it, and the tools that move work forward every day.</p>
     </div>
@@ -5416,7 +5427,7 @@ body.on-light-section .cursor-wrap.is-hover .cursor-ring {
   <canvas id="contact-particles"></canvas>
   <div class="wrap">
     <div class="reveal">
-      <div class="section-label" style="justify-content:center;display:inline-flex"><svg class="hi hi-sm"><use href="#hi-envelope"/></svg> 07 — Contact</div>
+      <div class="section-label" style="justify-content:center;display:inline-flex"><svg class="hi hi-sm"><use href="#hi-envelope"/></svg> 08 — Contact</div>
       <h2 class="contact-h">Let's build something<br/><em>intelligent</em> together.</h2>
       <p class="contact-sub"><strong>Open to Internship (LV.3)</strong> · Data Science · AI Engineer · Full-stack.<br/>Day-1 ready — reach me through any channel below.</p>
     </div>
