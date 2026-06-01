@@ -70,36 +70,34 @@ section {
   --c-glass:      rgba(255, 255, 255, 0.12); /* glassmorphism on blue */
   --shadow-card:  0 24px 60px -20px rgba(10, 42, 110, 0.5), 0 2px 6px rgba(10, 42, 110, 0.15);
   --shadow-glow:  0 0 32px rgba(34, 211, 238, 0.35);
-  /* Root-level defaults */
-  --bg: var(--c-blue-deep);
-  --text: var(--c-white);
-  --text-dim: rgba(255, 255, 255, 0.7);
-  --text-faint: rgba(255, 255, 255, 0.45);
-  --accent: var(--c-cyan);
-  --accent-soft: #5AA9FF;
-  --border: rgba(255, 255, 255, 0.14);
-  --border-strong: rgba(255, 255, 255, 0.30);
-  --border-accent: rgba(34, 211, 238, 0.5);
-  --panel: rgba(255, 255, 255, 0.08);
+  /* Root-level defaults — light theme */
+  --bg: #FFFFFF;
+  --text: #0F172A;
+  --text-dim: #334155;
+  --text-faint: #64748B;
+  --accent: var(--c-blue);
+  --accent-soft: #7DD3FC;
+  --border: rgba(30, 91, 214, 0.12);
+  --border-strong: rgba(30, 91, 214, 0.25);
+  --border-accent: rgba(34, 211, 238, 0.50);
+  --panel: rgba(239, 246, 255, 0.80);
 }
 section {
   --bg:
-    radial-gradient(ellipse 50% 40% at 10% 10%, rgba(125, 211, 252, 0.12), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 90% 20%, rgba(96, 165, 250, 0.14), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 80% 90%, rgba(34, 211, 238, 0.13), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(147, 197, 253, 0.08), transparent 65%),
-    linear-gradient(135deg, #03060D 0%, #06101F 45%, #0A1A33 100%);
-  --text: var(--c-white);
-  --text-dim: rgba(255, 255, 255, 0.78);
-  --text-faint: rgba(255, 255, 255, 0.50);
-  --accent: var(--c-cyan);
+    radial-gradient(ellipse 70% 55% at 15% 20%, rgba(125, 211, 252, 0.22), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 85% 80%, rgba(96, 165, 250, 0.16), transparent 60%),
+    linear-gradient(160deg, #FFFFFF 0%, #F0F7FF 55%, #DBEAFE 100%);
+  --text: #0F172A;
+  --text-dim: #1E3A8A;
+  --text-faint: #3B82F6;
+  --accent: var(--c-blue);
   --accent-soft: #7DD3FC;
-  --border: rgba(255, 255, 255, 0.16);
-  --border-strong: rgba(255, 255, 255, 0.32);
-  --border-accent: rgba(34, 211, 238, 0.55);
-  --panel: rgba(255, 255, 255, 0.12);
+  --border: rgba(30, 91, 214, 0.10);
+  --border-strong: rgba(30, 91, 214, 0.22);
+  --border-accent: rgba(34, 211, 238, 0.45);
+  --panel: rgba(255, 255, 255, 0.75);
   --panel-solid: #FFFFFF;
-  --glow-accent: 0 0 28px rgba(34, 211, 238, 0.35);
+  --glow-accent: 0 0 24px rgba(34, 211, 238, 0.22);
 }
 /* Holographic shimmer happens via the radial gradients in --bg above */
 
@@ -153,10 +151,10 @@ section {
   backface-visibility: hidden;
   border-radius: 0;
 }
-section { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.55) rgba(255, 255, 255, 0.08); }
+section { scrollbar-width: thin; scrollbar-color: #1E5BD6 rgba(30, 91, 214, 0.08); }
 section::-webkit-scrollbar { width: 10px; }
 section::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(30, 91, 214, 0.06);
   border-radius: 999px;
   margin: 4px;
 }
@@ -333,6 +331,13 @@ section.is-visited {
   display: flex; align-items: center;
   overflow: hidden;
   position: relative;
+  --bg: linear-gradient(160deg, #060E1C 0%, #0A1628 45%, #0D2045 100%);
+  --text: #FFFFFF;
+  --text-dim: rgba(255, 255, 255, 0.72);
+  --text-faint: rgba(255, 255, 255, 0.42);
+  --border: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.28);
+  --accent: var(--c-cyan);
 }
 #hero-particles {
   position: absolute; inset: 0; width: 100%; height: 100%;
@@ -342,9 +347,9 @@ section.is-visited {
 
 /* ============== Dashboard button + overlay (sci-fi) ============== */
 .menu-toggle--dash {
-  background: rgba(34, 211, 238, 0.10);
-  border-color: rgba(34, 211, 238, 0.45);
-  color: var(--c-white);
+  background: rgba(34, 211, 238, 0.15);
+  border-color: rgba(34, 211, 238, 0.50);
+  color: #FFFFFF;
   margin-right: 8px;
 }
 .menu-toggle--dash:hover {
@@ -3271,24 +3276,24 @@ footer {
   position: relative;
   display: inline-flex; align-items: center; gap: 12px;
   padding: 11px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(30, 91, 214, 0.22);
   border-radius: 999px;
-  color: var(--c-white);
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  color: #0F172A;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   font-family: 'Space Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s var(--ease);
-  box-shadow: 0 4px 16px rgba(10, 42, 110, 0.2);
+  box-shadow: 0 4px 16px rgba(30, 91, 214, 0.10);
 }
 .menu-toggle:hover {
-  background: var(--c-white);
-  color: var(--c-blue-deep);
-  border-color: var(--c-white);
+  background: #1E5BD6;
+  color: #FFFFFF;
+  border-color: #1E5BD6;
 }
 .menu-toggle-icon {
   display: inline-flex; flex-direction: column; gap: 4px;
