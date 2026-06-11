@@ -223,8 +223,35 @@
   @media(max-width:760px){ .web-grid{ grid-template-columns:1fr; } }
 
   @media(max-width:760px){ .d-sec{ grid-template-columns:1fr; gap:.5rem; } .d-stats{ grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:980px){ .rail{ left:50%; right:auto; top:auto; bottom:10rem; transform:translateX(-50%); flex-direction:row; gap:.7rem; flex-wrap:wrap; justify-content:center; max-width:92vw; } .rail .hint{ display:none; } .rail button{ font-size:.58rem; letter-spacing:.1em; } .controls{ display:none; } .talk{ left:50%; transform:translateX(-50%); bottom:3.5rem; } .talk:hover{ transform:translateX(-50%) translateY(-3px); } }
-  @media(max-height:640px){ .chapter{ align-items:flex-start; padding-top:16vh; } }
+  @media(max-width:980px){
+    /* rail becomes a compact single row of DOTS (labels hidden) pinned just above the CV button */
+    .rail{ left:50%; right:auto; top:auto; bottom:4.6rem; transform:translateX(-50%); flex-direction:row; gap:.95rem; flex-wrap:nowrap; justify-content:center; max-width:92vw; }
+    .rail .hint{ display:none; }
+    .rail .lbl{ display:none; }
+    .rail button{ padding:.35rem; }
+    .rail .bul{ width:9px; height:9px; }
+    .controls{ display:none; }
+    .talk{ left:50%; transform:translateX(-50%); bottom:1.3rem; }
+    .talk:hover{ transform:translateX(-50%) translateY(-3px); }
+    /* reserve room for the nav (top) + rail & CV button (bottom) so centred content never collides */
+    .chapter{ padding-top:5rem; padding-bottom:8rem; }
+  }
+  @media(max-width:600px){
+    nav{ padding:1rem 1.1rem; }
+    .logo{ font-size:.85rem; }
+    .nav-right{ gap:.45rem; }
+    .pill{ padding:.55rem .75rem; font-size:.58rem; letter-spacing:.08em; }
+    .about-avatar{ width:84px; height:84px; margin-bottom:1rem; }
+    .eyebrow{ margin-bottom:1rem; font-size:.6rem; letter-spacing:.22em; }
+    .eyebrow .ln{ width:24px; }
+    .headline{ font-size:clamp(1.55rem,7.4vw,2.3rem); }
+    .lead{ font-size:.9rem; margin-top:1.1rem; }
+    .cta{ margin-top:1.3rem; padding:.7rem 1.2rem; }
+    .chapter{ padding-left:1.2rem; padding-right:1.2rem; }
+    .detail-inner{ padding:12vh 1.3rem 14vh; }
+    .detail-close{ padding:.55rem .85rem; font-size:.62rem; }
+  }
+  @media(max-height:640px){ .chapter{ align-items:flex-start; padding-top:6rem; padding-bottom:7rem; } }
   /* ===== WOW FX ===== */
   /* custom cursor (desktop pointer only) */
   .cur, .cur-ring{ position:fixed; top:0; left:0; z-index:9999; pointer-events:none; border-radius:50%; mix-blend-mode:screen; will-change:transform; }
