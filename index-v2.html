@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Natticha Satjawatthana — Data Scientist & AI/ML Engineer</title>
+<title>Natticha.S — Built different, thinks in data</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#04060d">
+<meta name="description" content="Natticha Satjawatthana (Benz) — Data Scientist & AI/ML Engineer in Bangkok. Art eye, data mind.">
+<meta property="og:title" content="Natticha.S — Built different, thinks in data">
+<meta property="og:description" content="Art eye, data mind — ML, computer vision, and agentic AI. 2× hackathon winner.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -20,7 +26,7 @@
   body{ background:var(--bg); color:var(--text); font-family:var(--body); -webkit-font-smoothing:antialiased; }
   a{ color:inherit; text-decoration:none; }
 
-  .hud{ position:fixed; inset:0; z-index:150; pointer-events:none; }
+  .hud{ position:fixed; inset:0; z-index:150; pointer-events:none; box-shadow:inset 0 0 80px rgba(0,0,0,.5), inset 0 0 220px 30px rgba(0,0,0,.3); }
   .hud i{ position:absolute; width:22px; height:22px; border:1px solid rgba(127,208,255,.35); }
   .hud .tl{ top:18px; left:18px; border-right:0; border-bottom:0; }
   .hud .tr{ top:18px; right:18px; border-left:0; border-bottom:0; }
@@ -40,8 +46,9 @@
 
   /* NAV */
   nav{ position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1.4rem clamp(1.2rem,4vw,2.6rem); }
-  .logo{ font-family:var(--display); font-weight:700; font-size:1rem; letter-spacing:.18em; }
-  .logo b{ color:var(--accent); }
+  .logo{ font-family:var(--display); font-weight:700; font-size:1rem; letter-spacing:.18em; text-transform:uppercase; text-shadow:0 0 18px rgba(77,159,255,.22); transition:text-shadow .3s; }
+  .logo:hover{ text-shadow:0 0 26px rgba(127,208,255,.5); }
+  .logo b{ color:var(--accent); text-shadow:0 0 14px var(--accent); }
   .nav-right{ display:flex; align-items:center; gap:.7rem; }
   .pill{ font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; padding:.7rem 1.1rem; cursor:pointer; border:1px solid var(--line); color:var(--text); background:rgba(10,16,30,.5); backdrop-filter:blur(6px); clip-path:polygon(0 0,100% 0,100% 62%,86% 100%,0 100%); display:inline-flex; align-items:center; gap:.5rem; transition:border-color .3s,color .3s,background .3s; }
   .pill:hover{ border-color:var(--accent); color:var(--glow); }
@@ -126,7 +133,7 @@
   @keyframes nudge{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(2px) } }
 
   /* DETAIL */
-  .detail{ position:fixed; inset:0; z-index:600; background:linear-gradient(180deg,#070c18,#04060d); transform:translateY(100%); transition:transform .7s cubic-bezier(.76,0,.24,1); overflow-y:auto; overscroll-behavior:contain; }
+  .detail{ position:fixed; inset:0; z-index:600; background:linear-gradient(180deg,#070c18,#04060d); transform:translateY(100%); transition:transform .7s cubic-bezier(.76,0,.24,1); overflow-y:auto; overscroll-behavior:contain; box-shadow:inset 0 0 80px rgba(0,0,0,.5), inset 0 0 220px 30px rgba(0,0,0,.3); }
   .detail.open{ transform:none; }
   .detail-close{ position:fixed; top:1.4rem; right:clamp(1.2rem,4vw,2.6rem); z-index:610; font-family:var(--mono); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; padding:.7rem 1.1rem; border:1px solid var(--line); background:rgba(10,16,30,.7); backdrop-filter:blur(6px); color:var(--text); cursor:pointer; clip-path:polygon(0 0,100% 0,100% 62%,86% 100%,0 100%); }
   .detail-close:hover{ border-color:var(--accent); color:var(--glow); }
@@ -139,8 +146,14 @@
   .d-sec h3{ font-family:var(--mono); font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:400; }
   .d-sec p{ color:#c4d2e8; font-size:1rem; line-height:1.7; margin-bottom:.6rem; } .d-sec p:last-child{ margin-bottom:0; }
   .d-sec b{ color:var(--text); } .d-sec .hi{ color:var(--accent); font-weight:600; }
-  .d-portrait{ float:right; width:150px; aspect-ratio:1/1; object-fit:cover; border:1px solid var(--line); border-radius:12px; margin:0 0 .8rem 1.1rem; box-shadow:0 10px 30px rgba(4,6,13,.55); }
-  @media(max-width:520px){ .d-portrait{ float:none; display:block; width:120px; margin:0 0 .8rem; } }
+  .d-portrait-wrap{ float:right; width:150px; margin:0 0 .8rem 1.1rem; position:relative; }
+  .d-portrait{ display:block; width:100%; aspect-ratio:1/1; object-fit:cover; border:1px solid var(--line); border-radius:12px; box-shadow:0 10px 30px rgba(4,6,13,.55); filter:grayscale(1) contrast(1.05); transition:filter .5s, box-shadow .5s, border-color .5s; }
+  .d-portrait-wrap::before, .d-portrait-wrap::after{ content:''; position:absolute; width:20px; height:20px; border:1.5px solid var(--accent); pointer-events:none; opacity:.75; box-shadow:0 0 8px rgba(77,159,255,.4); transition:opacity .4s; }
+  .d-portrait-wrap::before{ top:-5px; left:-5px; border-right:0; border-bottom:0; border-top-left-radius:8px; }
+  .d-portrait-wrap::after{ bottom:-5px; right:-5px; border-left:0; border-top:0; border-bottom-right-radius:8px; }
+  .d-portrait-wrap:hover::before, .d-portrait-wrap:hover::after{ opacity:1; }
+  .d-portrait-wrap:hover .d-portrait{ filter:grayscale(.15) contrast(1.05); border-color:var(--accent); box-shadow:0 12px 40px rgba(77,159,255,.4); }
+  @media(max-width:520px){ .d-portrait-wrap{ float:none; width:120px; margin:0 0 .8rem; } }
   .d-sub{ font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--glow); margin:0 0 .7rem; }
   .d-win{ display:inline-block; font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; color:#ffd79e; border:1px solid rgba(255,215,158,.4); padding:.25rem .6rem; margin-bottom:.7rem; }
   .chips{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.3rem; }
@@ -220,7 +233,7 @@
   </div>
 
   <nav>
-    <a href="#" class="logo" data-home>N<b>/</b>SATJAWATTHANA</a>
+    <a href="#" class="logo" data-home>Natticha<b>.</b>s</a>
     <div class="nav-right">
       <button class="pill" id="navContact"><span class="sq"><b></b><b></b><b></b><b></b></span> Contact</button>
       <button class="pill solid" id="menuOpen"><span class="sq"><b></b><b></b><b></b><b></b></span> Menu</button>
@@ -240,7 +253,7 @@
     </ul>
     <div class="menu-foot">
       <a href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="https://www.linkedin.com/in/natticha-satjawatthana-574999404" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://www.linkedin.com/in/natticha-satjawatthana" target="_blank" rel="noopener">LinkedIn ↗</a>
       <span>LINE · BEETWOWIN</span><span>Bangkok · TH</span>
     </div>
   </div>
@@ -251,8 +264,8 @@
     <div class="bg-layer" id="bg-2"><video src="image/hero/project.mp4" muted loop playsinline preload="auto" poster="image/hero/PROJECTS.png"></video></div>
     <div class="bg-layer" id="bg-3"><video src="image/hero/EXPERIENCE.mp4" muted loop playsinline preload="auto" poster="image/hero/EXPERIENCE.png"></video></div>
     <div class="bg-layer" id="bg-4"><video src="image/hero/CERTIFICATIONS.mp4" muted loop playsinline preload="auto" poster="image/hero/CERTIFICATIONS.png"></video></div>
-    <div class="bg-layer" id="bg-5"></div>
-    <div class="bg-layer" id="bg-6"></div>
+    <div class="bg-layer" id="bg-5"><video src="image/hero/Stack.mp4" muted loop playsinline preload="auto"></video></div>
+    <div class="bg-layer" id="bg-6"><video src="image/hero/project.mp4" muted loop playsinline preload="auto" poster="image/hero/PROJECTS.png"></video></div>
   </div>
 
   <div class="chapters">
@@ -331,7 +344,7 @@
     <button class="ctrl-btn" id="next" aria-label="Next">↓</button>
   </div>
 
-  <a class="talk" href="resume/resume/Natticha%20Resume.html" target="_blank" rel="noopener"><span class="dot"></span> Download CV <i class="dl">↓</i></a>
+  <a class="talk" href="resume/resume/Natticha%20Satjawatthana%20%E2%80%94%20Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf"><span class="dot"></span> Download CV <i class="dl">↓</i></a>
 
   <!-- DETAIL -->
   <div class="detail" id="detail">
@@ -343,7 +356,7 @@
         <div class="d-eyebrow">001 — About</div>
         <h1 class="d-title">From graphics <em>to graphs</em>.</h1>
         <div class="d-sec"><h3>Who I am</h3><div>
-          <img class="d-portrait" src="image/profile.png" alt="Natticha Satjawatthana (Benz)" loading="lazy">
+          <span class="d-portrait-wrap"><img class="d-portrait" src="image/profile.png" alt="Natticha Satjawatthana (Benz)" loading="lazy"></span>
           <p>I'm <b>Natticha Satjawatthana (Benz)</b> — a data scientist and AI/ML engineer in Bangkok. My path runs from graphic design to IT support to full-stack development, and now into ML, computer vision, and agentic AI.</p>
           <p>Currently in <span class="hi">Super AI Engineer Season 6 (LV.2)</span> on <b>Team Machima</b>. Open to internship (LV.3) and junior Data Scientist / AI Engineer roles.</p>
           <p style="font-style:italic">"Art eye, data mind — built across graphic design, IT, web, and now AI. I don't just study systems. I ship them."</p></div></div>
@@ -364,7 +377,7 @@
           <p><b>2024–2025</b> — Content Moderator · Transcosmos.</p>
           <p><b>2021–2023</b> — Graphic Designer · ZEA Management.</p>
           <p><b>2019–2021</b> — IT Support · Siam Herb Product.</p></div></div>
-        <div class="d-sec"><h3>Find me</h3><div><div class="d-links"><a href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/natticha-satjawatthana-574999404" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:natticha_beben@gmail.com">Email ↗</a><a href="resume/resume/Natticha%20Resume.html" target="_blank" rel="noopener">View CV ↗</a></div></div></div>
+        <div class="d-sec"><h3>Find me</h3><div><div class="d-links"><a href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/natticha-satjawatthana" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:natticha_beben@gmail.com">Email ↗</a><a href="resume/resume/Natticha%20Satjawatthana%20%E2%80%94%20Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download CV ↓</a></div></div></div>
       </div>
 
       <!-- ============ 1 · HACKATHONS ============ -->
@@ -648,7 +661,7 @@
         <div class="d-sec"><h3>Education</h3><div>
           <p><b>B.Sc. Multimedia Technology &amp; Animation</b> — Mae Fah Luang University (IT &amp; Communication) · 2021–2025.</p>
           <p><b>Language Program</b> — ValuePoint Academy, Pune, India · 2018.</p>
-          <div class="d-links"><a href="resume/resume/Natticha%20Resume.html" target="_blank" rel="noopener">View full resume ↗</a></div></div></div>
+          <div class="d-links"><a href="resume/resume/Natticha%20Satjawatthana%20%E2%80%94%20Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download full resume ↓</a></div></div></div>
       </div>
 
       <!-- ============ 4 · CERTIFICATIONS ============ -->
@@ -697,7 +710,7 @@
           <p><b>Phone</b> — <span class="hi">081-318-6310</span></p>
           <p><b>LINE</b> — <span class="hi">BEETWOWIN</span></p></div></div>
         <div class="d-sec"><h3>Online</h3><div>
-          <div class="d-links"><a href="mailto:natticha_beben@gmail.com">Email ↗</a><a href="https://www.linkedin.com/in/natticha-satjawatthana-574999404" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener">GitHub ↗</a><a href="resume/resume/Natticha%20Resume.html" target="_blank" rel="noopener">View CV ↗</a></div>
+          <div class="d-links"><a href="mailto:natticha_beben@gmail.com">Email ↗</a><a href="https://www.linkedin.com/in/natticha-satjawatthana" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener">GitHub ↗</a><a href="resume/resume/Natticha%20Satjawatthana%20%E2%80%94%20Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download CV ↓</a></div>
           <p style="margin-top:1rem;font-family:var(--mono);font-size:.72rem;color:var(--muted)">© 2025 Natticha Satjawatthana · Built from scratch, no templates.</p></div></div>
       </div>
 
