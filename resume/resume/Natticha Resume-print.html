@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natticha Satjawatthana — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161616;
+    --head:#0e0e0e;
+    --body:#2f2f2f;
+    --muted:#5d5d5d;
+    --faint:#8a8a8a;
+    --paper:#ffffff;
+    --rule:#1a1a1a;
+    --hair:#d3d3d3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#9c9e9f;}
+  body{
+    font-family:'Public Sans',Arial,sans-serif;
+    color:var(--body);
+    -webkit-font-smoothing:antialiased;
+    padding:30px 0;
+    display:flex;justify-content:center;
+  }
+  .page{
+    width:794px;min-height:1123px;
+    background:var(--paper);
+    position:relative;
+    box-shadow:0 14px 55px rgba(0,0,0,.26);
+    padding:50px 58px 46px;
+    display:flex;flex-direction:column;
+  }
+
+  /* ===== HEADER ===== */
+  .head{display:flex;justify-content:space-between;align-items:flex-start;gap:26px;}
+  .head .id{flex:1;}
+  .name{
+    font-size:33px;font-weight:700;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--head);line-height:1;
+  }
+  .name span{font-weight:400;color:var(--ink);}
+  .role-tag{
+    display:inline-block;margin-top:11px;white-space:nowrap;
+    background:var(--ink);color:#fff;
+    font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    padding:5px 13px;
+  }
+  .contact{
+    margin-top:14px;
+    font-size:10px;line-height:1.65;color:var(--body);letter-spacing:.005em;
+    max-width:560px;
+  }
+  .contact .sep{color:var(--faint);margin:0 7px;}
+  .contact b{font-weight:600;color:var(--ink);}
+  .qr{flex:0 0 auto;text-align:center;}
+  .qr img{width:84px;height:84px;display:block;border:1px solid var(--hair);}
+  .qr .cap{font-size:7.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+  /* ===== SECTION ===== */
+  .sec{margin-top:14px;}
+  .sec-h{
+    font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--head);padding-bottom:4px;border-bottom:1.5px solid var(--rule);
+    margin-bottom:8px;
+  }
+
+  .summary{font-size:10px;line-height:1.6;color:var(--body);text-align:justify;text-wrap:pretty;}
+  .summary b{font-weight:600;color:var(--ink);}
+
+  /* experience entry */
+  .xp{margin-bottom:11px;}
+  .xp:last-child{margin-bottom:0;}
+  .xp-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
+  .xp .ti{font-size:11px;font-weight:700;letter-spacing:.01em;color:var(--head);line-height:1.3;}
+  .xp .dt{font-size:9.5px;font-weight:700;color:var(--ink);white-space:nowrap;letter-spacing:.02em;}
+  .xp .co{font-size:9.5px;font-style:italic;color:var(--muted);margin-top:1px;}
+  .xp ul{list-style:none;margin-top:4px;}
+  .xp li{position:relative;padding-left:14px;font-size:9.5px;line-height:1.5;color:var(--body);margin-bottom:2px;text-align:justify;}
+  .xp li:last-child{margin-bottom:0;}
+  .xp li::before{content:"";position:absolute;left:3px;top:6px;width:3.5px;height:3.5px;border-radius:50%;background:var(--ink);}
+  .xp li b{font-weight:600;color:var(--ink);}
+
+  /* education / certs rows */
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:6px;}
+  .row:last-child{margin-bottom:0;}
+  .row .l{font-size:10px;color:var(--body);line-height:1.4;}
+  .row .l b{font-weight:700;color:var(--head);}
+  .row .l i{font-style:normal;color:var(--muted);}
+  .row .r{font-size:9.5px;font-weight:700;color:var(--ink);white-space:nowrap;}
+
+  /* skills grid */
+  .skills{display:grid;grid-template-columns:1fr;gap:5px;}
+  .skill-line{display:grid;grid-template-columns:150px 1fr;gap:8px;align-items:start;font-size:9.7px;line-height:1.5;color:var(--body);}
+  .skill-line b{font-weight:700;color:var(--head);}
+
+  .certs{display:grid;grid-template-columns:1fr 1fr;gap:4px 28px;}
+  .cert-line{font-size:9.5px;line-height:1.45;color:var(--body);position:relative;padding-left:13px;}
+  .cert-line::before{content:"";position:absolute;left:3px;top:5.5px;width:3.5px;height:3.5px;border-radius:50%;background:var(--ink);}
+  .cert-line b{font-weight:600;color:var(--head);}
+
+  @media print{
+    html,body{background:#fff;}
+    body{padding:0;}
+    .page{box-shadow:none;width:100%;min-height:auto;}
+    @page{size:A4;margin:0;}
+  }
+</style>
+</head>
+<body>
+  <div class="page" data-screen-label="Resume">
+    <!-- HEADER -->
+    <header class="head">
+      <div class="id">
+        <h1 class="name">Natticha <span>Satjawatthana</span></h1>
+        <div class="role-tag">Data Scientist · AI / ML Engineer</div>
+        <div class="contact">
+          Bangkok, Thailand <span class="sep">|</span> <b>081-318-6310</b> <span class="sep">|</span> natticha_beben@gmail.com <span class="sep">|</span> LINE: BEETWOWIN<br>
+          linkedin.com/in/natticha-satjawatthana <span class="sep">|</span> github.com/beetwowin2-coder <span class="sep">|</span> 607107natticha.github.io
+        </div>
+      </div>
+      <div class="qr">
+        <img src="assets/website-qr-tight.png" alt="Portfolio website QR code">
+        <div class="cap">Scan · Portfolio</div>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section class="sec">
+      <div class="sec-h">Summary</div>
+      <p class="summary">Data Scientist and AI / ML Engineer, and a <b>2× hackathon winner</b> on Team Machima (Super AI Engineer S6), with hands-on delivery across machine learning, computer vision, edge AI, agentic LLM systems, and full-stack web. Six years spanning graphic design, IT support, and full-stack development give rare range — building production systems with both a user's and an engineer's eye. Seeking an internship (LV.3) or junior Data Scientist / AI Engineer role.</p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="sec">
+      <div class="sec-h">Work Experience</div>
+
+      <div class="xp">
+        <div class="xp-top">
+          <div class="ti">AI / ML Engineer &amp; Data Scientist</div>
+          <div class="dt">2025 – 2026</div>
+        </div>
+        <div class="co">Super AI Engineer Season 6 — Team Machima (AIAT)</div>
+        <ul>
+          <li>Won the <b>Enterprise Data Agent Showdown</b> (BOL × NCSA): built an agentic AI + OCR pipeline extracting data from enterprise documents; human-in-the-loop routing reached <b>95% automation and &gt;99.2% field accuracy</b>.</li>
+          <li>Led the data team to <b>1st place in Edge-AI Intelligent Transport</b> (AIAT × NT): labeled <b>7,900+ images</b> across 30 classes and optimized PyTorch → ONNX → TensorRT FP16 to <b>~18 FPS (≈6× speedup)</b> on Jetson Nano.</li>
+          <li>Built a CatBoost demand-forecasting model for <b>ExpresSo</b>, achieving <b>WMAPE 8.85</b> and outperforming XGBoost (9.23) and ARIMA (18.4) through deep EDA and feature engineering.</li>
+          <li>Earned a <b>Special Award</b> for WellSense AIoT, an edge-AIoT hydration monitor on Arduino UNO Q with 8 BLE sensors and a live rule-based dashboard (Qualcomm × iMake × Chula Med).</li>
+        </ul>
+      </div>
+
+      <div class="xp">
+        <div class="xp-top">
+          <div class="ti">Freelance Web &amp; AI Developer</div>
+          <div class="dt">Mar 2025 – Present</div>
+        </div>
+        <div class="co">Self-employed — Full-stack, e-commerce &amp; automation (live demos on GitHub)</div>
+        <ul>
+          <li>Built <b>Smart ERP</b> for SMEs — PR → PO → GRN with real-time stock, Quotation → SO → DO, and role-based approvals (Django, DRF, JWT, Vue 3, PostgreSQL).</li>
+          <li>Developed <b>SabaiBill</b>, a bilingual (TH / EN) sales-document app (QT → SO → DO → IV) with automated VAT / WHT and one-click PDF export (React, Node.js, Prisma).</li>
+          <li>Automated parcel tracking via LINE → OCR → Google Sheets → auto-reply, cutting handling time from <b>~4 min to &lt;30 sec (~85%)</b> with Make.com and the LINE API.</li>
+        </ul>
+      </div>
+
+      <div class="xp">
+        <div class="xp-top">
+          <div class="ti">Content Moderator</div>
+          <div class="dt">Oct 2024 – Mar 2025</div>
+        </div>
+        <div class="co">Transcosmos (Thailand)</div>
+        <ul>
+          <li>Reviewed and classified high-volume user content against detailed guidelines — the human analog of running a production classifier at scale.</li>
+        </ul>
+      </div>
+
+      <div class="xp">
+        <div class="xp-top">
+          <div class="ti">Graphic Designer</div>
+          <div class="dt">2021 – 2023</div>
+        </div>
+        <div class="co">ZEA Management</div>
+        <ul>
+          <li>Delivered brand, print, and digital design — the visual foundation now applied to every dashboard, data visualization, and UI built.</li>
+        </ul>
+      </div>
+
+      <div class="xp">
+        <div class="xp-top">
+          <div class="ti">IT Support</div>
+          <div class="dt">2019 – 2021</div>
+        </div>
+        <div class="co">Siam Herb Product</div>
+        <ul>
+          <li>Handled software, hardware, and network setup with methodical debugging of production issues across the organization.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="sec">
+      <div class="sec-h">Education</div>
+      <div class="row">
+        <div class="l"><b>B.Sc. Multimedia Technology &amp; Animation</b> <i>| Mae Fah Luang University — School of IT &amp; Communication</i></div>
+        <div class="r">2021 – 2025</div>
+      </div>
+      <div class="row">
+        <div class="l"><b>Language Program</b> <i>| ValuePoint Academy, Pune, India</i></div>
+        <div class="r">2018</div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="sec">
+      <div class="sec-h">Certifications</div>
+      <div class="certs">
+        <div class="cert-line"><b>Super AI Engineer S6 — LV.2</b> · AIAT (in progress)</div>
+        <div class="cert-line"><b>Huawei HCCDA</b> — AI &amp; Tech Essentials</div>
+        <div class="cert-line"><b>TPQI</b> — AI / Cloud Certification (valid to 2029)</div>
+        <div class="cert-line"><b>Data Science Job Simulation</b> · 2026</div>
+        <div class="cert-line"><b>AI Ready ASEAN</b> · ASEAN Foundation × Google.org</div>
+        <div class="cert-line"><b>English</b> · TOEIC 590 &nbsp;|&nbsp; Thai · Native</div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="sec">
+      <div class="sec-h">Skills</div>
+      <div class="skills">
+        <div class="skill-line"><b>Data Science &amp; ML</b> <span>Python, pandas, NumPy, scikit-learn, XGBoost, CatBoost, SQL, EDA, feature engineering, time-series forecasting, model evaluation</span></div>
+        <div class="skill-line"><b>AI · Vision · LLM</b> <span>PyTorch, YOLO, MobileNetV3, CLIP, TensorRT, ONNX, RAG, vector databases, LangChain, agentic AI, OCR (PaddleOCR), prompt engineering</span></div>
+        <div class="skill-line"><b>Web &amp; Backend</b> <span>Django, DRF, Vue 3, React, Node.js, Prisma, PostgreSQL, Supabase, REST API, JWT</span></div>
+        <div class="skill-line"><b>Tools &amp; Edge / IoT</b> <span>Make.com, LINE API, Google Sheets, Git, Jetson Nano, Arduino UNO Q, BLE, Figma, Adobe Creative Suite</span></div>
+      </div>
+    </section>
+  </div>
+<script>
+(async () => {
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  @page { margin: 0.5cm; }\n  html, body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }\n  section, article, figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>

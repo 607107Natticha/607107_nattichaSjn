@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natticha Satjawatthana — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17191e;
+    --ink-soft:#33373f;
+    --paper:#fbfaf7;
+    --muted:#73767d;
+    --faint:#9b9ea4;
+    --line:#e6e3da;
+    --line-strong:#d4d0c4;
+    --accent:#2746d6;
+    --accent-soft:#eef1fd;
+    --gold:#9a6b15;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#54565c;}
+  body{
+    font-family:'IBM Plex Sans',sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding:24px 0;
+    display:flex;
+    justify-content:center;
+  }
+  .page{
+    width:794px;
+    min-height:1123px;
+    background:var(--paper);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,.35);
+  }
+
+  /* ---------- HEADER ---------- */
+  .head{
+    background:var(--ink);
+    color:#f3f1ec;
+    padding:24px 38px 20px;
+    position:relative;
+  }
+  .head::before{
+    content:"";
+    position:absolute;left:0;top:0;bottom:0;width:5px;
+    background:var(--accent);
+  }
+  .head-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;}
+  .name{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:29px;
+    line-height:1.05;
+    letter-spacing:-.015em;
+    white-space:nowrap;
+  }
+  .name .nick{color:var(--faint);font-weight:500;}
+  .role{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.04em;
+    color:#b9c4f2;
+    margin-top:10px;
+    text-transform:uppercase;
+  }
+  .role b{color:#fff;font-weight:600;}
+  .photo{
+    width:104px;height:104px;flex:0 0 104px;
+    border-radius:14px;object-fit:cover;
+    border:2px solid rgba(255,255,255,.18);
+    filter:grayscale(.15) contrast(1.02);
+  }
+  .contact{
+    margin-top:14px;
+    display:flex;flex-wrap:wrap;gap:6px 22px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:.02em;
+    color:#cfd1d6;
+  }
+  .contact span{display:inline-flex;gap:6px;}
+  .contact .k{color:var(--faint);}
+  .contact .v{color:#fff;}
+
+  /* ---------- BODY ---------- */
+  .body{
+    display:grid;
+    grid-template-columns:1fr 280px;
+  }
+  .col{padding:18px 30px 22px 38px;}
+  .col.side{
+    padding:18px 34px 22px 26px;
+    background:#f5f3ec;
+    border-left:1px solid var(--line);
+  }
+
+  .sec{margin-bottom:12px;}
+  .sec:last-child{margin-bottom:0;}
+  .sec-h{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;align-items:center;gap:8px;
+    margin-bottom:10px;
+  }
+  .sec-h::before{content:"//";color:var(--faint);font-weight:500;}
+  .sec-h .tag{
+    margin-left:auto;
+    color:var(--muted);
+    font-weight:500;
+    letter-spacing:.04em;
+    font-size:8.5px;
+  }
+
+  .summary{
+    font-size:10px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    text-wrap:pretty;
+  }
+  .summary b{color:var(--ink);font-weight:600;}
+
+  /* entry */
+  .entry{
+    padding-left:13px;
+    position:relative;
+    margin-bottom:8px;
+  }
+  .entry:last-child{margin-bottom:0;}
+  .entry::before{
+    content:"";position:absolute;left:0;top:4px;
+    width:5px;height:5px;border-radius:50%;
+    background:var(--line-strong);
+  }
+  .entry.win::before{background:var(--accent);}
+  .e-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .e-title{
+    flex:1 1 auto;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;font-size:11.5px;line-height:1.3;
+    color:var(--ink);
+  }
+  .e-meta{
+    flex:0 0 auto;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8.5px;color:var(--muted);white-space:nowrap;letter-spacing:.01em;
+    padding-top:2px;
+  }
+  .badge{
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:7.5px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:1.5px 5px;border-radius:3px;
+    background:var(--accent);color:#fff;
+    vertical-align:middle;margin-left:6px;
+    transform:translateY(-1px);
+  }
+  .badge.gold{background:#f2ead4;color:var(--gold);border:1px solid #e4d6ab;}
+  .e-desc{
+    font-size:9.3px;line-height:1.45;color:var(--ink-soft);margin-top:2px;text-wrap:pretty;
+  }
+  .e-desc b{color:var(--ink);font-weight:600;}
+  .stack{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8px;color:var(--muted);margin-top:4px;letter-spacing:.005em;
+  }
+  .stack::before{content:"⌗ ";color:var(--accent);font-weight:600;}
+
+  /* ---------- SIDEBAR ---------- */
+  .skill-grp{margin-bottom:10px;}
+  .skill-grp:last-child{margin-bottom:0;}
+  .skill-grp h4{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:10px;font-weight:600;color:var(--ink);margin-bottom:3px;
+  }
+  .skill-grp p{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8.3px;line-height:1.5;color:var(--ink-soft);letter-spacing:.005em;
+  }
+
+  .cert{margin-bottom:8px;}
+  .cert:last-child{margin-bottom:0;}
+  .cert .t{font-size:9.6px;font-weight:600;color:var(--ink);line-height:1.3;}
+  .cert .d{font-size:8.6px;line-height:1.42;color:var(--muted);margin-top:1px;text-wrap:pretty;}
+  .cert .d em{font-style:normal;color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:8px;}
+
+  .edu{margin-bottom:9px;}
+  .edu:last-child{margin-bottom:0;}
+  .edu .t{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;line-height:1.3;}
+  .edu .d{font-size:8.6px;color:var(--muted);line-height:1.4;margin-top:1px;}
+
+  .side .sec-h{color:var(--ink);}
+  .side .sec-h::before{color:var(--accent);}
+
+  @media print{
+    html,body{background:#fff;}
+    body{padding:0;}
+    .page{box-shadow:none;width:100%;min-height:auto;}
+    @page{size:A4;margin:0;}
+  }
+</style>
+</head>
+<body>
+  <div class="page" data-screen-label="Resume">
+    <!-- HEADER -->
+    <header class="head">
+      <div class="head-row">
+        <div>
+          <h1 class="name">NATTICHA SATJAWATTHANA <span class="nick">(BENZ)</span></h1>
+          <div class="role">Data Scientist <b>·</b> AI / ML Engineer <b>·</b> builder + user mindset</div>
+        </div>
+        <img class="photo" src="assets/benz.jpg" alt="Natticha Satjawatthana">
+      </div>
+      <div class="contact">
+        <span><i class="k">TEL</i><i class="v">081-318-6310</i></span>
+        <span><i class="k">EMAIL</i><i class="v">natticha_beben@gmail.com</i></span>
+        <span><i class="k">LINE</i><i class="v">BEETWOWIN</i></span>
+        <span><i class="k">LINKEDIN</i><i class="v">natticha-satjawatthana</i></span>
+        <span><i class="k">GITHUB</i><i class="v">beetwowin2-coder</i></span>
+        <span><i class="k">PORTFOLIO</i><i class="v">607107natticha.github.io</i></span>
+      </div>
+    </header>
+
+    <!-- BODY -->
+    <div class="body">
+      <!-- MAIN -->
+      <main class="col">
+        <section class="sec">
+          <div class="sec-h">Summary</div>
+          <p class="summary">Data scientist and AI/ML engineer who ships — and wins. On <b>Team Machima</b> in <b>Super AI Engineer S6</b>, I helped take <b>1st place in two hackathons</b>: a Jetson Nano edge-AI transport system (led the data team, ~18 FPS) and an enterprise data agent (agentic AI + OCR), plus a CatBoost demand-forecasting model (WMAPE 8.85) and a special-award AIoT wellness device. Six years across graphic design, IT, and full-stack web give me unusual range — I see every system as both a daily user and the engineer who builds it. Open to internship (LV.3) and junior Data Scientist / AI Engineer roles.</p>
+        </section>
+
+        <section class="sec">
+          <div class="sec-h">AI / ML Hackathons <span class="tag">Super AI Engineer S6 · Team Machima · 2× Winner</span></div>
+
+          <div class="entry win">
+            <div class="e-top">
+              <div class="e-title">Enterprise Data Agent — FahMai Finale<span class="badge">Winner</span></div>
+              <div class="e-meta">BOL × NCSA · Jun 2026</div>
+            </div>
+            <p class="e-desc">Won the Enterprise Data Agent Showdown: an agentic AI + OCR system that extracts data from enterprise documents and answers questions over it — judged on OCR accuracy, evaluation, system design &amp; cybersecurity. HITL routing: <b>95% auto / 5% checked, &gt;99.2% field accuracy</b>.</p>
+            <div class="stack">Agentic AI · PaddleOCR · LLM extraction · RAG · vector DB · HITL</div>
+          </div>
+
+          <div class="entry win">
+            <div class="e-top">
+              <div class="e-title">Edge AI · Intelligent Transport<span class="badge">Winner · Data Lead</span></div>
+              <div class="e-meta">AIAT × NT</div>
+            </div>
+            <p class="e-desc">Real-time vehicle detection across 10 live CCTV on Jetson Nano: <b>7,900+ labeled images</b> (30 classes), YOLO26n pre-labeling + Roboflow QC. Optimized PyTorch → ONNX → TensorRT FP16 to <b>~18 FPS (≈6× speedup)</b>.</p>
+            <div class="stack">YOLO26n · MobileNetV3-S · TensorRT FP16 · CLIP · Roboflow · Jetson Nano</div>
+          </div>
+
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">Demand Forecasting — ExpresSo</div>
+              <div class="e-meta">team of 6</div>
+            </div>
+            <p class="e-desc">Owned deep EDA + feature engineering (lag/rolling, cyclical calendar, store, KMeans). <b>CatBoost WMAPE 8.85</b>, beating XGBoost (9.23) and ARIMA (18.4).</p>
+            <div class="stack">CatBoost · XGBoost · ARIMA · pandas · time-series · KMeans</div>
+          </div>
+
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">WellSense AIoT · “Sip” Wellness Monitor<span class="badge gold">Special Award</span></div>
+              <div class="e-meta">Qualcomm × iMake × Chula Med</div>
+            </div>
+            <p class="e-desc">Judges' Favorite for an edge-AIoT hydration device on Arduino UNO Q + 8 sensors (BLE): real-time pipeline, rule-based intelligence engine, live dashboard with LED-matrix GOOD/MID/STOP feedback.</p>
+            <div class="stack">Arduino UNO Q · C++ · Python · BLE · Supabase · ultrasonic/gyro/temp/EEG</div>
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="sec-h">Full-Stack &amp; Automation <span class="tag">Live</span></div>
+
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">Smart ERP (Mini-ERP) for SMEs</div>
+              <div class="e-meta">live demo + GitHub</div>
+            </div>
+            <p class="e-desc">Web ERP: PR → PO → GRN with real-time stock, Quotation → SO → DO with delivery links, role-based approval center.</p>
+            <div class="stack">Django 6 · DRF · JWT · PostgreSQL · Vue 3 · Tailwind</div>
+          </div>
+
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">SabaiBill — Document Management</div>
+              <div class="e-meta">live demo + GitHub</div>
+            </div>
+            <p class="e-desc">Sales-doc app (QT → SO → DO → IV) with auto VAT/WHT, 1-click PDF export, Thai/English bilingual.</p>
+            <div class="stack">React · Node.js · Prisma · PostgreSQL</div>
+          </div>
+
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">Parcel-Tracking Automation &amp; E-commerce</div>
+              <div class="e-meta">Make.com</div>
+            </div>
+            <p class="e-desc">LINE → OCR → parse → Sheets → auto-reply; cut per-parcel handling <b>~4 min → &lt;30 sec (~85%)</b>. Built live stores (CJP Frozen Food, Yuki Pepper) with LINE API alerts.</p>
+            <div class="stack">Make.com · LINE API · Google Sheets · OCR</div>
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="sec-h">Work Experience</div>
+
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">Freelance Web &amp; AI Developer</div>
+              <div class="e-meta">Mar 2025 – Present</div>
+            </div>
+            <p class="e-desc">Build full-stack systems, e-commerce, and OCR/automation pipelines; integrate AI into client workflows.</p>
+          </div>
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">Content Moderator — Transcosmos (Thailand)</div>
+              <div class="e-meta">Oct 2024 – Mar 2025</div>
+            </div>
+            <p class="e-desc">High-volume content review &amp; classification against guidelines — the human analog of running a classifier.</p>
+          </div>
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">Graphic Designer — ZEA Management</div>
+              <div class="e-meta">2021 – 2023</div>
+            </div>
+            <p class="e-desc">Brand, print &amp; digital design — the visual eye I bring to every dashboard and UI.</p>
+          </div>
+          <div class="entry">
+            <div class="e-top">
+              <div class="e-title">IT Support — Siam Herb Product</div>
+              <div class="e-meta">2019 – 2021</div>
+            </div>
+            <p class="e-desc">Software, hardware &amp; network setup; methodical debugging of production issues.</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="col side">
+        <section class="sec">
+          <div class="sec-h">Skills</div>
+          <div class="skill-grp">
+            <h4>Data Science &amp; ML</h4>
+            <p>Python · pandas · NumPy · scikit-learn · XGBoost · CatBoost · feature engineering · EDA · time-series · model eval</p>
+          </div>
+          <div class="skill-grp">
+            <h4>Computer Vision, Edge &amp; IoT</h4>
+            <p>YOLO26n · MobileNetV3 · CLIP · TensorRT · Roboflow · PyTorch→ONNX→TensorRT · Jetson Nano · Arduino UNO Q · C++ · BLE</p>
+          </div>
+          <div class="skill-grp">
+            <h4>LLM &amp; Generative AI</h4>
+            <p>RAG · semantic chunking · vector DB · LangChain · agentic pipelines · prompt engineering · OCR (PaddleOCR) · HITL</p>
+          </div>
+          <div class="skill-grp">
+            <h4>Web &amp; Backend</h4>
+            <p>Django · DRF · Vue 3 · React · Node.js · Prisma · PostgreSQL · Supabase · JWT · REST API</p>
+          </div>
+          <div class="skill-grp">
+            <h4>Automation &amp; Tools</h4>
+            <p>Make.com · LINE API · Google Sheets · Git · Cursor · Windsurf · Claude Code</p>
+          </div>
+          <div class="skill-grp">
+            <h4>Docs &amp; Design</h4>
+            <p>Markdown · READMEs &amp; prompt files · Adobe Creative Suite · Figma</p>
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="sec-h">Certifications</div>
+          <div class="cert">
+            <div class="t">Super AI Engineer S6 — LV.2</div>
+            <div class="d">AIAT · LV.1 done, LV.2 in progress <em>(13-course AI curriculum)</em></div>
+          </div>
+          <div class="cert">
+            <div class="t">Huawei HCCDA — AI &amp; Tech Essentials</div>
+            <div class="d">+ TPQI AI/Cloud certification (S6 camp) · <em>valid → Apr 2029</em></div>
+          </div>
+          <div class="cert">
+            <div class="t">Data Science Job Simulation</div>
+            <div class="d">EDA → feature eng → modeling → insights · <em>May 2026</em></div>
+          </div>
+          <div class="cert">
+            <div class="t">AI Ready ASEAN · TOEIC 590</div>
+            <div class="d">ASEAN Foundation × Google.org · 2024</div>
+          </div>
+        </section>
+
+        <section class="sec">
+          <div class="sec-h">Education</div>
+          <div class="edu">
+            <div class="t">B.Sc. Multimedia Technology &amp; Animation</div>
+            <div class="d">Mae Fah Luang University — IT &amp; Communication</div>
+          </div>
+          <div class="edu">
+            <div class="t">Language Program</div>
+            <div class="d">ValuePoint Academy, Pune, India · 2018</div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
