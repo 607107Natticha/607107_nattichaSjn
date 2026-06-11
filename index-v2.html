@@ -225,11 +225,32 @@
   @media(max-width:760px){ .d-sec{ grid-template-columns:1fr; gap:.5rem; } .d-stats{ grid-template-columns:repeat(2,1fr); } }
   @media(max-width:980px){ .rail{ left:50%; right:auto; top:auto; bottom:10rem; transform:translateX(-50%); flex-direction:row; gap:.7rem; flex-wrap:wrap; justify-content:center; max-width:92vw; } .rail .hint{ display:none; } .rail button{ font-size:.58rem; letter-spacing:.1em; } .controls{ display:none; } .talk{ left:50%; transform:translateX(-50%); bottom:3.5rem; } .talk:hover{ transform:translateX(-50%) translateY(-3px); } }
   @media(max-height:640px){ .chapter{ align-items:flex-start; padding-top:16vh; } }
-  @media(prefers-reduced-motion:reduce){ *{ transition:none !important; animation:none !important; } .headline .line span{ transform:none !important; opacity:1 !important; filter:none !important; } }
+  /* ===== WOW FX ===== */
+  /* custom cursor (desktop pointer only) */
+  .cur, .cur-ring{ position:fixed; top:0; left:0; z-index:9999; pointer-events:none; border-radius:50%; mix-blend-mode:screen; will-change:transform; }
+  .cur{ width:7px; height:7px; background:var(--glow); box-shadow:0 0 12px var(--glow); margin:-3.5px 0 0 -3.5px; }
+  .cur-ring{ width:34px; height:34px; border:1px solid rgba(127,208,255,.6); margin:-17px 0 0 -17px; transition:width .25s, height .25s, margin .25s, border-color .25s, background .25s; }
+  .cur-ring.hot{ width:56px; height:56px; margin:-28px 0 0 -28px; border-color:var(--accent); background:rgba(77,159,255,.14); }
+  @media (hover:hover) and (pointer:fine){ body{ cursor:none; } a,button,.cta,.pill,.about-avatar{ cursor:none; } }
+  @media (hover:none),(pointer:coarse){ .cur,.cur-ring{ display:none !important; } }
+  /* cursor spotlight over the dark vignette */
+  .spotlight{ position:fixed; inset:0; z-index:151; pointer-events:none; opacity:0; background:radial-gradient(240px 240px at var(--mx,50%) var(--my,50%), rgba(77,159,255,.10), transparent 70%); transition:opacity .5s; }
+  @media (hover:hover) and (pointer:fine){ .spotlight{ opacity:1; } }
+  /* scanline overlay */
+  .scan{ position:fixed; inset:0; z-index:152; pointer-events:none; opacity:.45; background:repeating-linear-gradient(to bottom, rgba(127,208,255,.04) 0 1px, transparent 1px 3px); }
+  .scan::after{ content:''; position:absolute; left:0; right:0; height:34vh; background:linear-gradient(to bottom, transparent, rgba(127,208,255,.05), transparent); animation:scanSweep 7s linear infinite; }
+  @keyframes scanSweep{ 0%{ transform:translateY(-40vh);} 100%{ transform:translateY(130vh);} }
+  /* neon breathing on accent words */
+  .headline em{ animation:neon 4.5s ease-in-out infinite; }
+  @keyframes neon{ 0%,100%{ text-shadow:0 0 30px rgba(77,159,255,.55);} 50%{ text-shadow:0 0 12px rgba(77,159,255,.4), 0 0 44px rgba(127,208,255,.55);} }
+
+  @media(prefers-reduced-motion:reduce){ *{ transition:none !important; animation:none !important; } .headline .line span{ transform:none !important; opacity:1 !important; filter:none !important; } .cur,.cur-ring,.scan,.spotlight{ display:none !important; } body{ cursor:auto !important; } }
 </style>
 </head>
 <body>
   <div class="hud"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+  <div class="spotlight"></div>
+  <div class="scan"></div>
 
   <div id="loader">
     <div class="load-num"><span id="loadNum">0</span><small>%</small></div>
@@ -806,6 +827,50 @@
     if(e.key==='ArrowDown'||e.key==='ArrowRight') go(cur+1);
     if(e.key==='ArrowUp'||e.key==='ArrowLeft') go(cur-1);
   });
+
+  /* ===== WOW FX — cursor, parallax, magnetic ===== */
+  (function(){
+    var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(reduce) return;
+    var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    var root=document.documentElement;
+    var mx=window.innerWidth/2, my=window.innerHeight/2, rx=mx, ry=my;
+    var dot=null, ring=null;
+    if(fine){
+      dot=document.createElement('div'); dot.className='cur';
+      ring=document.createElement('div'); ring.className='cur-ring';
+      document.body.appendChild(dot); document.body.appendChild(ring);
+      var hotSel='a,button,.cta,.pill,.about-avatar,[data-detail],[data-go]';
+      document.addEventListener('mouseover',function(e){ if(e.target.closest&&e.target.closest(hotSel)) ring.classList.add('hot'); });
+      document.addEventListener('mouseout',function(e){ if(e.target.closest&&e.target.closest(hotSel)) ring.classList.remove('hot'); });
+    }
+    window.addEventListener('mousemove',function(e){
+      mx=e.clientX; my=e.clientY;
+      root.style.setProperty('--mx',mx+'px'); root.style.setProperty('--my',my+'px');
+      if(dot) dot.style.transform='translate('+mx+'px,'+my+'px)';
+    });
+    function loop(){
+      rx+=(mx-rx)*0.18; ry+=(my-ry)*0.18;
+      if(ring) ring.style.transform='translate('+rx+'px,'+ry+'px)';
+      var ci=document.querySelector('.chapter.show .chapter-inner');
+      if(ci && !detail.classList.contains('open')){
+        var px=(mx/window.innerWidth-0.5), py=(my/window.innerHeight-0.5);
+        ci.style.transform='translate('+(px*-18).toFixed(1)+'px,'+(py*-12).toFixed(1)+'px)';
+      }
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+    if(fine){
+      document.querySelectorAll('.cta,.pill,.talk,.menu-close,.detail-close').forEach(function(el){
+        el.addEventListener('mousemove',function(e){
+          var r=el.getBoundingClientRect();
+          var dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+          el.style.transform='translate('+(dx*0.25).toFixed(1)+'px,'+(dy*0.35).toFixed(1)+'px)';
+        });
+        el.addEventListener('mouseleave',function(){ el.style.transform=''; });
+      });
+    }
+  })();
 })();
 </script>
 </body>
