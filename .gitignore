@@ -3,7 +3,7 @@ Thumbs.db
 desktop.ini
 
 # Large videos — over GitHub 100MB limit
-car.mp4
+# car.mp4 now compressed to ~10MB (480p) and committed for the live site
 walking_in_d_loop_slow_pict.mp4
 
 # Reference images / mockups (not used by deployed site)
