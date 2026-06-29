@@ -254,6 +254,7 @@
   @media(max-width:760px){
     .cv-frame{width:100%;margin-left:0;transform:none;height:calc(100dvh - 150px);min-height:340px;border-radius:10px;}
     .cv-actions{gap:.8rem;font-size:.66rem;}
+    .d-arrow{display:none;}            /* arrow doodle was overlapping the face on mobile */
   }
   .d-fig{margin:.9rem 0 .2rem;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);}
   .d-fig img,.d-fig video{display:block;width:100%;height:auto;}
@@ -361,7 +362,7 @@
         <p class="hsub"><b>Hello, I'm Natticha Satjawatthana.</b> A Super AI Engineer (Season 6) student looking for an internship — coming from a mixed background in design, IT &amp; full-stack web. I learn fast and love building under real pressure.</p>
         <button class="more-btn" data-open="about">Read my story <span class="arr">→</span></button>
         <div class="role">
-          <a class="cv" href="Cv/Natticha_Satjawatthana_Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download CV ↓</a>
+          <a class="cv" href="Cv/Natticha_Satjawatthana_Resume_2026.pdf" download="Natticha_Satjawatthana_Resume_2026.pdf">Download CV ↓</a>
           <a class="a" href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener">GitHub · beetwowin2-coder ↗</a>
           <a class="a" href="https://www.linkedin.com/in/natticha-satjawatthana" target="_blank" rel="noopener">LinkedIn · natticha-satjawatthana ↗</a>
         </div>
@@ -471,7 +472,7 @@
           <a href="tel:0813186310"><span class="k">Tel</span> 081 318 6310</a>
           <a href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener"><span class="k">GitHub</span> beetwowin2-coder ↗</a>
           <a href="https://linkedin.com/in/natticha-satjawatthana" target="_blank" rel="noopener"><span class="k">LinkedIn</span> natticha-satjawatthana ↗</a>
-          <a href="Cv/Natticha_Satjawatthana_Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf"><span class="k">CV</span> Download résumé ↓</a>
+          <a href="Cv/Natticha_Satjawatthana_Resume_2026.pdf" download="Natticha_Satjawatthana_Resume_2026.pdf"><span class="k">CV</span> Download résumé ↓</a>
         </div>
         <span class="ty-name">Natticha Satjawatthana*</span>
       </div>
@@ -504,7 +505,7 @@
         <p>I'm a student in the <b>Super AI Engineer (Season 6)</b> — one of Thailand's most competitive AI programs — currently looking for an internship. Getting here meant working through rounds of online learning, competitions, and intense team hackathons, where I learned to build under real pressure, tight deadlines, and constant problem-solving.</p>
         <p>Coming from a mixed background in <b>design, IT, and full-stack web</b>, I've learned to wear many hats and see a system from every side. I'm still exploring where I fit best in AI — and I think that's the exciting part.</p>
         <p>I learn fast, I'm comfortable saying <em>“I don't know yet, but I'll figure it out,”</em> and I'm looking for a place to <b>build, contribute, and grow</b>.</p>
-        <div class="d-links"><button data-open="cv">View full CV →</button><a href="Cv/Natticha_Satjawatthana_Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download CV ↓</a></div></div></div>
+        <div class="d-links"><button data-open="cv">View full CV →</button><a href="Cv/Natticha_Satjawatthana_Resume_2026.pdf" download="Natticha_Satjawatthana_Resume_2026.pdf">Download CV ↓</a></div></div></div>
     </div>
 
     <!-- cv · full résumé -->
@@ -512,10 +513,10 @@
       <div class="d-eyebrow">Résumé · CV</div>
       <h1 class="d-title">Curriculum <span class="grn">Vitae</span></h1>
       <div class="cv-actions">
-        <a href="Cv/Natticha_Satjawatthana_Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download PDF ↓</a>
-        <a href="Cv/Natticha_Satjawatthana_Resume.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
+        <a href="Cv/Natticha_Satjawatthana_Resume_2026.pdf" download="Natticha_Satjawatthana_Resume_2026.pdf">Download PDF ↓</a>
+        <a href="Cv/Natticha_Satjawatthana_Resume_2026.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
       </div>
-      <div class="cv-frame"><iframe data-src="Cv/Natticha_Satjawatthana_Resume.pdf#view=FitH" title="Natticha Satjawatthana — CV" loading="lazy"></iframe></div>
+      <div class="cv-frame"><iframe data-src="Cv/Natticha_Satjawatthana_Resume_2026.pdf#view=FitH" title="Natticha Satjawatthana — CV" loading="lazy"></iframe></div>
     </div>
 
     <!-- 0 · FahMai Data-Agent -->
@@ -969,7 +970,7 @@
     });
   }
 
-  /* hero avatar ↔ 3D toggle (auto-cycles; manual click takes over) */
+  /* hero avatar ↔ 3D: hover to switch (desktop), tap button (touch) */
   (function(){
     var btn=document.getElementById('view3dBtn'), right=btn&&btn.closest('.right');
     if(!btn||!right) return;
@@ -979,14 +980,11 @@
       btn.setAttribute('aria-pressed',on?'true':'false');
       btn.textContent=on?'View in 2D ↻':'View in 3D ↻';
     };
-    var timer=null;
-    if(!reduce){
-      timer=setInterval(function(){ apply(!right.classList.contains('show3d')); }, 4500);
+    if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+      right.addEventListener('mouseenter',function(){ apply(true); });
+      right.addEventListener('mouseleave',function(){ apply(false); });
     }
-    btn.addEventListener('click',function(){
-      if(timer){ clearInterval(timer); timer=null; }   // hand control to the user
-      apply(!right.classList.contains('show3d'));
-    });
+    btn.addEventListener('click',function(e){ e.stopPropagation(); apply(!right.classList.contains('show3d')); });
   })();
 
   /* back-to-top */
