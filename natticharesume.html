@@ -969,15 +969,23 @@
     });
   }
 
-  /* hero avatar ↔ 3D toggle */
+  /* hero avatar ↔ 3D toggle (auto-cycles; manual click takes over) */
   (function(){
     var btn=document.getElementById('view3dBtn'), right=btn&&btn.closest('.right');
     if(!btn||!right) return;
-    btn.addEventListener('click',function(){
-      var on=right.classList.toggle('show3d');
+    var apply=function(on){
+      right.classList.toggle('show3d',on);
       btn.classList.toggle('on',on);
       btn.setAttribute('aria-pressed',on?'true':'false');
       btn.textContent=on?'View in 2D ↻':'View in 3D ↻';
+    };
+    var timer=null;
+    if(!reduce){
+      timer=setInterval(function(){ apply(!right.classList.contains('show3d')); }, 4500);
+    }
+    btn.addEventListener('click',function(){
+      if(timer){ clearInterval(timer); timer=null; }   // hand control to the user
+      apply(!right.classList.contains('show3d'));
     });
   })();
 
