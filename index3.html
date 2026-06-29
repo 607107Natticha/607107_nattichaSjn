@@ -68,14 +68,18 @@
   .more-btn .arr{transition:transform .25s;}
   .more-btn:hover{color:var(--ink);} .more-btn:hover .arr{transform:translateX(4px);}
   .meta{display:flex;align-items:center;gap:1rem;margin-top:1.8rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);flex-wrap:wrap;}
-  .qr{width:78px;height:78px;border:1.5px solid var(--line);border-radius:8px;background:#fff;object-fit:contain;padding:3px;box-shadow:2px 2px 0 var(--line);position:relative;z-index:1;cursor:zoom-in;transform-origin:left center;transition:transform .32s cubic-bezier(.2,.7,.2,1),box-shadow .32s,border-radius .32s;}
-  .qr:hover,.qr:focus-visible{transform:scale(2.7);z-index:60;border-radius:10px;box-shadow:6px 9px 26px rgba(0,0,0,.30);outline:none;}
+  .qr{width:78px;height:78px;border:1.5px solid var(--line);border-radius:8px;background:#fff;object-fit:contain;padding:3px;box-shadow:2px 2px 0 var(--line);cursor:zoom-in;transition:transform .2s,box-shadow .2s;}
+  .qr:hover{transform:translateY(-2px);box-shadow:3px 4px 0 var(--green);}
+  /* enlarged QR preview — fixed so the poster's overflow can't clip it */
+  .qr-pop{position:fixed;z-index:90;width:220px;height:220px;padding:9px;background:#fff;border:1.5px solid var(--line);border-radius:13px;box-shadow:7px 10px 28px rgba(0,0,0,.30);opacity:0;visibility:hidden;transform:scale(.7);transform-origin:top left;transition:opacity .22s ease,transform .22s cubic-bezier(.2,.7,.2,1);pointer-events:none;}
+  .qr-pop img{width:100%;height:100%;object-fit:contain;display:block;}
+  .qr-pop.show{opacity:1;visibility:visible;transform:scale(1);}
   /* faint but visible back-to-top */
-  .to-top{position:fixed;right:clamp(14px,3vw,28px);bottom:clamp(14px,3vw,28px);z-index:80;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:var(--bg);border:1.5px solid var(--line);box-shadow:2px 3px 0 var(--green);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .35s,transform .35s,visibility .35s;}
-  .to-top.show{opacity:.36;visibility:visible;transform:translateY(0);}
+  .to-top{position:fixed;right:clamp(14px,3vw,28px);bottom:clamp(14px,3vw,28px);z-index:120;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:var(--bg);border:1.5px solid var(--line);box-shadow:2px 3px 0 var(--green);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .35s,transform .35s,visibility .35s;}
+  .to-top.show{opacity:.5;visibility:visible;transform:translateY(0);}
   .to-top:hover,.to-top:focus-visible{opacity:1;transform:translateY(-2px);outline:none;}
-  .to-top svg{width:18px;height:18px;}
-  @media (prefers-reduced-motion:reduce){.to-top{transition:opacity .2s;}.qr{transition:box-shadow .2s;}}
+  .to-top svg{width:19px;height:19px;}
+  @media (prefers-reduced-motion:reduce){.to-top,.qr-pop{transition:opacity .2s;}}
 
   .hero .right{position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(300px,40vw,480px);}
   .hero .right .blob{position:absolute;inset:0;margin:auto;width:90%;aspect-ratio:1;background:radial-gradient(circle at 50% 48%,var(--green-l),transparent 62%);opacity:.55;filter:blur(2px);}
@@ -355,7 +359,7 @@
           <a class="a" href="https://www.linkedin.com/in/natticha-satjawatthana" target="_blank" rel="noopener">LinkedIn · natticha-satjawatthana ↗</a>
         </div>
         <div class="meta">
-          <img class="qr" src="line.jpg" alt="LINE QR code — add BEETWOWIN" loading="lazy">
+          <img class="qr" id="lineQr" src="line.jpg" alt="LINE QR code — add BEETWOWIN" loading="lazy">
           <span>LINE: BEETWOWIN · scan to add<br>Bangkok, TH · Open to internship</span>
         </div>
       </div>
@@ -949,12 +953,36 @@
   /* back-to-top */
   (function(){
     var btn=document.getElementById('toTop'); if(!btn) return;
-    var onScroll=function(){ (window.pageYOffset||document.documentElement.scrollTop)>520 ? btn.classList.add('show') : btn.classList.remove('show'); };
+    var onScroll=function(){ (window.pageYOffset||document.documentElement.scrollTop)>300 ? btn.classList.add('show') : btn.classList.remove('show'); };
     window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
     btn.addEventListener('click',function(){ window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); });
   })();
+
+  /* enlarged LINE QR preview on hover (fixed → never clipped) */
+  (function(){
+    var qr=document.getElementById('lineQr'), pop=document.getElementById('qrPop');
+    if(!qr||!pop) return;
+    var W=220, GAP=12;
+    var place=function(){
+      var r=qr.getBoundingClientRect();
+      var left=r.right+GAP, top=r.top;
+      if(left+W>window.innerWidth-8) left=r.left-W-GAP;      // flip to the left if no room right
+      if(left<8) left=8;
+      if(top+W>window.innerHeight-8) top=window.innerHeight-W-8;
+      if(top<8) top=8;
+      pop.style.left=left+'px'; pop.style.top=top+'px';
+    };
+    var show=function(){ place(); pop.classList.add('show'); };
+    var hide=function(){ pop.classList.remove('show'); };
+    qr.addEventListener('mouseenter',show);
+    qr.addEventListener('mouseleave',hide);
+    qr.addEventListener('focus',show);
+    qr.addEventListener('blur',hide);
+    window.addEventListener('scroll',function(){ if(pop.classList.contains('show')) place(); },{passive:true});
+  })();
 })();
 </script>
+<div class="qr-pop" id="qrPop" aria-hidden="true"><img src="line.jpg" alt=""></div>
 <button class="to-top" id="toTop" aria-label="Back to top" title="Back to top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
