@@ -112,6 +112,8 @@
   .mq-track .g{color:var(--green-l);}
   .marquee:hover .mq-track{animation-play-state:paused;}
   @keyframes mq{to{transform:translateX(-50%);}}
+  .mq-rev{animation-name:mq-rev;}
+  @keyframes mq-rev{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 
   /* ===== SECTION ===== */
   section{padding:clamp(2.6rem,6vw,4.6rem) 0;}
@@ -389,11 +391,19 @@
     </div>
   </div>
 
+  <!-- ===== CREDITS MARQUEE ===== -->
+  <div class="marquee marquee-credits" aria-hidden="true">
+    <div class="mq-track mq-rev">
+      <span>06/26 <span class="g">✦</span> Made in &rsquo;26 <span class="g">✦</span> Portfolio · Helpful <span class="g">✦</span> { Work / Set } <span class="g">✦</span> © 2026 Natticha · All rights reserved <span class="g">✦</span> </span>
+      <span>06/26 <span class="g">✦</span> Made in &rsquo;26 <span class="g">✦</span> Portfolio · Helpful <span class="g">✦</span> { Work / Set } <span class="g">✦</span> © 2026 Natticha · All rights reserved <span class="g">✦</span> </span>
+    </div>
+  </div>
+
   <!-- ===== MARQUEE ===== -->
   <div class="marquee" aria-hidden="true">
     <div class="mq-track">
-      <span>06/26 <span class="g">✦</span> Made in &rsquo;26 <span class="g">✦</span> Portfolio · Helpful <span class="g">✦</span> { Work / Set } <span class="g">✦</span> © 2026 Natticha · All rights reserved <span class="g">✦</span> </span>
-      <span>06/26 <span class="g">✦</span> Made in &rsquo;26 <span class="g">✦</span> Portfolio · Helpful <span class="g">✦</span> { Work / Set } <span class="g">✦</span> © 2026 Natticha · All rights reserved <span class="g">✦</span> </span>
+      <span>Data Scientist <span class="g">✦</span> AI/ML Engineer <span class="g">✦</span> Computer Vision <span class="g">✦</span> Agentic AI <span class="g">✦</span> RAG <span class="g">✦</span> Edge AI <span class="g">✦</span> Full-stack <span class="g">✦</span> 2× Hackathon Winner <span class="g">✦</span> Open to Internship <span class="g">✦</span> </span>
+      <span>Data Scientist <span class="g">✦</span> AI/ML Engineer <span class="g">✦</span> Computer Vision <span class="g">✦</span> Agentic AI <span class="g">✦</span> RAG <span class="g">✦</span> Edge AI <span class="g">✦</span> Full-stack <span class="g">✦</span> 2× Hackathon Winner <span class="g">✦</span> Open to Internship <span class="g">✦</span> </span>
     </div>
   </div>
 
