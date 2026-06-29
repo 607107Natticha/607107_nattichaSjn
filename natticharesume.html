@@ -92,6 +92,13 @@
   .d-arrow{top:18%;right:38%;width:60px;color:var(--ink);}
   .d-flower{bottom:22%;left:6%;width:42px;color:#fff;filter:drop-shadow(0 1px 0 var(--line));}
   .badge-3d{position:absolute;right:7%;bottom:18%;z-index:4;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;border:1.5px solid var(--line);background:#fff;border-radius:100px;padding:.3em .7em;text-transform:uppercase;transform:rotate(-6deg);box-shadow:2px 2px 0 var(--line);}
+  /* hero avatar ↔ 3D toggle */
+  .hero .right .hero-spin{width:min(100%,540px);z-index:2;display:none;}
+  .hero .right.show3d .avatar{display:none;}
+  .hero .right.show3d .hero-spin{display:block;}
+  .view3d-btn{position:absolute;left:7%;bottom:18%;z-index:5;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--line);background:var(--ink);color:var(--bg);border-radius:100px;padding:.42em .85em;cursor:pointer;box-shadow:2px 2px 0 var(--green);transition:transform .18s,box-shadow .18s;}
+  .view3d-btn:hover,.view3d-btn:focus-visible{transform:translateY(-1px);box-shadow:3px 4px 0 var(--green);outline:none;}
+  .view3d-btn.on{background:var(--green);}
 
   @media(min-width:840px){
     .hero{grid-template-columns:1.05fr .95fr;}
@@ -369,6 +376,13 @@
         <svg class="doodle d-arrow" viewBox="0 0 60 50" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6c14 4 26 16 28 32"/><path d="M20 36l12 4 2-12"/></svg>
         <svg class="doodle d-flower" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true"><g><path d="M20 4c3 4 3 8 0 12-3-4-3-8 0-12zM20 36c-3-4-3-8 0-12 3 4 3 8 0 12zM4 20c4-3 8-3 12 0-4 3-8 3-12 0zM36 20c-4 3-8 3-12 0 4-3 8-3 12 0z"/></g></svg>
         <img class="avatar" id="avatarA" alt="Natticha (Benz) avatar" src="avtar.png">
+        <div class="spin3d hero-spin" id="heroSpin" aria-label="Natticha — 3D avatar turning around" role="img">
+          <img class="f" src="3d/1.png" alt="" loading="lazy" decoding="async">
+          <img class="f" src="3d/2.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="f" src="3d/4.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="f" src="3d/3.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        </div>
+        <button class="view3d-btn" id="view3dBtn" type="button" aria-pressed="false">View in 3D ↻</button>
         <span class="badge-3d">Benz Natticha</span>
       </div>
     </div>
@@ -954,6 +968,18 @@
       c.addEventListener('pointerleave',function(){ c.style.transform=''; });
     });
   }
+
+  /* hero avatar ↔ 3D toggle */
+  (function(){
+    var btn=document.getElementById('view3dBtn'), right=btn&&btn.closest('.right');
+    if(!btn||!right) return;
+    btn.addEventListener('click',function(){
+      var on=right.classList.toggle('show3d');
+      btn.classList.toggle('on',on);
+      btn.setAttribute('aria-pressed',on?'true':'false');
+      btn.textContent=on?'View in 2D ↻':'View in 3D ↻';
+    });
+  })();
 
   /* back-to-top */
   (function(){
