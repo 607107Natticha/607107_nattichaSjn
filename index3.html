@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natticha (Benz) — 2026 Data · AI Portfolio</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#34a45c">
+<meta name="description" content="Natticha Satjawatthana (Benz) — Data Scientist & AI/ML Engineer, Bangkok. 2026 portfolio gallery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e4e4e0; --panel:#ededea; --card:#f7f7f5; --ink:#191b18; --soft:#5d5f5a;
+    --green:#34a45c; --green-d:#1f6b3a; --green-l:#7ec99a; --line:#1a1c19; --hair:#cdcdc7;
+    --disp:'Archivo Black',sans-serif; --grotesk:'Space Grotesk',sans-serif; --mono:'Space Mono',monospace; --thai:'Mitr',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--grotesk);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  ::selection{background:var(--green);color:#fff;}
+  .mono{font-family:var(--mono);}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(12px,2.4vw,22px);}
+
+  /* ===== TOP NAV ===== */
+  .topnav{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1.5px solid var(--line);}
+  .topnav .row{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:54px;}
+  .brand{font-family:var(--disp);font-size:1.15rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem;}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(52,164,92,.25);animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{50%{box-shadow:0 0 0 6px rgba(52,164,92,0);}}
+  .topnav nav{display:flex;gap:clamp(.7rem,1.8vw,1.6rem);font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;flex-wrap:wrap;}
+  .topnav nav a{opacity:.7;transition:opacity .2s;}
+  .topnav nav a:hover,.topnav nav a.on{opacity:1;color:var(--green-d);}
+  .topnav .cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--green);color:#fff;border:1.5px solid var(--line);border-radius:100px;padding:.4em .9em;box-shadow:2px 2px 0 var(--line);}
+  @media(max-width:720px){.topnav nav{display:none;}}
+
+  /* ===== POSTER FRAME ===== */
+  .poster{position:relative;background:var(--panel);border:1.5px solid var(--line);border-radius:18px;margin-top:clamp(14px,2.4vw,22px);overflow:hidden;box-shadow:6px 7px 0 rgba(0,0,0,.08);}
+  .poster .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem clamp(.9rem,2vw,1.5rem);border-bottom:1.5px solid var(--line);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);flex-wrap:wrap;}
+  .poster .bar .l,.poster .bar .r{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;}
+  .poster .bar .pill-s{background:var(--green);color:#fff;border-radius:100px;padding:.25em .7em;letter-spacing:.1em;}
+  .poster .bar .tag-s{border:1.5px solid var(--line);border-radius:100px;padding:.22em .7em;}
+  .poster .bar .gdot{width:9px;height:9px;border-radius:50%;background:var(--green);}
+
+  .hero{position:relative;display:grid;grid-template-columns:1fr;gap:0;}
+  .hero .left{padding:clamp(1.4rem,3.5vw,3rem) clamp(1.1rem,2.6vw,2.4rem) clamp(1.1rem,2.6vw,2.4rem);position:relative;z-index:2;}
+  .kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green-d);display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem;}
+  .kicker svg{width:30px;height:14px;}
+  .htitle{font-family:var(--disp);line-height:.86;letter-spacing:-.03em;text-transform:uppercase;font-size:clamp(2.7rem,8vw,6rem);animation:heroIn 1s cubic-bezier(.16,1,.3,1) both;}
+  @keyframes heroIn{from{opacity:0;transform:translateY(24px);filter:blur(6px);}to{opacity:1;transform:none;filter:blur(0);}}
+  .htitle .out{color:transparent;-webkit-text-stroke:2px var(--ink);}
+  .htitle .grn{color:var(--green);}
+  .htitle .thai{font-family:var(--disp);font-weight:400;-webkit-text-stroke:0;letter-spacing:-.02em;font-size:1em;display:inline-block;vertical-align:baseline;animation:floaty 4.5s ease-in-out infinite;}
+  @keyframes floaty{50%{transform:translateY(-7px) rotate(-1.5deg);}}
+  .htitle .star{color:var(--green);-webkit-text-stroke:0;display:inline-block;animation:starSpin 7s linear infinite;}
+  @keyframes starSpin{to{transform:rotate(360deg);}}
+  .hsub{margin-top:1.2rem;max-width:54ch;font-size:clamp(.95rem,1.35vw,1.05rem);line-height:1.6;color:#33352f;}
+  .hsub b{color:var(--ink);}
+  .role{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin-top:1.5rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;}
+  .role .a{background:#fff;border:1.5px solid var(--line);border-radius:100px;padding:.55em .95em;box-shadow:2px 2px 0 var(--line);}
+  .role .b{background:var(--green);color:#fff;border:1.5px solid var(--line);border-radius:100px;padding:.55em 1.1em;box-shadow:2px 2px 0 var(--line);}
+  .role .cv{background:var(--ink);color:var(--bg);border:1.5px solid var(--line);border-radius:100px;padding:.55em 1.1em;box-shadow:2px 2px 0 var(--green);}
+  .role .as-btn{font:inherit;letter-spacing:.04em;cursor:pointer;-webkit-appearance:none;appearance:none;}
+  .more-btn{margin-top:1.1rem;display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green-d);background:none;border:none;cursor:pointer;border-bottom:1.5px solid var(--green);padding:.15rem 0 .25rem;}
+  .more-btn .arr{transition:transform .25s;}
+  .more-btn:hover{color:var(--ink);} .more-btn:hover .arr{transform:translateX(4px);}
+  .meta{display:flex;align-items:center;gap:1rem;margin-top:1.8rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);flex-wrap:wrap;}
+  .qr{width:78px;height:78px;border:1.5px solid var(--line);border-radius:8px;background:#fff;object-fit:contain;padding:3px;box-shadow:2px 2px 0 var(--line);}
+
+  .hero .right{position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(300px,40vw,480px);}
+  .hero .right .blob{position:absolute;inset:0;margin:auto;width:90%;aspect-ratio:1;background:radial-gradient(circle at 50% 48%,var(--green-l),transparent 62%);opacity:.55;filter:blur(2px);}
+  .hero .right .ring{position:absolute;inset:0;margin:auto;width:clamp(240px,34vw,420px);aspect-ratio:1;border:1.5px dashed var(--green-d);border-radius:50%;opacity:.5;animation:spin 40s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .avatar{position:relative;z-index:2;width:min(100%,540px);height:auto;object-fit:contain;filter:drop-shadow(8px 10px 0 rgba(31,107,58,.18));-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);animation:bobv 6s ease-in-out infinite;}
+  @keyframes bobv{50%{transform:translateY(-10px);}}
+  /* doodles */
+  .doodle{position:absolute;pointer-events:none;z-index:3;}
+  .d-arrow{top:18%;right:38%;width:60px;color:var(--ink);}
+  .d-flower{bottom:22%;left:6%;width:42px;color:#fff;filter:drop-shadow(0 1px 0 var(--line));}
+  .badge-3d{position:absolute;right:7%;bottom:18%;z-index:4;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;border:1.5px solid var(--line);background:#fff;border-radius:100px;padding:.3em .7em;text-transform:uppercase;transform:rotate(-6deg);box-shadow:2px 2px 0 var(--line);}
+
+  @media(min-width:840px){
+    .hero{grid-template-columns:1.05fr .95fr;}
+    .hero .right{min-height:520px;}
+  }
+
+  /* ===== MARQUEE TICKER ===== */
+  .marquee{margin-top:clamp(14px,2.4vw,22px);border:1.5px solid var(--line);border-radius:100px;background:var(--ink);color:var(--bg);overflow:hidden;padding:.62rem 0;box-shadow:4px 5px 0 rgba(0,0,0,.08);}
+  .mq-track{display:flex;width:max-content;white-space:nowrap;animation:mq 26s linear infinite;will-change:transform;}
+  .mq-track span{font-family:var(--mono);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding-right:1.1rem;}
+  .mq-track .g{color:var(--green-l);}
+  .marquee:hover .mq-track{animation-play-state:paused;}
+  @keyframes mq{to{transform:translateX(-50%);}}
+
+  /* ===== SECTION ===== */
+  section{padding:clamp(2.6rem,6vw,4.6rem) 0;}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:clamp(1.3rem,3vw,2.2rem);}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green-d);display:inline-flex;align-items:center;gap:.5rem;}
+  .eyebrow::before{content:'';width:22px;height:1.5px;background:var(--green);}
+  .sec-title{font-family:var(--disp);font-size:clamp(1.8rem,5vw,3.2rem);line-height:.94;letter-spacing:-.03em;text-transform:uppercase;margin-top:.5rem;}
+  .sec-title .thai{font-family:var(--grotesk);font-weight:600;font-style:italic;font-size:.42em;letter-spacing:0;color:var(--green);vertical-align:middle;}
+  .sec-n{font-family:var(--mono);font-size:.72rem;color:var(--soft);letter-spacing:.1em;}
+
+  /* ===== WORK GALLERY ===== */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:clamp(12px,1.6vw,18px);}
+  .g-card{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:4px 5px 0 rgba(0,0,0,.07);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s;}
+  .g-card:hover{transform:translate(-2px,-3px);box-shadow:7px 9px 0 rgba(31,107,58,.18);}
+  .g-card .gc-top{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.7rem .9rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);}
+  .g-card .gc-top .lab{color:var(--green-d);}
+  .g-card .gc-img{position:relative;aspect-ratio:4/3;background:var(--panel);background-size:cover;background-position:center;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);overflow:hidden;}
+  .g-card .gc-img video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .g-card .gc-img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:#a6a69f;text-transform:uppercase;}
+  .g-card .gc-img .vtag{position:absolute;left:.55rem;bottom:.55rem;z-index:2;font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--bg);border-radius:100px;padding:.22em .6em;display:flex;align-items:center;gap:.35em;}
+  .g-card .gc-img .vtag::before{content:'';width:0;height:0;border-style:solid;border-width:4px 0 4px 6px;border-color:transparent transparent transparent var(--green-l);}
+  .g-card h3{font-family:var(--grotesk);font-weight:700;font-size:1.16rem;letter-spacing:-.01em;padding:.85rem .9rem .2rem;}
+  .g-card .gc-tags{display:flex;flex-wrap:wrap;gap:.34rem;padding:.5rem .9rem;}
+  .g-card .gc-tags span{font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;background:rgba(52,164,92,.12);color:var(--green-d);border-radius:100px;padding:.25em .6em;}
+  .g-card .gc-links{display:flex;gap:.8rem;padding:.2rem .9rem 1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;margin-top:auto;}
+  .g-card .gc-links a{color:var(--green-d);border-bottom:1.5px solid var(--green);padding-bottom:1px;}
+  .g-card .gc-links a:hover{color:var(--ink);}
+  .g-card .gc-num{position:absolute;top:.55rem;right:.7rem;}
+
+  /* ===== SKILLS ===== */
+  .skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:clamp(12px,1.6vw,18px);}
+  .sk{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:1.1rem;box-shadow:3px 4px 0 rgba(0,0,0,.06);}
+  .sk h3{font-family:var(--grotesk);font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:.7rem;display:flex;justify-content:space-between;}
+  .sk h3 .n{font-family:var(--mono);font-size:.62rem;color:var(--green-d);}
+  .sk .chips{display:flex;flex-wrap:wrap;gap:.34rem;}
+  .sk .chips span{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;border:1.5px solid var(--hair);border-radius:100px;padding:.24em .6em;}
+
+  /* ===== STRIP ===== */
+  .strip{background:var(--ink);color:var(--bg);border-radius:14px;padding:clamp(1.2rem,3vw,2rem);display:grid;grid-template-columns:1fr;gap:1.2rem;}
+  .strip .lead{font-family:var(--grotesk);font-weight:700;font-size:clamp(1.2rem,2.4vw,1.7rem);line-height:1.2;letter-spacing:-.01em;}
+  .strip .lead em{font-style:normal;color:var(--green-l);}
+  .strip .grid2{display:flex;flex-wrap:wrap;gap:.6rem;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;}
+  .strip .grid2 b{font-weight:400;border:1.5px solid rgba(255,255,255,.3);border-radius:100px;padding:.4em .8em;}
+  @media(min-width:840px){.strip{grid-template-columns:1.2fr 1fr;align-items:center;}}
+
+  /* ===== THANK YOU ===== */
+  .thanks{position:relative;background:var(--panel);border:1.5px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:6px 7px 0 rgba(0,0,0,.08);}
+  .thanks .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem clamp(.9rem,2vw,1.5rem);border-bottom:1.5px solid var(--line);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);flex-wrap:wrap;}
+  .thanks .bar .gdot{width:9px;height:9px;border-radius:50%;background:var(--green);display:inline-block;margin-right:.4rem;}
+  .ty-grid{display:grid;grid-template-columns:1fr;gap:0;}
+  .ty-left{padding:clamp(1.6rem,4vw,3rem) clamp(1.1rem,2.6vw,2.4rem);}
+  .ty-thai{font-family:var(--grotesk);font-weight:700;font-size:clamp(1.4rem,4vw,2.4rem);line-height:1.15;letter-spacing:-.01em;}
+  .ty-thai .q{color:var(--green);}
+  .ty-big{font-family:var(--disp);font-size:clamp(3rem,11vw,8rem);line-height:.82;letter-spacing:-.04em;text-transform:uppercase;margin:.4rem 0 1.2rem;}
+  .ty-big .amp{color:var(--green);}
+  .ty-contact{display:flex;flex-direction:column;gap:.2rem;font-family:var(--mono);font-size:.86rem;letter-spacing:.04em;text-transform:uppercase;}
+  .ty-contact a{display:inline-flex;gap:.6rem;padding:.5rem 0;border-bottom:1px solid var(--hair);}
+  .ty-contact a .k{color:var(--green-d);min-width:5.5em;}
+  .ty-contact a:hover{color:var(--green-d);}
+  .ty-name{display:inline-block;margin-top:1.2rem;background:var(--green);color:#fff;border:1.5px solid var(--line);border-radius:100px;padding:.5em 1.1em;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;box-shadow:2px 2px 0 var(--line);}
+  .ty-right{position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(280px,34vw,420px);}
+  .ty-blob{position:absolute;inset:0;margin:auto;width:90%;aspect-ratio:1;background:radial-gradient(circle at 50% 50%,var(--green-l),transparent 62%);opacity:.5;filter:blur(2px);}
+  .ty-ring{position:absolute;inset:0;margin:auto;width:clamp(230px,32vw,380px);aspect-ratio:1;border:1.5px dashed var(--green-d);border-radius:50%;opacity:.5;animation:spin 40s linear infinite;}
+  .spin3d{position:relative;z-index:2;width:min(100%,420px);aspect-ratio:1/1;animation:bobv 6s ease-in-out infinite;}
+  .spin3d .f{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0;filter:drop-shadow(6px 9px 0 rgba(31,107,58,.16));animation:turn3d 5.2s linear infinite;}
+  .spin3d .f:nth-child(1){animation-delay:0s;}
+  .spin3d .f:nth-child(2){animation-delay:1.3s;}
+  .spin3d .f:nth-child(3){animation-delay:2.6s;}
+  .spin3d .f:nth-child(4){animation-delay:3.9s;}
+  @keyframes turn3d{0%{opacity:0;transform:scale(.95)}4%{opacity:1;transform:scale(1)}26%{opacity:1;transform:scale(1)}32%{opacity:0;transform:scale(.95)}100%{opacity:0}}
+  @media(min-width:840px){.ty-grid{grid-template-columns:1.25fr .75fr;}}
+
+  /* ===== FOOTER ===== */
+  footer{padding:2rem 0 3rem;text-align:center;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);}
+  footer .green{color:var(--green-d);}
+
+  /* ===== WEB DESIGN ===== */
+  .webwork{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:clamp(14px,2vw,20px);}
+  .web-card{background:var(--card);border:1.5px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:4px 5px 0 rgba(0,0,0,.07);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s;}
+  .web-card:hover{transform:translate(-2px,-3px);box-shadow:7px 9px 0 rgba(31,107,58,.18);}
+  .browser-mockup{border-bottom:1.5px solid var(--line);background:#fff;}
+  .bm-bar{display:flex;align-items:center;gap:6px;padding:.5rem .7rem;background:var(--panel);border-bottom:1.5px solid var(--line);}
+  .bm-dot{width:9px;height:9px;border-radius:50%;}
+  .bm-url{margin-left:.5rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;color:var(--soft);}
+  .bm-frame{position:relative;height:210px;background:#fff;overflow:hidden;}
+  .bm-frame iframe{position:absolute;top:0;left:0;width:166.67%;height:166.67%;border:0;transform:scale(.6);transform-origin:top left;}
+  .bm-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .bm-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:.9rem;background:linear-gradient(180deg,transparent 55%,rgba(25,27,24,.5));opacity:0;transition:opacity .3s;}
+  .bm-overlay:hover{opacity:1;}
+  .bm-pill{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--green);border:1.5px solid var(--line);padding:.4rem .8rem;border-radius:100px;}
+  .web-body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.5rem;flex:1;}
+  .web-body .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-d);}
+  .web-body h3{font-family:var(--grotesk);font-weight:700;font-size:1.16rem;letter-spacing:-.01em;}
+  .web-body p{font-size:.9rem;line-height:1.55;color:#33352f;}
+  .web-tags{display:flex;flex-wrap:wrap;gap:.34rem;}
+  .web-tags span{font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;background:rgba(52,164,92,.12);color:var(--green-d);border-radius:100px;padding:.25em .6em;}
+  .web-links{display:flex;gap:.8rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;margin-top:auto;padding-top:.2rem;}
+  .web-links a{color:var(--green-d);border-bottom:1.5px solid var(--green);padding-bottom:1px;}
+  .web-links a:hover{color:var(--ink);}
+
+  /* card "open detail" affordance */
+  .g-card{cursor:pointer;}
+  .g-card .gc-more{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.55rem .9rem .9rem;margin-top:auto;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green-d);}
+  .g-card .gc-more .arr{transition:transform .25s;}
+  .g-card:hover .gc-more .arr{transform:translateX(4px);}
+
+  /* ===== DETAIL OVERLAY ===== */
+  body.locked{overflow:hidden;}
+  .detail{position:fixed;inset:0;z-index:600;background:var(--bg);transform:translateY(100%);transition:transform .6s cubic-bezier(.76,0,.24,1);overflow-y:auto;overscroll-behavior:contain;}
+  .detail.open{transform:none;}
+  .detail-close{position:fixed;top:1rem;right:clamp(12px,2.4vw,22px);z-index:610;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;border:1.5px solid var(--line);background:var(--card);border-radius:100px;box-shadow:2px 2px 0 var(--line);cursor:pointer;}
+  .detail-close:hover{background:var(--green);color:#fff;}
+  .detail-inner{max-width:1000px;margin:0 auto;padding:clamp(3.4rem,8vw,5rem) clamp(1.1rem,4vw,2.4rem) 5rem;}
+  .detail-page{display:none;} .detail-page.show{display:block;}
+  .d-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green-d);display:inline-flex;align-items:center;gap:.5rem;}
+  .d-eyebrow::before{content:'';width:22px;height:1.5px;background:var(--green);}
+  .d-title{font-family:var(--disp);text-transform:uppercase;font-size:clamp(2rem,6vw,3.6rem);line-height:.94;letter-spacing:-.03em;margin:1rem 0 1.6rem;}
+  .d-title .grn{color:var(--green);}
+  .d-sec{border-top:1.5px solid var(--hair);padding:1.6rem 0;display:grid;grid-template-columns:180px 1fr;gap:1.4rem;}
+  .d-sec h3{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);font-weight:400;display:flex;align-items:flex-start;gap:.4rem;flex-wrap:wrap;}
+  .d-sec p{color:#2c2e29;font-size:1rem;line-height:1.7;margin-bottom:.6rem;}
+  .d-sec p:last-child{margin-bottom:0;}
+  .d-sec b{color:var(--ink);font-weight:700;} .d-sec em{font-style:italic;color:var(--green-d);} .d-sec code{font-family:var(--mono);font-size:.86em;background:rgba(52,164,92,.12);padding:.05em .4em;border-radius:5px;}
+  .d-sec .hi{color:var(--green-d);font-weight:700;}
+  .d-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green-d);margin:0 0 .7rem;}
+  .d-win{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--green-d);border:1.5px solid var(--green);border-radius:100px;padding:.22rem .65rem;margin-bottom:.7rem;}
+  .detail .chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem;}
+  .detail .chips span{font-family:var(--mono);font-size:.66rem;letter-spacing:.04em;text-transform:uppercase;color:var(--green-d);border:1.5px solid var(--hair);border-radius:100px;padding:.28rem .65rem;}
+  .d-links{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:.8rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;}
+  .d-links a{color:var(--green-d);border-bottom:1.5px solid var(--green);padding-bottom:2px;}
+  .d-links a:hover{color:var(--ink);}
+  .d-links button{font:inherit;background:none;border:none;cursor:pointer;color:var(--green-d);border-bottom:1.5px solid var(--green);padding:0 0 2px;}
+  .d-links button:hover{color:var(--ink);}
+  .cv-actions{display:flex;gap:1.1rem;flex-wrap:wrap;margin-bottom:.6rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;}
+  .cv-actions a{color:var(--green-d);border-bottom:1.5px solid var(--green);padding-bottom:2px;}
+  .cv-actions a:hover{color:var(--ink);}
+  .cv-frame{width:min(96vw,1500px);margin-left:50%;transform:translateX(-50%);border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);height:calc(100dvh - 168px);min-height:420px;box-shadow:4px 5px 0 rgba(0,0,0,.07);}
+  .cv-frame iframe{width:100%;height:100%;border:0;display:block;}
+  .detail-page[data-page="cv"] .d-title{font-size:clamp(1.5rem,4vw,2.3rem);margin:.55rem 0 .9rem;}
+  @media(max-width:760px){
+    .cv-frame{width:100%;margin-left:0;transform:none;height:calc(100dvh - 150px);min-height:340px;border-radius:10px;}
+    .cv-actions{gap:.8rem;font-size:.66rem;}
+  }
+  .d-fig{margin:.9rem 0 .2rem;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);}
+  .d-fig img,.d-fig video{display:block;width:100%;height:auto;}
+  .d-fig figcaption{font-family:var(--mono);font-size:.7rem;line-height:1.55;color:var(--soft);padding:.6rem .8rem;border-top:1.5px solid var(--hair);}
+  .d-fig figcaption em{color:var(--green-d);font-style:normal;} .d-fig figcaption b{color:var(--ink);} .d-fig figcaption code{font-family:var(--mono);}
+  .d-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:.7rem 0 .2rem;}
+  .d-stats .s{border:1.5px solid var(--line);border-radius:10px;padding:.7rem .5rem;text-align:center;background:var(--card);}
+  .d-stats .v{font-family:var(--disp);font-size:1.15rem;color:var(--green-d);}
+  .d-stats .l{font-family:var(--mono);font-size:.56rem;letter-spacing:.04em;text-transform:uppercase;color:var(--soft);margin-top:.25rem;line-height:1.3;}
+  .award-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.3rem;}
+  .award-row .aw{flex:1 1 210px;border:1.5px solid var(--line);border-radius:10px;padding:.75rem .9rem;background:var(--card);}
+  .award-row .aw .rk{display:block;color:var(--green-d);font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem;}
+  .award-row .aw b{display:block;color:var(--ink);font-family:var(--grotesk);font-weight:700;font-size:.98rem;}
+  .award-row .aw small{font-family:var(--mono);font-size:.62rem;letter-spacing:.02em;color:var(--soft);}
+  .flow{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;margin-top:.3rem;font-family:var(--mono);font-size:.7rem;color:var(--green-d);}
+  .flow span{border:1.5px solid var(--hair);border-radius:100px;padding:.25rem .55rem;}
+  .flow .ar{color:var(--soft);border:none;padding:0 .05rem;}
+  /* light chart cards (ported, self-contained light theme) */
+  .hc-card{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;margin:.9rem 0 .2rem;color:#0b1538;}
+  .hc-card .hc-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#5a6b8c;}
+  .hc-card .hc-title{font-family:var(--disp);font-size:1.05rem;color:#0b1538;margin:.2rem 0 .7rem;}
+  .hc-card .hc-title em{font-style:normal;color:#1e5bd6;}
+  .hc-card .hc-note{font-size:.78rem;line-height:1.55;color:#5a6b8c;margin-top:.6rem;}
+  .svg-bars-v{display:block;width:100%;height:auto;}
+  .vb-axis{font-family:var(--mono);font-size:9px;fill:#8a98b8;}
+  .vb-val{font-family:var(--mono);font-size:11px;font-weight:700;fill:#0b1538;}
+  .vb-lbl{font-family:var(--mono);font-size:10px;fill:#5a6b8c;}
+  .vb-bar{animation:vbGrow .7s cubic-bezier(.16,1,.3,1) both;animation-delay:var(--d,0s);transform-origin:bottom;}
+  @keyframes vbGrow{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
+  .fe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.3rem;}
+  .fe-cell{background:#f3f6fc;border:1px solid #e2e8f5;border-radius:8px;padding:.5rem .6rem;}
+  .fe-h{font-family:var(--mono);font-size:.66rem;font-weight:700;color:#0b1538;text-transform:uppercase;letter-spacing:.04em;}
+  .fe-b{font-size:.7rem;color:#5a6b8c;margin-top:.15rem;}
+  @media(max-width:760px){.d-sec{grid-template-columns:1fr;gap:.5rem;}.d-stats{grid-template-columns:repeat(2,1fr);}.fe-grid{grid-template-columns:1fr 1fr;}}
+
+  /* ===== EXTRA FLAIR ===== */
+  /* scroll progress bar */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,var(--green-l),var(--green) 60%,var(--green-d));box-shadow:0 0 10px rgba(52,164,92,.55);}
+  /* cursor spotlight */
+  .spot{position:fixed;inset:0;z-index:35;pointer-events:none;opacity:0;background:radial-gradient(280px 280px at var(--mx,50%) var(--my,50%),rgba(52,164,92,.10),transparent 72%);transition:opacity .6s;}
+  @media(hover:hover) and (pointer:fine){.spot{opacity:1;}}
+  @media(hover:none),(pointer:coarse){.spot{display:none!important;}}
+  /* animated nav underline */
+  .topnav nav a{position:relative;}
+  .topnav nav a::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:var(--green-d);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+  .topnav nav a:hover::after,.topnav nav a.on::after{transform:scaleX(1);}
+  /* card tilt base */
+  .g-card,.web-card{transition:transform .18s cubic-bezier(.2,.7,.2,1),box-shadow .25s;will-change:transform;}
+  /* magnetic CTA shimmer */
+  .topnav .cta{position:relative;overflow:hidden;}
+  .topnav .cta::after{content:'';position:absolute;top:0;left:-130%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);animation:sheen 4.5s ease-in-out infinite;}
+  @keyframes sheen{0%,60%{left:-130%;}80%,100%{left:130%;}}
+
+  /* reveal + a11y */
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1);}
+  .rv.in{opacity:1;transform:none;}
+  :focus-visible{outline:2.5px solid var(--green);outline-offset:2px;}
+  .skip{position:absolute;left:-999px;background:var(--green);color:#fff;padding:.5rem 1rem;font-family:var(--mono);z-index:99;}
+  .skip:focus{left:8px;top:8px;}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}.rv{opacity:1;transform:none;}.spin3d .f:first-child{opacity:1!important;}.spin3d .f{opacity:0;}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="spot" aria-hidden="true"></div>
+<a href="#work" class="skip">Skip to work</a>
+
+<!-- NAV -->
+<div class="topnav">
+  <div class="wrap row">
+    <div class="brand"><span class="dot"></span>NATTICHA<span style="font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;opacity:.6;align-self:flex-start;margin-top:.1rem">/BENZ</span></div>
+    <nav id="nav">
+      <a href="#top" class="on">Home</a>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#webdesign">Web</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#thanks">Contact</a>
+    </nav>
+    <a href="#thanks" class="cta">Hire me ↗</a>
+  </div>
+</div>
+
+<main id="top">
+<div class="wrap">
+
+  <!-- ===== HERO POSTER ===== -->
+  <div class="poster">
+    <div class="bar">
+      <div class="l"><span class="pill-s">06/26</span> <span>Made in '26</span> <span class="tag-s">Portfolio · Helpful</span></div>
+      <div class="r"><span>{ Work / Set }</span> <span class="gdot"></span> <span>© 2026 Natticha · All rights reserved</span></div>
+    </div>
+    <div class="hero">
+      <div class="left">
+        <div class="kicker">
+          <svg viewBox="0 0 60 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h50"/><path d="M44 2l8 5-8 5"/></svg>
+          2026 · Data &amp; AI
+        </div>
+        <h1 class="htitle">
+          <span class="out">DATA</span> AI<br>
+          PORTFOLIO<br>
+          <span class="thai grn">Works</span><span class="star">*</span>
+        </h1>
+        <p class="hsub"><b>Hello, I'm Natticha Satjawatthana.</b> A Super AI Engineer (Season 6) student looking for an internship — coming from a mixed background in design, IT &amp; full-stack web. I learn fast and love building under real pressure.</p>
+        <button class="more-btn" data-open="about">Read my story <span class="arr">→</span></button>
+        <div class="role">
+          <a class="cv" href="Cv/Natticha_Satjawatthana_Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download CV ↓</a>
+          <a class="a" href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener">GitHub · beetwowin2-coder ↗</a>
+          <a class="a" href="https://www.linkedin.com/in/natticha-satjawatthana" target="_blank" rel="noopener">LinkedIn · natticha-satjawatthana ↗</a>
+        </div>
+        <div class="meta">
+          <img class="qr" src="line.jpg" alt="LINE QR code — add BEETWOWIN" loading="lazy">
+          <span>LINE: BEETWOWIN · scan to add<br>Bangkok, TH · Open to internship</span>
+        </div>
+      </div>
+      <div class="right">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="ring" aria-hidden="true"></div>
+        <svg class="doodle d-arrow" viewBox="0 0 60 50" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6c14 4 26 16 28 32"/><path d="M20 36l12 4 2-12"/></svg>
+        <svg class="doodle d-flower" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true"><g><path d="M20 4c3 4 3 8 0 12-3-4-3-8 0-12zM20 36c-3-4-3-8 0-12 3 4 3 8 0 12zM4 20c4-3 8-3 12 0-4 3-8 3-12 0zM36 20c-4 3-8 3-12 0 4-3 8-3 12 0z"/></g></svg>
+        <img class="avatar" id="avatarA" alt="Natticha (Benz) avatar" src="avtar.png">
+        <span class="badge-3d">Benz Natticha</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="mq-track">
+      <span>Data Scientist <span class="g">✦</span> AI/ML Engineer <span class="g">✦</span> Computer Vision <span class="g">✦</span> Agentic AI <span class="g">✦</span> RAG <span class="g">✦</span> Edge AI <span class="g">✦</span> Full-stack <span class="g">✦</span> 2× Hackathon Winner <span class="g">✦</span> Open to Internship <span class="g">✦</span> </span>
+      <span>Data Scientist <span class="g">✦</span> AI/ML Engineer <span class="g">✦</span> Computer Vision <span class="g">✦</span> Agentic AI <span class="g">✦</span> RAG <span class="g">✦</span> Edge AI <span class="g">✦</span> Full-stack <span class="g">✦</span> 2× Hackathon Winner <span class="g">✦</span> Open to Internship <span class="g">✦</span> </span>
+    </div>
+  </div>
+
+  <!-- ===== WORK ===== -->
+  <section id="work">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow rv">AI · ML · Data work · 6 entries</span>
+        <h2 class="sec-title rv">Case Studies <span class="thai">/ Selected Work</span></h2>
+      </div>
+      <a href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener" class="sec-n rv" style="border:1.5px solid var(--line);border-radius:100px;padding:.5em .9em">All on GitHub ↗</a>
+    </div>
+    <div class="gallery" id="cards"></div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow rv">Full-stack &amp; automation · shipped</span>
+        <h2 class="sec-title rv">Projects <span class="thai">/ Shipped &amp; Live</span></h2>
+      </div>
+      <span class="sec-n rv">Fig. 02</span>
+    </div>
+    <div class="gallery" id="projcards"></div>
+  </section>
+
+  <!-- ===== WEB DESIGN ===== -->
+  <section id="webdesign">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow rv">E-commerce · live sites</span>
+        <h2 class="sec-title rv">Web Design <span class="thai">/ Live Sites</span></h2>
+      </div>
+      <span class="sec-n rv">Fig. 03</span>
+    </div>
+    <div class="webwork" id="webcards"></div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <div class="sec-head">
+      <div><span class="eyebrow rv">Capabilities</span><h2 class="sec-title rv">On the menu</h2></div>
+      <span class="sec-n rv">Fig. 04</span>
+    </div>
+    <div class="skills" id="skills-grid"></div>
+  </section>
+
+  <!-- ===== ABOUT STRIP ===== -->
+  <section id="about">
+    <div class="sec-head">
+      <div><span class="eyebrow rv">Meet the builder</span><h2 class="sec-title rv">Art eye · Data mind</h2></div>
+      <span class="sec-n rv">Fig. 05</span>
+    </div>
+    <div class="strip rv">
+      <div class="lead">From graphic design &amp; IT support to full-stack — and now <em>ML, computer vision &amp; agentic AI</em>. I don't just study systems, I ship them.</div>
+      <div class="grid2">
+        <b>Bangkok, TH</b><b>Super AI Engineer S6 · LV.2</b><b>Team Machima</b>
+        <b>6 hackathons</b><b>2× 1st place</b><b>+2 awards</b><b>Open to internship LV.3</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THANK YOU / CONTACT ===== -->
+  <div class="thanks" id="thanks">
+    <div class="bar">
+      <div class="l"><span class="pill-s">06/26</span> <span>Thank you for watching</span></div>
+      <div class="r"><span class="gdot"></span> <span>Looking forward to our interview</span></div>
+    </div>
+    <div class="ty-grid">
+      <div class="ty-left">
+        <div class="ty-thai"><span class="q">[</span>Thanks<span class="q">]</span> for stopping by</div>
+        <div class="ty-big">THANK<br>YOU <span class="amp">&amp;</span></div>
+        <div class="ty-contact">
+          <a href="mailto:natticha.beben@gmail.com"><span class="k">Email</span> natticha.beben@gmail.com</a>
+          <a href="tel:0813186310"><span class="k">Tel</span> 081 318 6310</a>
+          <a href="https://github.com/beetwowin2-coder" target="_blank" rel="noopener"><span class="k">GitHub</span> beetwowin2-coder ↗</a>
+          <a href="https://linkedin.com/in/natticha-satjawatthana" target="_blank" rel="noopener"><span class="k">LinkedIn</span> natticha-satjawatthana ↗</a>
+          <a href="Cv/Natticha_Satjawatthana_Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf"><span class="k">CV</span> Download résumé ↓</a>
+        </div>
+        <span class="ty-name">Natticha Satjawatthana*</span>
+      </div>
+      <div class="ty-right">
+        <div class="ty-blob" aria-hidden="true"></div>
+        <div class="ty-ring" aria-hidden="true"></div>
+        <div class="spin3d" aria-label="Natticha — 3D avatar turning around" role="img">
+          <img class="f" src="3d/1.png" alt="" loading="lazy" decoding="async">
+          <img class="f" src="3d/2.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="f" src="3d/4.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="f" src="3d/3.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<!-- ===== DETAIL OVERLAY ===== -->
+<div class="detail" id="detail">
+  <button class="detail-close" id="detailClose">← Back</button>
+  <div class="detail-inner">
+
+    <!-- about · full intro -->
+    <div class="detail-page" data-page="about">
+      <div class="d-eyebrow">Get to know me</div>
+      <h1 class="d-title">Hello, I'm <span class="grn">Natticha</span></h1>
+      <div class="d-sec"><h3>My story</h3><div>
+        <p>I'm a student in the <b>Super AI Engineer (Season 6)</b> — one of Thailand's most competitive AI programs — currently looking for an internship. Getting here meant working through rounds of online learning, competitions, and intense team hackathons, where I learned to build under real pressure, tight deadlines, and constant problem-solving.</p>
+        <p>Coming from a mixed background in <b>design, IT, and full-stack web</b>, I've learned to wear many hats and see a system from every side. I'm still exploring where I fit best in AI — and I think that's the exciting part.</p>
+        <p>I learn fast, I'm comfortable saying <em>“I don't know yet, but I'll figure it out,”</em> and I'm looking for a place to <b>build, contribute, and grow</b>.</p>
+        <div class="d-links"><button data-open="cv">View full CV →</button><a href="Cv/Natticha_Satjawatthana_Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download CV ↓</a></div></div></div>
+    </div>
+
+    <!-- cv · full résumé -->
+    <div class="detail-page" data-page="cv">
+      <div class="d-eyebrow">Résumé · CV</div>
+      <h1 class="d-title">Curriculum <span class="grn">Vitae</span></h1>
+      <div class="cv-actions">
+        <a href="Cv/Natticha_Satjawatthana_Resume.pdf" download="Natticha_Satjawatthana_Resume.pdf">Download PDF ↓</a>
+        <a href="Cv/Natticha_Satjawatthana_Resume.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
+      </div>
+      <div class="cv-frame"><iframe data-src="Cv/Natticha_Satjawatthana_Resume.pdf#view=FitH" title="Natticha Satjawatthana — CV" loading="lazy"></iframe></div>
+    </div>
+
+    <!-- 0 · FahMai Data-Agent -->
+    <div class="detail-page" data-page="0">
+      <div class="d-eyebrow">N°01 — Hackathon</div>
+      <h1 class="d-title">FahMai <span class="grn">Data-Agent</span></h1>
+      <div class="d-sec"><h3>Award <span class="d-win" style="margin-bottom:0">🥇 1st place</span></h3><div>
+        <div class="d-sub">The Finale · AIAT × BOL × NCSA · Team Machima</div>
+        <p>A secure enterprise AI agent that answers business questions over a company's own data — both <b>structured</b> (SQL) and <b>unstructured</b> (documents) — grounding every answer in <b>OCR-extracted records</b> like bank statements and receipts, with <b>prompt-injection guardrails at every stage</b>. Took <span class="hi">1st place</span>.</p>
+        <figure class="d-fig">
+          <img src="image/fahmai-finale-stage.jpg" alt="Team Machima (center, WINNER) at FahMai: The Finale" loading="lazy">
+          <figcaption><em>WINNER</em> · <b>Team Machima</b> (center) · FahMai: The Finale — The Enterprise Data Agent Showdown.</figcaption>
+        </figure></div></div>
+      <div class="d-sec"><h3>How it works</h3><div>
+        <p><b>3 pipelines:</b> (1) <b>Agent (ReAct)</b> — Qwen 3 + Typhoon 2-7B Thai LLM routes tools over DuckDB (SQL) + ChromaDB (RAG); (2) <b>OCR-to-data</b> — MinerU turns a statement image into JSON rows in DuckDB; (3) <b>Guardrail</b> — input → reasoning → output checks.</p>
+        <div class="flow"><span>Business question</span><span class="ar">→</span><span>Input Guard</span><span class="ar">→</span><span>ReAct Agent</span><span class="ar">→</span><span>DuckDB + ChromaDB</span><span class="ar">→</span><span>Grounded answer</span><span class="ar">→</span><span>Output Guard</span></div>
+        <div class="d-stats">
+          <div class="s"><div class="v">13.8×</div><div class="l">Max cache speedup</div></div>
+          <div class="s"><div class="v">~9×</div><div class="l">Hosted vs local LLM</div></div>
+          <div class="s"><div class="v">100%</div><div class="l">Syntactic injections caught</div></div>
+          <div class="s"><div class="v">~40%</div><div class="l">Semantic resistance</div></div>
+        </div>
+        <p>Served with vLLM (Paged Attention + KV cache + FlashInfer). <b>Human-in-the-loop routing:</b> ~95% auto / 5% checked, with <span class="hi">&gt;99.2% field accuracy</span>. Injection testing was documented honestly: the router caught <span class="hi">100%</span> of syntactic overrides, but the model alone resisted only <span class="hi">~40%</span> of authority-framed semantic injections — logged as a known limitation.</p>
+        <div class="chips"><span>Agentic ReAct</span><span>Qwen 3</span><span>Typhoon 2-7B</span><span>MinerU + PaddleOCR</span><span>ChromaDB</span><span>DuckDB</span><span>RAG</span><span>vLLM</span><span>HITL</span><span>Guardrails</span></div></div></div>
+      <div class="d-sec"><h3>Architecture</h3><div>
+        <figure class="d-fig">
+          <img src="image/fahmai-pipeline.png" alt="FahMai full pipeline — ReAct agent over DuckDB and ChromaDB with guardrails" loading="lazy">
+          <figcaption><em>Full pipeline</em> — ReAct agent (Qwen 3 + Typhoon 2-7B) routes between structured (DuckDB/SQL) and unstructured (ChromaDB) tools, with guardrails on input and output.</figcaption>
+        </figure>
+        <figure class="d-fig">
+          <img src="image/fahmai-ocr-backtest.png" alt="FahMai OCR backtest — MinerU converts bank-statement images to CSV then JSON into DuckDB" loading="lazy">
+          <figcaption><em>OCR-to-data</em> — a bank-statement image becomes <code>{date, balance, type, amount}</code> rows in DuckDB via MinerU → rule-based extraction → JSON mapping.</figcaption>
+        </figure>
+        <figure class="d-fig">
+          <img src="image/fahmai-guardrail.png" alt="FahMai guardrail — three phases: input guard, agent reasoning, post-validate" loading="lazy">
+          <figcaption><em>Guardrail · defense in depth</em> — Phase 1 input guard, Phase 2 strips injected instructions while keeping the real question, Phase 3 validates the answer for leakage.</figcaption>
+        </figure>
+        <figure class="d-fig">
+          <img src="image/fahmai-security.png" alt="FahMai security — injection attempts blocked vs bypassed" loading="lazy">
+          <figcaption><em>Security — injection attempts</em> — explicit <code>[SYSTEM_OVERRIDE]</code> refused; an authority-framed "policy memo" silently skewed figures. Syntactic caught; semantic framing — not yet.</figcaption>
+        </figure></div></div>
+    </div>
+
+    <!-- 1 · Edge-AI Transport -->
+    <div class="detail-page" data-page="1">
+      <div class="d-eyebrow">N°02 — Hackathon</div>
+      <h1 class="d-title">Edge-AI <span class="grn">Transport</span></h1>
+      <div class="d-sec"><h3>Award <span class="d-win" style="margin-bottom:0">🥇 1st place</span></h3><div>
+        <div class="d-sub">AIAT × NT · Data Team Lead</div>
+        <p><span class="hi">1st place</span> in NT's Intelligent Transport System challenge (7,000 THB prize). As <b>Data Team Lead</b> I coordinated data collection, pre-labeling, and QC across a 4-squad team. Real-world deployment on <b>NVIDIA Jetson Nano</b> across <b>10 live CCTVs</b>, labeling in Roboflow, YOLO for vehicle detection.</p>
+        <div class="flow"><span>10× CCTV</span><span class="ar">→</span><span>YOLO26</span><span class="ar">→</span><span>CLIP pre-label</span><span class="ar">→</span><span>Roboflow recheck</span><span class="ar">→</span><span>7,900+ images</span><span class="ar">→</span><span>MobileNetV3-S</span><span class="ar">→</span><span>ONNX → TensorRT</span><span class="ar">→</span><span>~18 FPS</span></div>
+        <div class="d-stats">
+          <div class="s"><div class="v">7,900+</div><div class="l">Labelled images</div></div>
+          <div class="s"><div class="v">30</div><div class="l">Brand classes</div></div>
+          <div class="s"><div class="v">10</div><div class="l">Live CCTVs</div></div>
+          <div class="s"><div class="v">~18</div><div class="l">FPS · ≈6× speedup</div></div>
+        </div>
+        <p><b>Data insights:</b> Toyota ↔ Honda swapped at CCTV angle; MG5 misclassified as Benz (similar grille); aerial angle makes roof-only shots hard.</p></div></div>
+      <div class="d-sec"><h3>Edge optimisation</h3><div>
+        <div class="hc-card">
+          <div class="hc-label">Edge optimisation · FPS lift (higher = better)</div>
+          <h4 class="hc-title"><em>6× speedup</em> via TensorRT.</h4>
+          <svg viewBox="0 0 400 220" class="svg-bars-v" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <line x1="20" y1="180" x2="380" y2="180" stroke="rgba(11,21,56,0.2)" stroke-width="1"/>
+            <line x1="20" y1="120" x2="380" y2="120" stroke="rgba(11,21,56,0.08)" stroke-width="1" stroke-dasharray="2 4"/>
+            <line x1="20" y1="60"  x2="380" y2="60"  stroke="rgba(11,21,56,0.08)" stroke-width="1" stroke-dasharray="2 4"/>
+            <text x="12" y="183" text-anchor="end" class="vb-axis">0</text>
+            <text x="12" y="123" text-anchor="end" class="vb-axis">10</text>
+            <text x="12" y="63"  text-anchor="end" class="vb-axis">20</text>
+            <g class="vb-bar" style="--d:.08s"><rect x="60"  y="155" width="80" height="25"  rx="10" fill="#6A78A8" opacity="0.7"/><text x="100" y="147" text-anchor="middle" class="vb-val">3 FPS</text><text x="100" y="200" text-anchor="middle" class="vb-lbl">PyTorch</text></g>
+            <g class="vb-bar" style="--d:.20s"><rect x="160" y="105" width="80" height="75"  rx="10" fill="#22D3EE"/><text x="200" y="97"  text-anchor="middle" class="vb-val">~10 FPS</text><text x="200" y="200" text-anchor="middle" class="vb-lbl">ONNX</text></g>
+            <g class="vb-bar" style="--d:.32s"><rect x="260" y="45"  width="80" height="135" rx="10" fill="#1E5BD6"/><text x="300" y="37"  text-anchor="middle" class="vb-val" style="fill:#1E5BD6;font-weight:700">★ ~18</text><text x="300" y="200" text-anchor="middle" class="vb-lbl" style="fill:#1E5BD6;font-weight:600">TensorRT FP16</text></g>
+          </svg>
+          <p class="hc-note">Layer fusion + reduced precision + SORT tracker pushed inference from unusable to real-time on edge hardware.</p>
+        </div>
+        <figure class="d-fig">
+          <video src="car.mp4" muted loop playsinline preload="none"></video>
+          <figcaption><em>Real inference output</em> — vehicle <b>type · brand · color</b> logged per frame across 10 CCTV streams (YOLO26 → MobileNetV3-S → HSV).</figcaption>
+        </figure>
+        <div class="chips"><span>Data Team Lead</span><span>YOLO26</span><span>MobileNetV3</span><span>TensorRT FP16</span><span>Roboflow</span><span>CLIP</span><span>Jetson Nano</span><span>SORT</span></div></div></div>
+    </div>
+
+    <!-- 2 · WellSense "Sip" -->
+    <div class="detail-page" data-page="2">
+      <div class="d-eyebrow">N°03 — Hackathon</div>
+      <h1 class="d-title">WellSense <span class="grn">“Sip”</span></h1>
+      <div class="d-sec"><h3>Award <span class="d-win" style="margin-bottom:0">⭐ Judges' Favorite</span></h3><div>
+        <div class="d-sub">Qualcomm × iMake × Chula Med · Crowd Favorite (2,000 THB prize)</div>
+        <p>An <b>edge-AIoT device</b> that monitors hydration and wellness in real time. Built on an <b>Arduino UNO Q</b> hub with <b>8 sensors</b> (ultrasonic bottle-volume, gyro, temperature, EEG-based input) streaming over <b>BLE</b>. A real-time pipeline validates signals, a <b>rule-based engine</b> evaluates caffeine/sugar/water thresholds, and a live "Sip" dashboard + LED matrix gives instant <b>GOOD / MID / STOP</b> feedback.</p>
+        <div class="flow"><span>Sensors</span><span class="ar">→</span><span>UNO Q</span><span class="ar">→</span><span>BLE</span><span class="ar">→</span><span>Stream + Validate</span><span class="ar">→</span><span>Rule Engine</span><span class="ar">→</span><span>Dashboard + LED</span></div>
+        <div class="chips"><span>Arduino UNO Q</span><span>C++</span><span>Python</span><span>BLE</span><span>Supabase</span><span>8 sensors</span></div></div></div>
+      <div class="d-sec"><h3>Build</h3><div>
+        <figure class="d-fig">
+          <img src="image/wellsense-team.jpg" alt="WellSense AIoT team holding the Judges' Favorite sign" loading="lazy">
+          <figcaption><em>Special Award</em> · Judges' Favorite <b>(Crowd Favorite)</b> · WellSense AIoT Hackathon.</figcaption>
+        </figure>
+        <figure class="d-fig">
+          <img src="image/wellsense-technical.jpg" alt="WellSense 'Sip' end-to-end technical architecture" loading="lazy">
+          <figcaption><em>Technical architecture</em> — 6 layers end-to-end: sensors → UNO Q edge → real-time pipeline → intelligence layer → "Sip" dashboard → LED feedback.</figcaption>
+        </figure></div></div>
+    </div>
+
+    <!-- 3 · ExpresSo Forecast -->
+    <div class="detail-page" data-page="3">
+      <div class="d-eyebrow">N°04 — Hackathon</div>
+      <h1 class="d-title">ExpresSo <span class="grn">Forecast</span></h1>
+      <div class="d-sec"><h3>Award <span class="d-win" style="margin-bottom:0">🏅 Hon. mention</span></h3><div>
+        <div class="d-sub">Coffee Chain Hackathon · Camp Lv.2 · Team of 6</div>
+        <p>Owned <b>deep EDA</b> on beverage sales data. Branches with <em>more seating and staff</em> sold significantly more; sales spike sharply <em>before long holidays, on payday, and during school breaks</em>. Lychee Juice was the most-stockout drink — confirming demand forecasting is critical for inventory.</p>
+        <div class="d-stats">
+          <div class="s"><div class="v">8.85</div><div class="l">CatBoost ★ WMAPE</div></div>
+          <div class="s"><div class="v">9.23</div><div class="l">XGBoost WMAPE</div></div>
+          <div class="s"><div class="v">18.4</div><div class="l">ARIMA WMAPE</div></div>
+          <div class="s"><div class="v">6</div><div class="l">Feature groups</div></div>
+        </div></div></div>
+      <div class="d-sec"><h3>Model &amp; EDA</h3><div>
+        <div class="hc-card">
+          <div class="hc-label">Model comparison · WMAPE (lower = better)</div>
+          <h4 class="hc-title">CatBoost won. <em>By a clean margin.</em></h4>
+          <svg viewBox="0 0 400 220" class="svg-bars-v" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <line x1="20" y1="180" x2="380" y2="180" stroke="rgba(11,21,56,0.2)" stroke-width="1"/>
+            <line x1="20" y1="120" x2="380" y2="120" stroke="rgba(11,21,56,0.08)" stroke-width="1" stroke-dasharray="2 4"/>
+            <line x1="20" y1="60"  x2="380" y2="60"  stroke="rgba(11,21,56,0.08)" stroke-width="1" stroke-dasharray="2 4"/>
+            <text x="12" y="183" text-anchor="end" class="vb-axis">0</text>
+            <text x="12" y="123" text-anchor="end" class="vb-axis">10</text>
+            <text x="12" y="63"  text-anchor="end" class="vb-axis">20</text>
+            <g class="vb-bar" style="--d:.08s"><rect x="60"  y="100" width="80" height="80"  rx="10" fill="#1E5BD6"/><text x="100" y="92"  text-anchor="middle" class="vb-val" style="fill:#1E5BD6;font-weight:700">★ 8.85</text><text x="100" y="200" text-anchor="middle" class="vb-lbl" style="fill:#1E5BD6;font-weight:600">CatBoost</text></g>
+            <g class="vb-bar" style="--d:.20s"><rect x="160" y="97"  width="80" height="83"  rx="10" fill="#22D3EE"/><text x="200" y="89"  text-anchor="middle" class="vb-val">9.23</text><text x="200" y="200" text-anchor="middle" class="vb-lbl">XGBoost</text></g>
+            <g class="vb-bar" style="--d:.32s"><rect x="260" y="30"  width="80" height="150" rx="10" fill="#7DD3FC" opacity="0.6"/><text x="300" y="22"  text-anchor="middle" class="vb-val">18.4</text><text x="300" y="200" text-anchor="middle" class="vb-lbl">ARIMA</text></g>
+          </svg>
+          <p class="hc-note">ARIMA failed on volatility (tall = bad); gradient-boosted trees handled the lagged + calendar features cleanly.</p>
+        </div>
+        <div class="hc-card">
+          <div class="hc-label">EDA · sales lift by trigger</div>
+          <h4 class="hc-title">When sales <em>actually</em> spike.</h4>
+          <svg viewBox="0 0 400 210" class="svg-bars-v" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <defs><linearGradient id="vbGradEDA3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22D3EE"/><stop offset="50%" stop-color="#1E5BD6"/><stop offset="100%" stop-color="#0A2A6E"/></linearGradient></defs>
+            <line x1="32" y1="170" x2="384" y2="170" stroke="rgba(26,24,21,0.20)" stroke-width="1"/>
+            <text x="22" y="173" text-anchor="end" class="vb-axis">0</text>
+            <text x="22" y="118" text-anchor="end" class="vb-axis">+40</text>
+            <text x="22" y="63"  text-anchor="end" class="vb-axis">+80</text>
+            <g class="vb-bar" style="--d:.08s"><rect x="52"  y="32"  width="62" height="138" rx="2" fill="url(#vbGradEDA3)"/><text x="83"  y="22"  text-anchor="middle" class="vb-val">+82%</text><text x="83"  y="195" text-anchor="middle" class="vb-lbl">Holiday</text></g>
+            <g class="vb-bar" style="--d:.20s"><rect x="134" y="44"  width="62" height="126" rx="2" fill="url(#vbGradEDA3)"/><text x="165" y="34"  text-anchor="middle" class="vb-val">+74%</text><text x="165" y="195" text-anchor="middle" class="vb-lbl">Payday</text></g>
+            <g class="vb-bar" style="--d:.32s"><rect x="216" y="55"  width="62" height="115" rx="2" fill="url(#vbGradEDA3)"/><text x="247" y="45"  text-anchor="middle" class="vb-val">+68%</text><text x="247" y="195" text-anchor="middle" class="vb-lbl">Weekend</text></g>
+            <g class="vb-bar" style="--d:.44s"><rect x="298" y="69"  width="62" height="101" rx="2" fill="url(#vbGradEDA3)"/><text x="329" y="59"  text-anchor="middle" class="vb-val">+60%</text><text x="329" y="195" text-anchor="middle" class="vb-lbl">School Break</text></g>
+          </svg>
+          <p class="hc-note">Lift over baseline daily Unit Sold. Holiday and payday are the two strongest external drivers.</p>
+          <div class="fe-grid" style="margin-top:.8rem">
+            <div class="fe-cell"><div class="fe-h">Lag &amp; Rolling</div><div class="fe-b">0–56 days · mean/median/std</div></div>
+            <div class="fe-cell"><div class="fe-h">Calendar</div><div class="fe-b">sin/cos · pre-holiday</div></div>
+            <div class="fe-cell"><div class="fe-h">Store</div><div class="fe-b">hours · seats-per-staff</div></div>
+            <div class="fe-cell"><div class="fe-h">KMeans</div><div class="fe-b">k = 6, 10, 12 groups</div></div>
+            <div class="fe-cell"><div class="fe-h">Promotion</div><div class="fe-b">date range + type</div></div>
+            <div class="fe-cell"><div class="fe-h">Local Event</div><div class="fe-b">distance to event</div></div>
+          </div>
+        </div>
+        <figure class="d-fig">
+          <img src="image/arima.png" alt="ARIMA validation — Daily Units Sold 2023–2024 TRAIN/VAL split" loading="lazy">
+          <figcaption><em>Validation</em> — ARIMA captures coarse seasonality but misses the sharp lift spikes — confirming why it scored WMAPE 18.4 and lost to CatBoost.</figcaption>
+        </figure>
+        <p style="color:#2c2e29;font-size:1rem;line-height:1.7"><em>First time working in a team after years solo — learned the value of parallel work and knowledge sharing.</em></p>
+        <div class="chips"><span>CatBoost</span><span>XGBoost</span><span>ARIMA</span><span>Time-series EDA</span><span>Feature Engineering</span><span>KMeans</span></div></div></div>
+    </div>
+
+    <!-- 4 · Thai Fishery Pipeline -->
+    <div class="detail-page" data-page="4">
+      <div class="d-eyebrow">N°05 — AI · ML</div>
+      <h1 class="d-title">Thai Fishery <span class="grn">Pipeline</span></h1>
+      <div class="d-sec"><h3>Overview</h3><div>
+        <div class="d-sub">Agentic Pipeline Hackathon</div>
+        <p>An end-to-end <b>agentic data pipeline</b> to collect, clean, and analyse Thai fishery trade data. <b>Key finding:</b> Thai mackerel ranks <span class="hi">#1</span> in export volume, with <span class="hi">Japan</span> the top buyer.</p>
+        <div class="flow"><span>Web Scraping</span><span class="ar">→</span><span>Data Cleaning</span><span class="ar">→</span><span>Agentic LLM</span><span class="ar">→</span><span>Visualization</span></div>
+        <div class="hc-card">
+          <div class="hc-label">Top destinations · Thai mackerel export (relative volume)</div>
+          <h4 class="hc-title">Japan leads. <em>By a lot.</em></h4>
+          <svg viewBox="0 0 400 220" class="svg-bars-v" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <line x1="20" y1="180" x2="380" y2="180" stroke="rgba(11,21,56,0.2)" stroke-width="1"/>
+            <text x="12" y="183" text-anchor="end" class="vb-axis">0</text>
+            <text x="12" y="123" text-anchor="end" class="vb-axis">50</text>
+            <text x="12" y="63"  text-anchor="end" class="vb-axis">100</text>
+            <g class="vb-bar" style="--d:.08s"><rect x="42"  y="30"  width="56" height="150" rx="8" fill="#1E5BD6"/><text x="70"  y="22"  text-anchor="middle" class="vb-val" style="fill:#1E5BD6;font-weight:700">★ #1</text><text x="70"  y="200" text-anchor="middle" class="vb-lbl" style="fill:#1E5BD6;font-weight:600">Japan</text></g>
+            <g class="vb-bar" style="--d:.18s"><rect x="118" y="93"  width="56" height="87"  rx="8" fill="#22D3EE"/><text x="146" y="85"  text-anchor="middle" class="vb-val">~58%</text><text x="146" y="200" text-anchor="middle" class="vb-lbl">Vietnam</text></g>
+            <g class="vb-bar" style="--d:.28s"><rect x="194" y="117" width="56" height="63"  rx="8" fill="#7DD3FC"/><text x="222" y="109" text-anchor="middle" class="vb-val">~42%</text><text x="222" y="200" text-anchor="middle" class="vb-lbl">China</text></g>
+            <g class="vb-bar" style="--d:.38s"><rect x="270" y="133" width="56" height="47"  rx="8" fill="#C4A8FF"/><text x="298" y="125" text-anchor="middle" class="vb-val">~31%</text><text x="298" y="200" text-anchor="middle" class="vb-lbl">Korea</text></g>
+            <g class="vb-bar" style="--d:.48s"><rect x="334" y="150" width="50" height="30"  rx="8" fill="#FFD79E"/><text x="359" y="142" text-anchor="middle" class="vb-val">~20%</text><text x="359" y="200" text-anchor="middle" class="vb-lbl">Malaysia</text></g>
+          </svg>
+          <p class="hc-note">Normalised to Japan = 100. Japan dominates as the single largest buyer of Thai mackerel.</p>
+        </div>
+        <figure class="d-fig">
+          <img src="image/Agentic%20Pipeline%20Hackathon.jpg" alt="Thai Fishery agentic pipeline hackathon" loading="lazy">
+          <figcaption><em>Agentic pipeline</em> — scraping → cleaning → LLM analysis → visualization of Thai fishery trade data.</figcaption>
+        </figure>
+        <div class="chips"><span>Agentic AI</span><span>Pandas</span><span>Plotly</span><span>Trade Analysis</span></div></div></div>
+    </div>
+
+    <!-- 5 · FahMai RAG -->
+    <div class="detail-page" data-page="5">
+      <div class="d-eyebrow">N°06 — AI · ML</div>
+      <h1 class="d-title">FahMai <span class="grn">RAG</span></h1>
+      <div class="d-sec"><h3>Overview</h3><div>
+        <div class="d-sub">FahMai RAG Hackathon · Multi-model screening</div>
+        <p>Applied <b>RAG</b> with advanced chunking to build a document Q&amp;A system, using <b>three LLMs in a cascade</b> to progressively filter and refine retrieved context before generating answers.</p>
+        <div class="flow"><span>Query</span><span class="ar">→</span><span>Embed + Retrieve</span><span class="ar">→</span><span>M1 Relevance</span><span class="ar">→</span><span>M2 Re-rank</span><span class="ar">→</span><span>M3 Generate</span><span class="ar">→</span><span>Answer</span></div>
+        <figure class="d-fig">
+          <img src="image/FahMai%20RAG%20Hackathon.jpg" alt="FahMai RAG hackathon" loading="lazy">
+          <figcaption><em>RAG cascade</em> — semantic chunking + a 3-model screening cascade refines retrieved context before generation.</figcaption>
+        </figure>
+        <div class="chips"><span>RAG</span><span>Semantic Chunking</span><span>Vector DB</span><span>3-Model Cascade</span><span>LangChain</span></div></div></div>
+    </div>
+
+    <!-- 6 · Workflow Automation -->
+    <div class="detail-page" data-page="6">
+      <div class="d-eyebrow">N°09 — Automation</div>
+      <h1 class="d-title">Workflow <span class="grn">Automation</span></h1>
+      <div class="d-sec"><h3>Overview</h3><div>
+        <div class="d-sub">Parcel Tracking · Make.com</div>
+        <p>A Make.com (Integration LINE) workflow: receive a LINE event → download the attached image → send to OCR via HTTP → parse the tracking number with the Text parser → log a row in Google Sheets → push a status message back via LINE — running <b>immediately as data arrives</b>. The admin's job shrinks to <em>Take photo → Wait → Copy → Send</em>, cutting handling <span class="hi">~85%</span>.</p>
+        <div class="flow"><span>LINE event</span><span class="ar">→</span><span>Download image</span><span class="ar">→</span><span>HTTP OCR</span><span class="ar">→</span><span>Text parser</span><span class="ar">→</span><span>Google Sheets</span><span class="ar">→</span><span>LINE push</span></div>
+        <div class="chips"><span>Make.com</span><span>LINE API</span><span>HTTP</span><span>OCR</span><span>Google Sheets</span></div>
+        <figure class="d-fig">
+          <video src="ocr.mp4" muted loop playsinline preload="none"></video>
+          <figcaption><em>Workflow walkthrough</em> — LINE → OCR → Sheets → auto-reply, triggered immediately as data arrives.</figcaption>
+        </figure></div></div>
+    </div>
+
+    <!-- 7 · MINI-ERP System -->
+    <div class="detail-page" data-page="7">
+      <div class="d-eyebrow">N°07 — Project</div>
+      <h1 class="d-title">MINI-ERP <span class="grn">System</span></h1>
+      <div class="d-sec"><h3>Overview</h3><div>
+        <div class="d-sub">Smart ERP · Web-based business system</div>
+        <p>A web-based ERP for small-to-medium businesses — purchasing, receiving, inventory, sales, delivery, basic finance, and document approvals in one place. Clean separated-API architecture, modern UI, secure JWT login; runs on desktop and mobile.</p>
+        <p><b>Core modules:</b> Purchasing &amp; Inventory (PR → PO → GRN with real-time stock), Sales (Quotation → SO → DO with delivery-confirmation links), Master Data (products, partners, warehouses, UOM), and role-based permissions with a centralised Approval Center.</p>
+        <div class="chips"><span>Python</span><span>Django 6</span><span>DRF</span><span>JWT</span><span>PostgreSQL</span><span>Vue 3</span><span>Vite</span><span>Tailwind</span></div></div></div>
+      <div class="d-sec"><h3>Walkthrough</h3><div>
+        <figure class="d-fig">
+          <video src="miniocr.mp4" muted loop playsinline preload="none"></video>
+          <figcaption><em>MINI-ERP walkthrough</em> — purchasing → receiving → stock, sales documents, and the approval center.</figcaption>
+        </figure>
+        <div class="d-links"><a href="https://minierpbybez.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/beetwowin2-coder/minierpbybez.git" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <p style="margin-top:.6rem;color:#2c2e29;font-size:1rem;line-height:1.7"><b>Demo login:</b> <span class="hi">admin</span> / <span class="hi">admin123</span> — shared read-only trial data.</p></div></div>
+    </div>
+
+    <!-- 8 · SabaiBill -->
+    <div class="detail-page" data-page="8">
+      <div class="d-eyebrow">N°08 — Project</div>
+      <h1 class="d-title">Sabai<span class="grn">Bill</span></h1>
+      <div class="d-sec"><h3>Overview</h3><div>
+        <div class="d-sub">SME Document Management System</div>
+        <p>A sales-doc app for SMEs — create, chain, and print/save PDFs in one place. Users create <b>QT → SO → DO → IV</b> and chain them without re-entering data; configure company info, bank details, terms, signatures, payment QR and currency; auto-calculate <b>VAT, discounts, withholding tax (WHT)</b>; and print/save <b>PDF</b> from the preview. Interface in <b>TH and EN</b> with bilingual document fields.</p>
+        <p><b>Access:</b> one-button entry using a shared DB user — built for demo / internal trial, not sensitive data without an extra security layer.</p>
+        <div class="chips"><span>React</span><span>Node.js</span><span>Prisma</span><span>TH / EN</span></div></div></div>
+      <div class="d-sec"><h3>Walkthrough</h3><div>
+        <figure class="d-fig">
+          <video src="saibaiiii.mp4" muted loop playsinline preload="none"></video>
+          <figcaption><em>SabaiBill</em> — bilingual trade documents with auto VAT/WHT and one-click PDF.</figcaption>
+        </figure>
+        <div class="d-links"><a href="https://baibillbybez.onrender.com/login" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/beetwowin2-coder/billbybz.git" target="_blank" rel="noopener">GitHub ↗</a></div></div></div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span class="green">★</span> © 2026 Natticha Satjawatthana — Data · AI · ML Engineer · Bangkok &nbsp;//&nbsp; Built with care
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var WORKS=[
+    {t:'FahMai Data-Agent', label:'Award · 1st', img:'image/fahmai-finale-stage.jpg', tags:['13.8× cache','99.2% acc','100% inj-caught'], page:0},
+    {t:'Edge-AI Transport', label:'Award · 1st', vid:'car.mp4', tags:['7,900+ imgs','10 CCTV','~18 FPS'], page:1},
+    {t:'WellSense “Sip”', label:'Judges’ fav', img:'image/wellsense-team.jpg', tags:['8 sensors','Arduino UNO Q','BLE'], page:2},
+    {t:'ExpresSo Forecast', label:'Hon. mention', img:'image/arima.png', tags:['WMAPE 8.85','CatBoost','6 feat groups'], page:3},
+    {t:'Thai Fishery Pipeline', label:'AI · ML', img:'image/Agentic%20Pipeline%20Hackathon.jpg', tags:['Agentic','Mackerel #1','Japan buyer'], page:4},
+    {t:'FahMai RAG', label:'AI · ML', img:'image/FahMai%20RAG%20Hackathon.jpg', tags:['RAG','3-model cascade','Vector DB'], page:5}
+  ];
+  var PROJECTS=[
+    {t:'MINI-ERP System', label:'Full-stack', vid:'miniocr.mp4', tags:['Django 6','Vue 3','Postgres'], page:7},
+    {t:'SabaiBill', label:'Full-stack', vid:'saibaiiii.mp4', tags:['React','Node','Prisma'], page:8},
+    {t:'Workflow Automation', label:'Automation', vid:'ocr.mp4', tags:['Make.com','LINE+OCR','~85% cut'], page:6}
+  ];
+  var WEBS=[
+    {t:'CJP Frozen Food', label:'E-commerce', url:'https://www.cjpfrozenfood.co.th/', host:'cjpfrozenfood.co.th', tags:['B2B catalog','LINE Notify','PO requests'], desc:'A B2B product catalog and PO-request system, connected to LINE Notify to alert the admin team of new orders in real time.', links:[{t:'Visit site',u:'https://www.cjpfrozenfood.co.th/'}]},
+    {t:'Yuki Pepper Art Store', label:'E-commerce', url:'https://yukipepper.com/', host:'yukipepper.com', tags:['Art store','E-commerce','Order alerts'], desc:'An e-commerce platform for displaying and selling art — minimalist styling, with automated order alerts via LINE.', links:[{t:'Visit site',u:'https://yukipepper.com/'}]}
+  ];
+  var SKILLS=[
+    {h:'Data & ML', items:['Python','Pandas','NumPy','Scikit-learn','XGBoost','CatBoost','EDA']},
+    {h:'Computer Vision', items:['CNN','YOLO','CLIP','MobileNetV3','TensorRT','Jetson Nano']},
+    {h:'Agentic AI & RAG', items:['RAG','LLM','ReAct','Vector DB','LangChain','vLLM']},
+    {h:'Full-stack Web', items:['Django','Vue 3','React','Node.js','Prisma','PostgreSQL']},
+    {h:'Automation & Tools', items:['Make.com','LINE API','OCR','Cursor','Claude Code','Figma']}
+  ];
+
+  function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
+  function setImg(node,url,label){
+    node.innerHTML='<span class="ph">'+label+'</span>';
+    if(url){var im=new Image();im.onload=function(){node.style.backgroundImage='url('+url+')';node.innerHTML='';};im.src=url;}
+  }
+
+  /* play card videos only while in view (saves bandwidth, stays cinematic) */
+  var vio=('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){ try{v.playbackRate=0.9;}catch(_){} var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+      else { try{v.pause();}catch(_){} }
+    });
+  },{threshold:.25}) : null;
+
+  function setMedia(node,w){
+    if(w.vid){
+      node.innerHTML='<video muted loop playsinline preload="metadata" src="'+w.vid+'"></video><span class="vtag">Live demo</span>';
+      var v=node.querySelector('video');
+      if(vio && !reduce){ vio.observe(v); }
+      else { try{ v.muted=true; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }catch(_){} }
+    } else {
+      setImg(node, w.img, w.t);
+    }
+  }
+
+  function renderGallery(list, container, moreText, offset){
+    list.forEach(function(w,i){
+      var n=String(i+1+offset).padStart(2,'0');
+      var c=el('article','g-card rv');
+      c.setAttribute('role','button');
+      c.setAttribute('tabindex','0');
+      c.setAttribute('aria-label','Open details: '+w.t);
+      c.dataset.detail=w.page;
+      c.innerHTML='<div class="gc-top"><span class="lab">'+w.label+'</span><span class="gc-num">N°'+n+'</span></div>'+
+        '<h3>'+w.t+'</h3>'+
+        '<div class="gc-img"></div>'+
+        '<div class="gc-tags">'+w.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>'+
+        '<div class="gc-more"><span>'+moreText+'</span><span class="arr">→</span></div>';
+      container.appendChild(c);
+      setMedia(c.querySelector('.gc-img'), w);
+    });
+  }
+  var cards=document.getElementById('cards');
+  var projcards=document.getElementById('projcards');
+  renderGallery(WORKS, cards, 'View case study', 0);
+  renderGallery(PROJECTS, projcards, 'View project', WORKS.length);
+
+  /* web-design cards — live browser mockups */
+  var webcards=document.getElementById('webcards');
+  WEBS.forEach(function(w){
+    var media;
+    if(w.vid){
+      media='<div class="bm-bar"><span class="bm-dot" style="background:#FF5F56"></span><span class="bm-dot" style="background:#FFBD2E"></span><span class="bm-dot" style="background:#27C93F"></span><span class="bm-url">live demo · '+w.t+'</span></div>'+
+        '<div class="bm-frame"><video muted loop playsinline preload="metadata" src="'+w.vid+'"></video></div>';
+    } else {
+      media='<div class="bm-bar"><span class="bm-dot" style="background:#FF5F56"></span><span class="bm-dot" style="background:#FFBD2E"></span><span class="bm-dot" style="background:#27C93F"></span><span class="bm-url">'+w.host+'</span></div>'+
+        '<div class="bm-frame"><iframe src="'+w.url+'" loading="lazy" title="'+w.t+' preview" sandbox="allow-scripts allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>'+
+        '<a href="'+w.url+'" target="_blank" rel="noopener" class="bm-overlay"><span class="bm-pill">Visit full site ↗</span></a></div>';
+    }
+    var links=w.links.map(function(l){return '<a href="'+l.u+'" target="_blank" rel="noopener">'+l.t+' ↗</a>';}).join('');
+    var c=el('article','web-card rv');
+    c.innerHTML='<div class="browser-mockup">'+media+'</div>'+
+      '<div class="web-body"><span class="lab">'+w.label+'</span><h3>'+w.t+'</h3>'+
+      '<p>'+w.desc+'</p>'+
+      '<div class="web-tags">'+w.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>'+
+      '<div class="web-links">'+links+'</div></div>';
+    webcards.appendChild(c);
+    var v=c.querySelector('video');
+    if(v){ if(vio && !reduce){ vio.observe(v); } else { try{ v.muted=true; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }catch(_){} } }
+  });
+
+  /* ===== DETAIL OVERLAY ===== */
+  var detail=document.getElementById('detail');
+  var dPages=[].slice.call(detail.querySelectorAll('.detail-page'));
+  function openDetail(idx){
+    dPages.forEach(function(p){ p.classList.toggle('show', p.getAttribute('data-page')===String(idx)); });
+    detail.classList.add('open'); document.body.classList.add('locked'); detail.scrollTop=0;
+    var active=detail.querySelector('.detail-page.show');
+    if(active){
+      var f=active.querySelector('iframe[data-src]');
+      if(f && !f.getAttribute('src')){ f.setAttribute('src', f.getAttribute('data-src')); }
+      [].slice.call(active.querySelectorAll('video')).forEach(function(v){ try{ v.muted=true; v.playbackRate=0.9; if(!reduce){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); } }catch(_){} });
+    }
+  }
+  function closeDetail(){
+    detail.classList.remove('open'); document.body.classList.remove('locked');
+    [].slice.call(detail.querySelectorAll('video')).forEach(function(v){ try{ v.pause(); }catch(_){} });
+  }
+  document.getElementById('detailClose').onclick=closeDetail;
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && detail.classList.contains('open')) closeDetail(); });
+  [cards, projcards].forEach(function(grid){
+    grid.addEventListener('click',function(e){ var card=e.target.closest('.g-card'); if(card && card.dataset.detail!=null) openDetail(card.dataset.detail); });
+    grid.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ var card=e.target.closest('.g-card'); if(card && card.dataset.detail!=null){ e.preventDefault(); openDetail(card.dataset.detail); } } });
+  });
+  /* buttons that open an overlay page directly (Read my story, View CV) */
+  [].slice.call(document.querySelectorAll('[data-open]')).forEach(function(b){
+    b.addEventListener('click',function(){ openDetail(b.getAttribute('data-open')); });
+  });
+
+  var sg=document.getElementById('skills-grid');
+  SKILLS.forEach(function(s,i){
+    var b=el('div','sk rv');
+    b.innerHTML='<h3>'+s.h+'<span class="n">N°'+String(i+1).padStart(2,'0')+'</span></h3>'+
+      '<div class="chips">'+s.items.map(function(x){return '<span>'+x+'</span>';}).join('')+'</div>';
+    sg.appendChild(b);
+  });
+
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.rv').forEach(function(n){io.observe(n);});
+  } else { document.querySelectorAll('.rv').forEach(function(n){n.classList.add('in');}); }
+
+  (function(){
+    var links=[].slice.call(document.querySelectorAll('#nav a'));
+    var map=links.map(function(a){return {a:a,sec:document.getElementById(a.getAttribute('href').slice(1))};}).filter(function(m){return m.sec;});
+    function onScroll(){var cur=null;map.forEach(function(m){if(m.sec.getBoundingClientRect().top<=120)cur=m;});links.forEach(function(a){a.classList.remove('on');});(cur?cur.a:links[0]).classList.add('on');}
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  })();
+
+  /* scroll progress bar */
+  (function(){
+    var bar=document.getElementById('progress');
+    if(!bar)return;
+    function upd(){var de=document.documentElement;var max=de.scrollHeight-de.clientHeight;var p=max>0?(de.scrollTop/max*100):0;bar.style.width=p+'%';}
+    window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+  })();
+
+  /* cursor spotlight follow */
+  (function(){
+    var spot=document.querySelector('.spot');
+    if(!spot || !matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+    window.addEventListener('pointermove',function(e){
+      spot.style.setProperty('--mx',e.clientX+'px');
+      spot.style.setProperty('--my',e.clientY+'px');
+    },{passive:true});
+  })();
+
+  /* subtle 3D tilt on cards (desktop, motion-on) */
+  if(!reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
+    [].slice.call(document.querySelectorAll('.g-card,.web-card')).forEach(function(c){
+      c.addEventListener('pointermove',function(e){
+        var r=c.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-0.5;
+        var py=(e.clientY-r.top)/r.height-0.5;
+        c.style.transform='perspective(760px) rotateY('+(px*5).toFixed(2)+'deg) rotateX('+(-py*5).toFixed(2)+'deg) translateY(-3px)';
+      });
+      c.addEventListener('pointerleave',function(){ c.style.transform=''; });
+    });
+  }
+})();
+</script>
+</body>
+</html>
