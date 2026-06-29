@@ -769,6 +769,11 @@
   <span class="green">★</span> © 2026 Natticha Satjawatthana — Data · AI · ML Engineer · Bangkok &nbsp;//&nbsp; Built with care
 </footer>
 
+<div class="qr-pop" id="qrPop" aria-hidden="true"><img src="line.jpg" alt=""></div>
+<button class="to-top" id="toTop" aria-label="Back to top" title="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 (function(){
   "use strict";
@@ -965,7 +970,8 @@
     var W=220, GAP=12;
     var place=function(){
       var r=qr.getBoundingClientRect();
-      var left=r.right+GAP, top=r.top;
+      var left=r.right+GAP;                                  // open gap to the right of the QR
+      var top=r.top+r.height/2-W/2;                          // vertically centered on the QR
       if(left+W>window.innerWidth-8) left=r.left-W-GAP;      // flip to the left if no room right
       if(left<8) left=8;
       if(top+W>window.innerHeight-8) top=window.innerHeight-W-8;
@@ -982,9 +988,5 @@
   })();
 })();
 </script>
-<div class="qr-pop" id="qrPop" aria-hidden="true"><img src="line.jpg" alt=""></div>
-<button class="to-top" id="toTop" aria-label="Back to top" title="Back to top">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
 </body>
 </html>
